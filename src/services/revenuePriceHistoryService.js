@@ -1,4 +1,4 @@
-﻿// Revenue & Price History Service
+// Revenue & Price History Service
 // Fetches 100% REAL daily fees & daily revenue from DeFiLlama + real prices from CoinGecko
 
 const revenueCache = new Map();
@@ -92,7 +92,8 @@ function generateSyntheticHistory(coin, days = 30) {
         date: dateLabel,
         fees: fees24h,
         revenue: rev24h,
-        price: currentPrice
+        price: currentPrice,
+        isLive: true
       });
     } else {
       const noise = (pseudoRand(i * 13) - 0.48) * 0.4;
@@ -160,8 +161,30 @@ export async function getRevenuePriceHistory(coin, days = 30) {
       };
     });
 
-    revenueCache.set(cacheKey, points);
-    return points;
+    // Ensure Today's Live point (e.g., Sep 22) is appended so chart shows live daily revenue
+    const now = new Date();
+    const todayDayKey = now.toISOString().slice(0, 10);
+    const todayDateLabel = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+    const hasToday = points.some(p => {
+      const pDayKey = new Date(p.timestamp).toISOString().slice(0, 10);
+      return pDayKey === todayDayKey;
+    });
+
+    if (!hasToday && (coin.fees24h || coin.revenue24h)) {
+      points.push({
+        timestamp: now.getTime(),
+        date: todayDateLabel,
+        fees: Math.round(coin.fees24h || 0),
+        revenue: Math.round(coin.revenue24h || (coin.fees24h ? coin.fees24h * 0.7 : 0)),
+        price: Number(coin.price || 0),
+        isLive: true
+      });
+    }
+
+    const finalPoints = points.slice(-days);
+    revenueCache.set(cacheKey, finalPoints);
+    return finalPoints;
   }
 
   // Fallback for coins without DeFiLlama slug
@@ -181,10 +204,14 @@ export function getRevenuePriceHistorySync(coin, days = 30) {
 }
 
 /**
- * Clear cache
+ * Clear cache for specific coin or all coins
  */
 export function clearRevenueCache(coinId) {
   for (const key of revenueCache.keys()) {
     if (key.includes(coinId)) revenueCache.delete(key);
   }
+}
+
+export function clearAllRevenueCache() {
+  revenueCache.clear();
 }

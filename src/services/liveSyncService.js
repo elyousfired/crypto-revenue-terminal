@@ -11,10 +11,51 @@ export async function fetchLiveFees() {
     
     // Map protocol slug/name -> full fee metrics
     const feesMap = new Map();
+    const parentSums = new Map();
+
     if (Array.isArray(data.protocols)) {
+      // Pass 1: aggregate parentProtocols (e.g. Uniswap V1/V2/V3/V4, Aave V2/V3)
+      data.protocols.forEach(p => {
+        if (p.parentProtocol) {
+          const parentKey = p.parentProtocol.replace('parent#', '').toLowerCase().trim();
+          const existing = parentSums.get(parentKey) || {
+            fees: 0,
+            fees48h: 0,
+            fees7d: 0,
+            fees30d: 0
+          };
+          existing.fees += (p.total24h || p.dailyFees || 0);
+          existing.fees48h += (p.total48hto24h || 0);
+          existing.fees7d += (p.total7d || 0);
+          existing.fees30d += (p.total30d || 0);
+          parentSums.set(parentKey, existing);
+        }
+      });
+
+      // Register parent aggregated entries
+      parentSums.forEach((val, parentKey) => {
+        if (val.fees > 0) {
+          const feeChange1d = val.fees48h > 0 ? Number((((val.fees - val.fees48h) / val.fees48h) * 100).toFixed(1)) : 0;
+          const feeChange7d = val.fees7d > 0 ? Number((((val.fees7d - val.fees48h * 7) / Math.max(1, val.fees48h * 7)) * 100).toFixed(1)) : 0;
+          const info = {
+            fees24h: Math.round(val.fees),
+            fees48h: Math.round(val.fees48h),
+            fees7d: Math.round(val.fees7d),
+            fees30d: Math.round(val.fees30d),
+            feeChange1d,
+            feeChange7d,
+            isUpToday: val.fees > val.fees48h,
+            isUpWeek: feeChange7d > 0
+          };
+          feesMap.set(parentKey, info);
+        }
+      });
+
+      // Pass 2: map individual protocols
       data.protocols.forEach(p => {
         const key = (p.name || p.module || '').toLowerCase().trim();
         const slugKey = (p.defillamaId || '').toLowerCase().trim();
+        const displayNameKey = (p.displayName || '').toLowerCase().trim();
         const fees = p.total24h || p.dailyFees || 0;
         const fees48h = p.total48hto24h || 0;
         const fees7d = p.total7d || 0;
@@ -42,8 +83,9 @@ export async function fetchLiveFees() {
         };
 
         if (fees > 0) {
-          if (key) feesMap.set(key, info);
-          if (slugKey) feesMap.set(slugKey, info);
+          if (key && !feesMap.has(key)) feesMap.set(key, info);
+          if (slugKey && !feesMap.has(slugKey)) feesMap.set(slugKey, info);
+          if (displayNameKey && !feesMap.has(displayNameKey)) feesMap.set(displayNameKey, info);
         }
       });
     }

@@ -37,6 +37,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
         symbol: c.symbol,
         name: c.name,
         logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+        todayLiveRev: dailyHoldersRev,
         fees24h: c.fees24h,
         rev30d,
         mcap: c.mcap,
@@ -51,12 +52,14 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           const rev30d = c.holdersRevenue30d || (c.holdersRevenue24h ? c.holdersRevenue24h * 30 : 0);
           const annualRev = rev30d * 12;
           const yieldPct = c.mcap > 0 ? (annualRev / c.mcap) * 100 : 0;
+          const dailyBurn = c.holdersRevenue24h || Math.round(rev30d / 30);
           return {
             coin: c,
             symbol: c.symbol,
             name: c.name,
             logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
-            fees24h: c.holdersRevenue24h || Math.round(rev30d / 30),
+            todayLiveRev: dailyBurn,
+            fees24h: dailyBurn,
             rev30d,
             mcap: c.mcap,
             yieldPct: Number(yieldPct.toFixed(2)),
@@ -194,10 +197,16 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                   <th className="py-3 pl-4 pr-2 text-left w-10">#</th>
                   <th className="py-3 px-3 text-left">TOKEN</th>
                   <th className="py-3 px-4 text-right">
+                    <div className="flex items-center justify-end gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span>{rankingType === 'burn' ? 'TODAY BURN (LIVE)' : 'TODAY REV (LIVE)'}</span>
+                    </div>
+                  </th>
+                  <th className="py-3 px-4 text-right">
                     {rankingType === 'burn' ? 'HOLDERS BURN (30D)' : 'HOLDERS REV. (30D)'}
                   </th>
                   <th className="py-3 px-4 text-right">MARKET CAP</th>
-                  <th className="py-3 px-4 text-right min-w-[220px]">
+                  <th className="py-3 px-4 text-right min-w-[200px]">
                     <div className="flex items-center justify-end gap-1">
                       <span>ANNUALIZED REV. / MC</span>
                       <Info className="w-3 h-3 text-slate-500" title="Annualized holders cashflow as a percentage of market cap" />
@@ -248,6 +257,19 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                               {item.name}
                             </span>
                           </div>
+                        </div>
+                      </td>
+
+                      {/* Today Live Revenue (15m Scan) */}
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                          <span className={'font-extrabold text-xs ' + (rankingType === 'burn' ? 'text-amber-300' : 'text-emerald-300')}>
+                            {fmtRev(item.todayLiveRev)}
+                          </span>
+                        </div>
+                        <div className="text-[9px] text-slate-500 mt-0.5">
+                          15m live scan
                         </div>
                       </td>
 

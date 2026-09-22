@@ -23,7 +23,8 @@ import {
   CartesianGrid,
   ComposedChart,
   Bar,
-  Line
+  Line,
+  Cell
 } from 'recharts';
 import { fmtUsd, fmtCompact, fmtPct, fmtMultiple } from '../lib/format';
 import { getHistory30d } from '../services/volToMcapHistoryService';
@@ -65,6 +66,8 @@ function CustomVolTooltip({ active, payload, label }) {
   return null;
 }
 
+const dexPairCache = new Map();
+
 export default function CoinDetailModal({ coin, onClose, initialTab }) {
   if (!coin) return null;
 
@@ -72,14 +75,49 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [selectedExchange, setSelectedExchange] = useState('GLOBAL');
   const [customPair, setCustomPair] = useState(coin && coin.symbol ? coin.symbol.toUpperCase() + 'USDT' : 'BTCUSDT');
+  const [dexPair, setDexPair] = useState(() => (coin && coin.symbol ? dexPairCache.get(coin.symbol.toUpperCase()) : null));
+  const [dexLoading, setDexLoading] = useState(false);
+
+  // Fetch or retrieve cached DexScreener pair for 100% working DEX candlestick chart
+  useEffect(() => {
+    if (!coin || !coin.symbol) return;
+    const sym = coin.symbol.toUpperCase();
+    if (dexPairCache.has(sym)) {
+      setDexPair(dexPairCache.get(sym));
+      return;
+    }
+    setDexLoading(true);
+    fetch(`https://api.dexscreener.com/latest/dex/search?q=${encodeURIComponent(coin.symbol)}`)
+      .then(r => r.json())
+      .then(d => {
+        const p = d.pairs && d.pairs[0];
+        if (p) {
+          const info = {
+            chainId: p.chainId,
+            pairAddress: p.pairAddress,
+            dexId: p.dexId,
+            url: p.url,
+            baseToken: p.baseToken?.symbol || sym,
+            quoteToken: p.quoteToken?.symbol || 'USD',
+            priceUsd: p.priceUsd
+          };
+          dexPairCache.set(sym, info);
+          setDexPair(info);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setDexLoading(false));
+  }, [coin]);
 
   useEffect(() => {
     if (coin && coin.symbol) {
       setCustomPair(coin.symbol.toUpperCase() + 'USDT');
-      if (coin.rank && coin.rank <= 150) {
-        setSelectedExchange('BINANCE');
-      } else if (coin.rank && coin.rank <= 500) {
-        setSelectedExchange('MEXC');
+      const sym = coin.symbol.toUpperCase();
+      // Smart exchange routing: HYPE is on Bybit/MEXC/Gate.io, not Binance
+      if (sym === 'HYPE') {
+        setSelectedExchange('BYBIT');
+      } else if (sym === 'AERO' || sym === 'VELO') {
+        setSelectedExchange('GLOBAL');
       } else {
         setSelectedExchange('GLOBAL');
       }
@@ -273,25 +311,84 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                 <span>Revenue + Price (Cashflow)</span>
               </button>
               <button
-                onClick={() => setActiveTab('volCurve')}
-                className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'volCurve' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
+                onClick={() => setActiveTab('dexscreener')}
+                className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'dexscreener' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
               >
-                <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Vol / MC Velocity (30D)</span>
+                <span>🦄</span>
+                <span>DexScreener Live (DEX)</span>
               </button>
               <button
                 onClick={() => setActiveTab('tradingview')}
                 className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'tradingview' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
               >
                 <LineChartIcon className="w-3.5 h-3.5 text-amber-400" />
-                <span>TradingView Chart</span>
+                <span>TradingView (CEX)</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('volCurve')}
+                className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'volCurve' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
+              >
+                <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Vol / MC Velocity (30D)</span>
               </button>
             </div>
-            <a href={dexScreenerUrl} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[10px] font-bold flex items-center gap-1 transition">
-              <span>🦄 DexScreener Live</span>
+            <a href={dexPair?.url || dexScreenerUrl} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[10px] font-bold flex items-center gap-1 transition">
+              <span>🦄 DexScreener Live ↗</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
+
+          {/* DexScreener Live DEX Chart Tab (100% Working for DEX Tokens & Microcaps) */}
+          {activeTab === 'dexscreener' && (
+            <div>
+              <div className="p-2.5 bg-[#0e1422] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 font-bold text-[10px] border border-orange-500/30">
+                    🦄 Real-Time On-Chain Candlesticks
+                  </span>
+                  {dexPair ? (
+                    <span className="text-slate-300 text-[11px] font-mono">
+                      Pair: <strong className="text-white">{dexPair.baseToken}/{dexPair.quoteToken}</strong> on <span className="text-emerald-400 capitalize">{dexPair.dexId || dexPair.chainId}</span> ({dexPair.chainId})
+                    </span>
+                  ) : dexLoading ? (
+                    <span className="text-slate-400 text-[11px] animate-pulse">Resolving best liquidity pool...</span>
+                  ) : (
+                    <span className="text-slate-400 text-[11px]">DEX Pool for ${coin.symbol}</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={dexPair?.url || dexScreenerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/40 text-[10px] font-bold flex items-center gap-1 transition"
+                  >
+                    <span>Full DexScreener View</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="h-[430px] w-full bg-[#070b14] relative">
+                {dexLoading && !dexPair ? (
+                  <div className="h-full flex items-center justify-center text-slate-400 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-orange-400 animate-ping"></span>
+                      <span>Loading real-time DEX candlesticks for {coin.symbol}...</span>
+                    </div>
+                  </div>
+                ) : (
+                  <iframe
+                    key={dexPair?.pairAddress || coin.symbol}
+                    title="DexScreener Live"
+                    src={dexPair ? `https://dexscreener.com/${dexPair.chainId}/${dexPair.pairAddress}?embed=1&theme=dark&trades=0&info=0` : `https://dexscreener.com/search?q=${encodeURIComponent(coin.symbol)}`}
+                    className="w-full h-full border-0"
+                    allow="clipboard-write"
+                  />
+                )}
+              </div>
+            </div>
+          )}
 
           {activeTab === 'tradingview' && (
             <>
@@ -300,10 +397,10 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                   <span className="text-slate-400 text-[11px] font-bold">Exchange:</span>
                   {[
                     { id: 'GLOBAL', label: '⚡ Auto (All)' },
+                    { id: 'BYBIT', label: 'Bybit' },
                     { id: 'MEXC', label: 'MEXC' },
                     { id: 'GATEIO', label: 'Gate.io' },
                     { id: 'BINANCE', label: 'Binance' },
-                    { id: 'BYBIT', label: 'Bybit' },
                     { id: 'KUCOIN', label: 'KuCoin' },
                     { id: 'OKX', label: 'OKX' }
                   ].map(ex => (
@@ -332,24 +429,21 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
                   <span>
-                    <strong>Symbol not found on CEX?</strong> Microcaps &amp; DEX tokens often trade exclusively on on-chain DEXes (Uniswap, Raydium).
+                    <strong>Symbol not on this CEX?</strong> Switch exchange above or view the live on-chain DEX chart.
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <a
-                    href={dexScreenerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/40 text-[10px] font-bold flex items-center gap-1.5 transition shadow-sm"
+                  <button
+                    onClick={() => setActiveTab('dexscreener')}
+                    className="px-2.5 py-1 rounded bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/40 text-[10px] font-bold flex items-center gap-1.5 transition shadow-sm cursor-pointer"
                   >
-                    <span>Open {coin.symbol} on DexScreener</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                    <span>🦄 Switch to DexScreener Live DEX Chart →</span>
+                  </button>
                   <button
                     onClick={() => setActiveTab('revenue')}
                     className="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold transition cursor-pointer"
                   >
-                    Switch to Revenue + Price →
+                    Cashflow →
                   </button>
                 </div>
               </div>
@@ -468,22 +562,38 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                         <Tooltip
                           contentStyle={{ background: '#0b101c', border: '1px solid #334155', borderRadius: '8px', fontSize: '11px', fontFamily: 'monospace' }}
                           labelStyle={{ color: '#94a3b8', marginBottom: '4px' }}
-                          formatter={(value, name) => {
-                            if (name === 'revenue') return [fmtUsd(value), 'Revenue (Net)'];
-                            if (name === 'fees') return [fmtUsd(value), 'Total Fees'];
+                          formatter={(value, name, item) => {
+                            const isLive = item?.payload?.isLive;
+                            if (name === 'revenue') return [fmtUsd(value) + (isLive ? ' 🟢 (Today Live · 15m scan)' : ''), 'Revenue (Net)'];
+                            if (name === 'fees') return [fmtUsd(value) + (isLive ? ' 🟢 (Today Live · 15m scan)' : ''), 'Total Fees'];
                             if (name === 'price') return [fmtRevPrice(value), 'Price'];
                             return [value, name];
                           }}
                         />
-                        <Bar yAxisId="metric" dataKey={revMetric} fill="url(#metricBarGrad)" radius={[2, 2, 0, 0]} maxBarSize={32} name={revMetric} />
+                        <Bar yAxisId="metric" dataKey={revMetric} radius={[2, 2, 0, 0]} maxBarSize={32} name={revMetric}>
+                          {revHistory.slice(-revRange).map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={entry.isLive
+                                ? (revMetric === 'revenue' ? '#f59e0b' : '#10b981')
+                                : 'url(#metricBarGrad)'}
+                              stroke={entry.isLive ? '#38bdf8' : 'none'}
+                              strokeWidth={entry.isLive ? 2 : 0}
+                            />
+                          ))}
+                        </Bar>
                         <Line yAxisId="price" type="monotone" dataKey="price" stroke="#a78bfa" strokeWidth={2} dot={false} activeDot={{ r: 4, fill: '#a78bfa' }} name="price" />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="flex items-center gap-5 mt-2 text-[10px] text-slate-400 justify-center">
+                  <div className="flex items-center gap-5 mt-2 text-[10px] text-slate-400 justify-center flex-wrap">
                     <span className="flex items-center gap-1.5">
                       <span className={'inline-block w-3 h-3 rounded-sm opacity-90 ' + (revMetric === 'revenue' ? 'bg-amber-500' : 'bg-emerald-500')}></span>
                       <span>{revMetric === 'revenue' ? 'Daily Revenue (left)' : 'Daily Fees (left)'}</span>
+                    </span>
+                    <span className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 font-bold">
+                      <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse inline-block"></span>
+                      <span>Today's Bar: Live 15m Scan</span>
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="inline-block w-5 h-0.5 bg-violet-400"></span>

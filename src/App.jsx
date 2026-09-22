@@ -4,6 +4,7 @@ import RevenuePage from './components/RevenuePage';
 import CoinDetailModal from './components/CoinDetailModal';
 import { ALL_COINGECKO_TOKENS } from './data/coingeckoUniverse';
 import { fetchLiveFees, applyLiveUpdates, SYNC_INTERVAL_SECONDS } from './services/liveSyncService';
+import { clearAllRevenueCache } from './services/revenuePriceHistoryService';
 
 export default function App() {
   const [coins, setCoins] = useState(ALL_COINGECKO_TOKENS);
@@ -17,6 +18,7 @@ export default function App() {
     try {
       const feesMap = await fetchLiveFees();
       if (feesMap && feesMap.size > 0) {
+        clearAllRevenueCache();
         setCoins(prevCoins => {
           const { updatedCoins } = applyLiveUpdates(prevCoins, feesMap);
           return updatedCoins;

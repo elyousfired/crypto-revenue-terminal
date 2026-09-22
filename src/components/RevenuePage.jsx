@@ -21,7 +21,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip
+  Tooltip,
+  Cell
 } from 'recharts';
 import { fmtUsd, fmtCompact, fmtPct } from '../lib/format';
 import { getRevenuePriceHistory } from '../services/revenuePriceHistoryService';
@@ -171,9 +172,10 @@ function RevenueChart({ coin, days }) {
                   fontFamily: 'monospace'
                 }}
                 labelStyle={{ color: '#94a3b8', marginBottom: '4px', fontWeight: 'bold' }}
-                formatter={(val, name) => {
-                  if (name === 'revenue') return [fmtUsd(val), 'Revenue (Net)'];
-                  if (name === 'fees') return [fmtUsd(val), 'Total Fees'];
+                formatter={(val, name, item) => {
+                  const isLive = item?.payload?.isLive;
+                  if (name === 'revenue') return [fmtUsd(val) + (isLive ? ' 🟢 (Live Today · 15m scan)' : ''), 'Revenue (Net)'];
+                  if (name === 'fees') return [fmtUsd(val) + (isLive ? ' 🟢 (Live Today · 15m scan)' : ''), 'Total Fees'];
                   if (name === 'price') return [fmtPriceTick(val), 'Price'];
                   return [val, name];
                 }}
@@ -181,11 +183,21 @@ function RevenueChart({ coin, days }) {
               <Bar
                 yAxisId="value"
                 dataKey={metric}
-                fill={'url(#barGrad_' + (coin.id || coin.symbol) + ')'}
                 radius={[2, 2, 0, 0]}
                 maxBarSize={28}
                 name={metric}
-              />
+              >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.isLive
+                      ? (metric === 'revenue' ? '#f59e0b' : '#10b981')
+                      : ('url(#barGrad_' + (coin.id || coin.symbol) + ')')}
+                    stroke={entry.isLive ? '#38bdf8' : 'none'}
+                    strokeWidth={entry.isLive ? 2 : 0}
+                  />
+                ))}
+              </Bar>
               <Line
                 yAxisId="price"
                 type="monotone"

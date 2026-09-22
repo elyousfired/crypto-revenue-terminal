@@ -65,20 +65,23 @@ function CustomVolTooltip({ active, payload, label }) {
   return null;
 }
 
-export default function CoinDetailModal({ coin, onClose }) {
+export default function CoinDetailModal({ coin, onClose, initialTab }) {
   if (!coin) return null;
 
-  const [activeTab, setActiveTab] = useState('volCurve');
-  const [selectedExchange, setSelectedExchange] = useState('BINANCE');
+  const defaultTab = initialTab || (coin.fees24h || coin.revenue24h ? 'revenue' : 'volCurve');
+  const [activeTab, setActiveTab] = useState(defaultTab);
+  const [selectedExchange, setSelectedExchange] = useState('GLOBAL');
   const [customPair, setCustomPair] = useState(coin && coin.symbol ? coin.symbol.toUpperCase() + 'USDT' : 'BTCUSDT');
 
   useEffect(() => {
     if (coin && coin.symbol) {
       setCustomPair(coin.symbol.toUpperCase() + 'USDT');
-      if ((coin.rank && coin.rank > 600) || (coin.mcap && coin.mcap < 30000000)) {
-        setSelectedExchange('GATEIO');
-      } else {
+      if (coin.rank && coin.rank <= 150) {
         setSelectedExchange('BINANCE');
+      } else if (coin.rank && coin.rank <= 500) {
+        setSelectedExchange('MEXC');
+      } else {
+        setSelectedExchange('GLOBAL');
       }
     }
   }, [coin]);
@@ -227,48 +230,94 @@ export default function CoinDetailModal({ coin, onClose }) {
           <div className="p-2.5 bg-[#0b101c] border-b border-slate-800 text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2 flex-wrap">
               <button
+                onClick={() => setActiveTab('revenue')}
+                className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'revenue' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
+              >
+                <Flame className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Revenue + Price (Cashflow)</span>
+              </button>
+              <button
                 onClick={() => setActiveTab('volCurve')}
                 className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'volCurve' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
               >
-                <Activity className="w-3.5 h-3.5" />
+                <Activity className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Vol / MC Velocity (30D)</span>
               </button>
               <button
                 onClick={() => setActiveTab('tradingview')}
                 className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'tradingview' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
               >
-                <LineChartIcon className="w-3.5 h-3.5" />
+                <LineChartIcon className="w-3.5 h-3.5 text-amber-400" />
                 <span>TradingView Chart</span>
               </button>
-              <button
-                onClick={() => setActiveTab('revenue')}
-                className={'flex items-center gap-1.5 px-3 py-1.5 rounded-md font-bold transition cursor-pointer ' + (activeTab === 'revenue' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60')}
-              >
-                <Flame className="w-3.5 h-3.5" />
-                <span>Revenue + Price</span>
-              </button>
             </div>
-            <a href={dexScreenerUrl} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] font-bold flex items-center gap-1 transition">
-              <span>DexScreener</span>
+            <a href={dexScreenerUrl} target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-md bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[10px] font-bold flex items-center gap-1 transition">
+              <span>🦄 DexScreener Live</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
           {activeTab === 'tradingview' && (
-            <div className="p-2.5 bg-[#0e1422] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-slate-400 text-[11px] font-bold">Exchange:</span>
-                {[{id:'GATEIO',label:'Gate.io'},{id:'MEXC',label:'MEXC'},{id:'BINANCE',label:'Binance'},{id:'BYBIT',label:'Bybit'},{id:'KUCOIN',label:'KuCoin'},{id:'OKX',label:'OKX'},{id:'GLOBAL',label:'Auto'}].map(ex => (
-                  <button key={ex.id} onClick={() => setSelectedExchange(ex.id)} className={'px-2 py-0.5 rounded text-[10px] font-bold transition cursor-pointer ' + (selectedExchange === ex.id ? 'bg-amber-500 text-black' : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700')}>
-                    {ex.label}
+            <>
+              <div className="p-2.5 bg-[#0e1422] border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-slate-400 text-[11px] font-bold">Exchange:</span>
+                  {[
+                    { id: 'GLOBAL', label: '⚡ Auto (All)' },
+                    { id: 'MEXC', label: 'MEXC' },
+                    { id: 'GATEIO', label: 'Gate.io' },
+                    { id: 'BINANCE', label: 'Binance' },
+                    { id: 'BYBIT', label: 'Bybit' },
+                    { id: 'KUCOIN', label: 'KuCoin' },
+                    { id: 'OKX', label: 'OKX' }
+                  ].map(ex => (
+                    <button key={ex.id} onClick={() => setSelectedExchange(ex.id)} className={'px-2 py-0.5 rounded text-[10px] font-bold transition cursor-pointer ' + (selectedExchange === ex.id ? 'bg-amber-500 text-black' : 'bg-slate-800 text-slate-300 hover:text-white border border-slate-700')}>
+                      {ex.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    <span className="text-slate-500 text-[10px]">Pair:</span>
+                    <input type="text" value={customPair} onChange={(e) => setCustomPair(e.target.value.toUpperCase())} className="w-24 px-1.5 py-0.5 bg-slate-900 border border-slate-700 text-white rounded text-[10px] font-bold font-mono focus:outline-none focus:border-amber-400" />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[coin.symbol.toUpperCase() + 'USDT', coin.symbol.toUpperCase() + 'USD'].map(p => (
+                      <button key={p} onClick={() => setCustomPair(p)} className="px-1.5 py-0.5 rounded bg-slate-800/80 hover:bg-slate-700 text-[9px] text-slate-400 hover:text-white border border-slate-700">
+                        {p}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Alert notice for DEX microcaps */}
+              <div className="px-3 py-2 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-transparent border-b border-amber-500/20 text-[11px] text-amber-300 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>
+                    <strong>Symbol not found on CEX?</strong> Microcaps &amp; DEX tokens often trade exclusively on on-chain DEXes (Uniswap, Raydium).
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={dexScreenerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/40 text-[10px] font-bold flex items-center gap-1.5 transition shadow-sm"
+                  >
+                    <span>Open {coin.symbol} on DexScreener</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <button
+                    onClick={() => setActiveTab('revenue')}
+                    className="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold transition cursor-pointer"
+                  >
+                    Switch to Revenue + Price →
                   </button>
-                ))}
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-slate-500 text-[10px]">Pair:</span>
-                <input type="text" value={customPair} onChange={(e) => setCustomPair(e.target.value.toUpperCase())} className="w-24 px-1.5 py-0.5 bg-slate-900 border border-slate-700 text-white rounded text-[10px] font-bold font-mono focus:outline-none focus:border-amber-400" />
-              </div>
-            </div>
+            </>
           )}
 
           {activeTab === 'volCurve' && (
@@ -318,10 +367,15 @@ export default function CoinDetailModal({ coin, onClose }) {
                 <iframe key={selectedExchange + '-' + customPair} title="TradingView" src={tradingViewUrl} className="w-full h-full border-0" />
               </div>
               <div className="px-3 py-1.5 bg-[#0b101c] border-t border-slate-800 text-[10px] text-slate-400 flex flex-wrap items-center justify-between gap-2">
-                <span>Showing: <strong className="text-amber-400">{tvSymbol}</strong>. Not found? Try <button onClick={() => setSelectedExchange('GATEIO')} className="text-cyan-400 underline cursor-pointer">Gate.io</button> or <button onClick={() => setSelectedExchange('MEXC')} className="text-cyan-400 underline cursor-pointer">MEXC</button></span>
-                <a href={'https://www.tradingview.com/symbols/' + customPair + '/'} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 flex items-center gap-1">
-                  TradingView.com <ExternalLink className="w-2.5 h-2.5" />
-                </a>
+                <span>Showing: <strong className="text-amber-400">{tvSymbol}</strong>. Not found? Try <button onClick={() => setSelectedExchange('MEXC')} className="text-cyan-400 underline cursor-pointer">MEXC</button>, <button onClick={() => setSelectedExchange('GATEIO')} className="text-cyan-400 underline cursor-pointer">Gate.io</button> or <button onClick={() => setSelectedExchange('GLOBAL')} className="text-cyan-400 underline cursor-pointer">Auto (All)</button></span>
+                <div className="flex items-center gap-3">
+                  <a href={dexScreenerUrl} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 font-bold flex items-center gap-1">
+                    DexScreener ↗
+                  </a>
+                  <a href={'https://www.tradingview.com/symbols/' + customPair + '/'} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-amber-400 flex items-center gap-1">
+                    TradingView.com <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
               </div>
             </div>
           )}

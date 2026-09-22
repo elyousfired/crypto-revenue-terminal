@@ -11,7 +11,8 @@ function fmtRev(val) {
 }
 
 export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = () => {} }) {
-  const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield'
+  const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield' | 'burn'
+  const [limit, setLimit] = useState(50); // Default to Top 50 as requested
   const [collapsed, setCollapsed] = useState(false);
 
   // 100% Dynamic calculation from live coins data
@@ -66,7 +67,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
         )
         .sort((a, b) => b.rev30d - a.rev30d)
-        .slice(0, 10)
+        .slice(0, limit)
         .map((item, idx) => ({ ...item, rank: idx + 1 }));
     }
 
@@ -75,7 +76,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
       return calculated
         .filter(c => c.mcap >= 1000000 && c.yieldPct < 5000)
         .sort((a, b) => b.yieldPct - a.yieldPct)
-        .slice(0, 10)
+        .slice(0, limit)
         .map((item, idx) => ({ ...item, rank: idx + 1 }));
     }
 
@@ -86,9 +87,9 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
         index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
       )
       .sort((a, b) => b.rev30d - a.rev30d)
-      .slice(0, 10)
+      .slice(0, limit)
       .map((item, idx) => ({ ...item, rank: idx + 1 }));
-  }, [coins, rankingType]);
+  }, [coins, rankingType, limit]);
 
   const maxYield = useMemo(() => {
     if (dynamicLeaderboard.length === 0) return 100;
@@ -104,7 +105,13 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-lg sm:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
               <span className="text-emerald-400">💎</span>
-              <span>Revenue-Generating Tokens</span>
+              <span>
+                {rankingType === 'burn'
+                  ? `Top ${limit} Buyback & Burn Tokens`
+                  : rankingType === 'yield'
+                  ? `Top ${limit} Yield / MC Tokens`
+                  : `Top ${limit} Revenue-Generating Tokens`}
+              </span>
             </h2>
             <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold">
               ✓ 100% Live Site Data
@@ -115,8 +122,8 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           </p>
         </div>
 
-        {/* Dynamic Ranking Mode Switcher */}
-        <div className="flex items-center gap-2">
+        {/* Dynamic Ranking Mode Switcher + Limit Switcher */}
+        <div className="flex items-center gap-2.5 flex-wrap">
           <div className="flex items-center bg-[#070b14] border border-slate-800 rounded-lg p-0.5">
             <button
               onClick={() => setRankingType('volume')}
@@ -150,6 +157,23 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
             </button>
           </div>
 
+          {/* Limit Switcher: Top 10, 25, 50 */}
+          <div className="flex items-center bg-[#070b14] border border-slate-800 rounded-lg p-0.5 text-[10px]">
+            {[10, 25, 50].map(cnt => (
+              <button
+                key={cnt}
+                onClick={() => setLimit(cnt)}
+                className={'px-2.5 py-1 rounded-md font-bold transition cursor-pointer ' + (
+                  limit === cnt
+                    ? 'bg-cyan-500 text-black font-extrabold shadow-sm'
+                    : 'text-slate-400 hover:text-white'
+                )}
+              >
+                Top {cnt}
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={() => setCollapsed(c => !c)}
             className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700 cursor-pointer"
@@ -162,11 +186,11 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
 
       {!collapsed && (
         <>
-          {/* Table */}
-          <div className="overflow-x-auto">
+          {/* Table with max height & sticky headers for clean top 50 browsing */}
+          <div className="overflow-x-auto max-h-[700px] overflow-y-auto">
             <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-800/80 bg-[#070b14] text-[10px] text-slate-400 uppercase font-bold tracking-wider">
+              <thead className="sticky top-0 z-10 shadow-md">
+                <tr className="border-b border-slate-800 bg-[#070b14] text-[10px] text-slate-400 uppercase font-bold tracking-wider">
                   <th className="py-3 pl-4 pr-2 text-left w-10">#</th>
                   <th className="py-3 px-3 text-left">TOKEN</th>
                   <th className="py-3 px-4 text-right">

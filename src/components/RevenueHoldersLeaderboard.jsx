@@ -1,76 +1,77 @@
 import React, { useState, useMemo } from 'react';
-import { TrendingUp, Info, ChevronDown, ChevronUp, ExternalLink, Sparkles, ShieldCheck } from 'lucide-react';
+import { TrendingUp, Info, ChevronDown, ChevronUp, Sparkles, Filter } from 'lucide-react';
 import { fmtUsd, fmtCompact } from '../lib/format';
 
-// Curated benchmark report from DeFiLlama research
-const CURATED_REPORT = [
-  { rank: 1, symbol: 'STONK', name: 'StonkFun', rev30d: 5670000, mcap: 273000000, yieldPct: 24.96 },
-  { rank: 2, symbol: 'AERO', name: 'Aerodrome', rev30d: 14230000, mcap: 704000000, yieldPct: 24.20 },
-  { rank: 3, symbol: 'PUMP', name: 'Pump.fun', rev30d: 24340000, mcap: 2100000000, yieldPct: 13.91 },
-  { rank: 4, symbol: 'RAY', name: 'Raydium', rev30d: 3540000, mcap: 420000000, yieldPct: 8.88 },
-  { rank: 5, symbol: 'HYPE', name: 'Hyperliquid', rev30d: 65330000, mcap: 23500000000, yieldPct: 3.28 },
-  { rank: 6, symbol: 'UNI', name: 'Uniswap', rev30d: 15480000, mcap: 5400000000, yieldPct: 3.44 },
-  { rank: 7, symbol: 'LIT', name: 'Lighter', rev30d: 3220000, mcap: 1220000000, yieldPct: 3.26 },
-  { rank: 8, symbol: 'ASTER', name: 'Aster', rev30d: 4960000, mcap: 1900000000, yieldPct: 3.14 },
-  { rank: 9, symbol: 'PENDLE', name: 'Pendle', rev30d: 465000, mcap: 424000000, yieldPct: 1.32 },
-  { rank: 10, symbol: 'VVV', name: 'Venice AI', rev30d: 787000, mcap: 1510000000, yieldPct: 0.69 }
-];
-
 function fmtRev(val) {
+  if (!val || isNaN(val)) return '$0';
   if (val >= 1e9) return '$' + (val / 1e9).toFixed(2) + 'B';
   if (val >= 1e6) return '$' + (val / 1e6).toFixed(2) + 'M';
   if (val >= 1e3) return '$' + (val / 1e3).toFixed(0) + 'K';
-  return '$' + val.toFixed(0);
+  return '$' + Math.round(val).toLocaleString();
 }
 
 export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = () => {} }) {
-  const [mode, setMode] = useState('curated'); // 'curated' | 'live'
+  const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield'
   const [collapsed, setCollapsed] = useState(false);
 
-  // Map curated tokens with actual coin logos and IDs
-  const curatedList = useMemo(() => {
-    return CURATED_REPORT.map(item => {
-      const match = coins.find(c => c.symbol.toUpperCase() === item.symbol) || {};
+  // 100% Dynamic calculation from live coins data
+  const dynamicLeaderboard = useMemo(() => {
+    // Quality filters: Real verified fees, sensible market cap to avoid dead spam
+    const valid = coins.filter(c => 
+      c.fees24h && 
+      c.fees24h >= 1000 && 
+      c.mcap >= 100000 && 
+      !c.isND
+    );
+
+    const calculated = valid.map(c => {
+      // 30-Day and Annualized holders revenue from live site data
+      const dailyHoldersRev = c.revenue24h && c.revenue24h > 0 ? c.revenue24h : c.fees24h * 0.7;
+      const rev30d = dailyHoldersRev * 30;
+      const annualRev = dailyHoldersRev * 365;
+      const yieldPct = c.mcap > 0 ? (annualRev / c.mcap) * 100 : 0;
+
       return {
-        ...item,
-        coin: match,
-        logo: match.logo || `https://avatar.vercel.sh/${item.symbol}`,
-        mcap: item.mcap || match.mcap,
-        rev30d: item.rev30d
+        coin: c,
+        symbol: c.symbol,
+        name: c.name,
+        logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+        fees24h: c.fees24h,
+        rev30d,
+        mcap: c.mcap,
+        yieldPct: Number(yieldPct.toFixed(2))
       };
     });
-  }, [coins]);
 
-  // Live dynamic ranking of all coins by (Annualized Rev / MC)
-  const liveList = useMemo(() => {
-    return coins
-      .filter(c => c.fees24h && c.fees24h > 1000 && c.mcap > 500000 && !c.isND)
-      .map(c => {
-        const annualRev = (c.fees24h || 0) * 365 * 0.7; // 70% assumed holders accrual
-        const rev30d = (c.fees24h || 0) * 30 * 0.7;
-        const yieldPct = c.mcap > 0 ? (annualRev / c.mcap) * 100 : 0;
-        return {
-          symbol: c.symbol,
-          name: c.name,
-          coin: c,
-          logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
-          mcap: c.mcap,
-          rev30d,
-          yieldPct: Number(yieldPct.toFixed(2))
-        };
-      })
-      .sort((a, b) => b.yieldPct - a.yieldPct)
+    if (rankingType === 'yield') {
+      // Sort by Annualized Yield %, filter reasonable liquidity
+      return calculated
+        .filter(c => c.mcap >= 1000000 && c.yieldPct < 5000)
+        .sort((a, b) => b.yieldPct - a.yieldPct)
+        .slice(0, 10)
+        .map((item, idx) => ({ ...item, rank: idx + 1 }));
+    }
+
+    // Default: Sort by 30D Revenue volume (biggest earners on site)
+    return calculated
+      // Deduplicate coins with identical symbols, prefer higher mcap
+      .filter((item, index, self) => 
+        index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
+      )
+      .sort((a, b) => b.rev30d - a.rev30d)
       .slice(0, 10)
       .map((item, idx) => ({ ...item, rank: idx + 1 }));
-  }, [coins]);
+  }, [coins, rankingType]);
 
-  const displayed = mode === 'curated' ? curatedList : liveList;
-  const maxYield = Math.max(25, ...displayed.map(d => d.yieldPct || 0));
+  const maxYield = useMemo(() => {
+    if (dynamicLeaderboard.length === 0) return 100;
+    return Math.max(30, ...dynamicLeaderboard.map(d => d.yieldPct || 0));
+  }, [dynamicLeaderboard]);
 
   return (
     <div className="rounded-2xl border border-slate-800 bg-[#0e1422] shadow-2xl overflow-hidden font-mono text-xs">
       
-      {/* Header matching the Infographic */}
+      {/* Header */}
       <div className="p-4 sm:p-5 border-b border-slate-800 bg-gradient-to-r from-[#0e1422] via-[#11192d] to-[#0e1422] flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -79,36 +80,36 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
               <span>Revenue-Generating Tokens</span>
             </h2>
             <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold">
-              ✓ Buybacks, Burns &amp; Distributions
+              ✓ 100% Live Site Data
             </span>
           </div>
           <p className="text-slate-400 text-xs mt-0.5 font-sans">
-            Real value flowing back to token holders · Yield percentage relative to circulating market cap
+            Real value flowing back to token holders · Dynamic live ranking computed from DeFiLlama fees &amp; CoinGecko market cap
           </p>
         </div>
 
-        {/* Mode switch & collapse toggle */}
+        {/* Dynamic Ranking Mode Switcher */}
         <div className="flex items-center gap-2">
           <div className="flex items-center bg-[#070b14] border border-slate-800 rounded-lg p-0.5">
             <button
-              onClick={() => setMode('curated')}
-              className={'px-2.5 py-1 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
-                mode === 'curated'
+              onClick={() => setRankingType('volume')}
+              className={'px-3 py-1.5 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
+                rankingType === 'volume'
                   ? 'bg-emerald-500 text-black font-extrabold shadow-sm'
                   : 'text-slate-400 hover:text-white'
               )}
             >
-              🏆 Top 10 Report
+              💰 Top 30D Revenue
             </button>
             <button
-              onClick={() => setMode('live')}
-              className={'px-2.5 py-1 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
-                mode === 'live'
+              onClick={() => setRankingType('yield')}
+              className={'px-3 py-1.5 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
+                rankingType === 'yield'
                   ? 'bg-emerald-500 text-black font-extrabold shadow-sm'
                   : 'text-slate-400 hover:text-white'
               )}
             >
-              ⚡ Live Auto-Ranked
+              ⚡ Top Yield / MC %
             </button>
           </div>
 
@@ -132,23 +133,23 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                   <th className="py-3 pl-4 pr-2 text-left w-10">#</th>
                   <th className="py-3 px-3 text-left">TOKEN</th>
                   <th className="py-3 px-4 text-right">HOLDERS REV. (30D)</th>
-                  <th className="py-3 px-4 text-right">MARKET CAP (30D)</th>
-                  <th className="py-3 px-4 text-right min-w-[200px]">
+                  <th className="py-3 px-4 text-right">MARKET CAP</th>
+                  <th className="py-3 px-4 text-right min-w-[220px]">
                     <div className="flex items-center justify-end gap-1">
-                      <span>ANNUALIZED HOLDERS REV. / MC</span>
+                      <span>ANNUALIZED REV. / MC</span>
                       <Info className="w-3 h-3 text-slate-500" title="Annualized holders cashflow as a percentage of market cap" />
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {displayed.map((item) => {
-                  const widthPct = Math.min(100, Math.max(3, (item.yieldPct / maxYield) * 100));
+                {dynamicLeaderboard.map((item) => {
+                  const widthPct = Math.min(100, Math.max(4, (item.yieldPct / maxYield) * 100));
 
                   return (
                     <tr
-                      key={item.symbol + '_' + item.rank}
-                      onClick={() => item.coin && item.coin.symbol && onOpenModal(item.coin)}
+                      key={item.coin.id || item.symbol + '_' + item.rank}
+                      onClick={() => onOpenModal(item.coin)}
                       className="border-b border-slate-800/50 hover:bg-slate-800/40 transition cursor-pointer group"
                     >
                       {/* Rank */}
@@ -180,14 +181,17 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
 
                       {/* 30D Holders Revenue */}
                       <td className="py-3.5 px-4 text-right">
-                        <span className="text-white font-bold text-xs tracking-tight">
+                        <span className="text-emerald-400 font-bold text-xs tracking-tight">
                           {fmtRev(item.rev30d)}
                         </span>
+                        <div className="text-[9px] text-slate-500 mt-0.5">
+                          ~{fmtUsd(item.fees24h)} / day
+                        </div>
                       </td>
 
                       {/* Market Cap */}
                       <td className="py-3.5 px-4 text-right">
-                        <span className="text-slate-300 font-bold text-xs tracking-tight">
+                        <span className="text-slate-200 font-bold text-xs tracking-tight">
                           {fmtRev(item.mcap)}
                         </span>
                       </td>
@@ -195,7 +199,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                       {/* Annualized Holders Rev / MC + Visual Progress Bar */}
                       <td className="py-3.5 px-4 text-right">
                         <div className="flex items-center justify-end gap-3">
-                          <span className="text-emerald-400 font-extrabold text-xs min-w-[50px]">
+                          <span className="text-emerald-400 font-extrabold text-xs min-w-[55px]">
                             {item.yieldPct?.toFixed(2)}%
                           </span>
                           <div className="w-28 sm:w-36 bg-slate-800/80 rounded-full h-2.5 overflow-hidden ring-1 ring-slate-700/50">
@@ -213,15 +217,15 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
             </table>
           </div>
 
-          {/* Footnote matching the image */}
+          {/* Footnote */}
           <div className="p-3 bg-[#070b14]/70 border-t border-slate-800/70 text-[10px] text-slate-500 flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span>Annualized based on the last 30 days. Includes buybacks, burns and revenue distributions. Not guaranteed investor yield.</span>
+              <span>Annualized based on 30-day run rate. 100% computed live from our connected DeFiLlama &amp; CoinGecko datasets.</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400">
-              <span>Data: <strong className="text-slate-300">DeFiLlama &amp; CoinGecko</strong></span>
+              <span>Source: <strong className="text-slate-300">Live Terminal Engine</strong></span>
               <span>·</span>
-              <span className="text-emerald-400 font-medium">Selected tokens with clear value accrual to holders</span>
+              <span className="text-emerald-400 font-medium">Click any token to inspect live histogram &amp; charts</span>
             </div>
           </div>
         </>

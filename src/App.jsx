@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Header from './components/Header';
 import RevenuePage from './components/RevenuePage';
 import CoinDetailModal from './components/CoinDetailModal';
+import CompareModal from './components/CompareModal';
 import { ALL_COINGECKO_TOKENS } from './data/coingeckoUniverse';
 import { fetchLiveFees, applyLiveUpdates, SYNC_INTERVAL_SECONDS } from './services/liveSyncService';
 import { clearAllRevenueCache } from './services/revenuePriceHistoryService';
@@ -9,8 +10,15 @@ import { clearAllRevenueCache } from './services/revenuePriceHistoryService';
 export default function App() {
   const [coins, setCoins] = useState(ALL_COINGECKO_TOKENS);
   const [activeModalCoin, setActiveModalCoin] = useState(null);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
+  const [comparePair, setComparePair] = useState({ coinA: null, coinB: null });
   const [timeUntilNextSync, setTimeUntilNextSync] = useState(SYNC_INTERVAL_SECONDS);
   const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleOpenCompare = (coinA = null, coinB = null) => {
+    setComparePair({ coinA, coinB });
+    setIsCompareOpen(true);
+  };
 
   // Live Sync Engine (15-Minute Auto Refresh)
   const performLiveSync = async () => {
@@ -69,6 +77,7 @@ export default function App() {
         timeUntilNextSync={timeUntilNextSync}
         isSyncing={isSyncing}
         onManualSync={performLiveSync}
+        onOpenCompare={handleOpenCompare}
       />
 
       {/* Main Container */}
@@ -76,6 +85,7 @@ export default function App() {
         <RevenuePage
           coins={coins}
           onOpenModal={setActiveModalCoin}
+          onOpenCompare={handleOpenCompare}
         />
       </main>
 
@@ -84,8 +94,18 @@ export default function App() {
         <CoinDetailModal
           coin={activeModalCoin}
           onClose={() => setActiveModalCoin(null)}
+          onOpenCompare={handleOpenCompare}
         />
       )}
+
+      {/* ⚔️ Head-to-Head 2-Coin Comparison Modal */}
+      <CompareModal
+        isOpen={isCompareOpen}
+        onClose={() => setIsCompareOpen(false)}
+        initialCoinA={comparePair.coinA}
+        initialCoinB={comparePair.coinB}
+        allCoins={coins}
+      />
 
       {/* Footer */}
       <footer className="border-t border-slate-800/80 bg-[#070b14] py-6 px-4 sm:px-6 text-center text-xs text-slate-500 font-mono">

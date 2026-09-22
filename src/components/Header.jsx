@@ -15,7 +15,8 @@ export default function Header({
   totalRevenue,
   timeUntilNextSync = 900,
   isSyncing = false,
-  onManualSync = () => {}
+  onManualSync = () => {},
+  onOpenCompare = () => {}
 }) {
   const annualRunRate = totalFees * 365;
 
@@ -66,6 +67,25 @@ export default function Header({
             <span className="text-[10px] text-slate-500 block uppercase font-bold">Annual Run Rate</span>
             <span className="font-extrabold text-cyan-400">{fmtUsd(annualRunRate)}</span>
           </div>
+
+          <div className="w-px h-6 bg-slate-800" />
+
+          {/* ⚔️ Head-to-Head Compare Arena Button */}
+          <button
+            onClick={() => onOpenCompare()}
+            className="p-[1px] rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-500 hover:scale-105 active:scale-95 transition cursor-pointer group shadow-lg shadow-emerald-500/10"
+            title="Open 2-Coin Comparison Arena (Head-to-Head)"
+          >
+            <div className="bg-[#0b101c] px-3 py-1.5 rounded-[11px] flex items-center gap-2 group-hover:bg-[#11192b] transition">
+              <span className="text-sm">⚔️</span>
+              <span className="text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 tracking-tight">
+                Compare Arena
+              </span>
+              <span className="text-[9px] bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                VS
+              </span>
+            </div>
+          </button>
 
           <div className="w-px h-6 bg-slate-800" />
 

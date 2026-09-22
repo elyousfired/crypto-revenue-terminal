@@ -116,7 +116,7 @@ function CustomCashflowModalTooltip({ active, payload, label, metric = 'revenue'
 
 const dexPairCache = new Map();
 
-export default function CoinDetailModal({ coin, onClose, initialTab }) {
+export default function CoinDetailModal({ coin, onClose, initialTab, onOpenCompare }) {
   if (!coin) return null;
 
   const defaultTab = initialTab || (coin.fees24h || coin.revenue24h ? 'revenue' : 'volCurve');
@@ -664,7 +664,22 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
               </a>
             )}
           </div>
-          <button onClick={onClose} className="px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition cursor-pointer">Close</button>
+          <div className="flex items-center gap-3">
+            {onOpenCompare && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenCompare(coin);
+                }}
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 hover:from-emerald-500 hover:to-amber-500 text-white font-extrabold text-xs transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 cursor-pointer"
+                title={`Open Head-to-Head Compare Arena with ${coin.symbol}`}
+              >
+                <span>⚔️</span>
+                <span>Compare Rival</span>
+              </button>
+            )}
+            <button onClick={onClose} className="px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition cursor-pointer">Close</button>
+          </div>
         </div>
 
       </div>

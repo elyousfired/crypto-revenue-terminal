@@ -251,7 +251,7 @@ function RevenueChart({ coin, days }) {
 
 // ─── Single row ───────────────────────────────────────────────────────────────
 
-function RevenueRow({ coin, rank, days, onOpenModal }) {
+function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
   const [expanded, setExpanded] = useState(false);
   const dexUrl = 'https://dexscreener.com/search?q=' + encodeURIComponent(coin.symbol);
 
@@ -441,6 +441,15 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
         {/* Actions */}
         <td className="py-3 px-3 text-right">
           <div className="flex items-center gap-1.5 justify-end" onClick={e => e.stopPropagation()}>
+            {onOpenCompare && (
+              <button
+                onClick={() => onOpenCompare(coin)}
+                title={`Compare ${coin.symbol} with another token`}
+                className="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-500/25 text-amber-300 hover:text-amber-200 text-[10px] font-bold border border-amber-500/30 transition cursor-pointer flex items-center gap-1 shadow-sm"
+              >
+                <span>⚔️</span>
+              </button>
+            )}
             <button
               onClick={() => onOpenModal(coin)}
               className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] font-bold border border-slate-700 transition cursor-pointer"
@@ -480,7 +489,7 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
-export default function RevenuePage({ coins, onOpenModal }) {
+export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
   const [days, setDays] = useState(30);
   const [search, setSearch] = useState('');
   const [minFees, setMinFees] = useState(0);
@@ -529,14 +538,20 @@ export default function RevenuePage({ coins, onOpenModal }) {
       })
       .filter(c => c.fees24h >= minFees)
       .sort((a, b) => {
-        if (sortBy === 'burnDesc' || (momentumTab === 'top_burn' && sortBy === 'feesDesc')) {
-          return (b.holdersRevenue30d || 0) - (a.holdersRevenue30d || 0);
+        if (sortBy === 'daySurge') {
+          return (b.feeChange1d || -999) - (a.feeChange1d || -999);
         }
-        if (sortBy === 'daySurge') return (b.feeChange1d || 0) - (a.feeChange1d || 0);
-        if (sortBy === 'weekGrowth') return (b.feeChange7d || 0) - (a.feeChange7d || 0);
+        if (sortBy === 'weekGrowth') {
+          return (b.feeChange7d || -999) - (a.feeChange7d || -999);
+        }
+        if (sortBy === 'burnDesc') {
+          const burnA = a.holdersRevenue30d || (a.holdersRevenue24h ? a.holdersRevenue24h * 30 : 0);
+          const burnB = b.holdersRevenue30d || (b.holdersRevenue24h ? b.holdersRevenue24h * 30 : 0);
+          return burnB - burnA;
+        }
         if (sortBy === 'revToMcap') {
-          const ratioA = a.mcap > 0 ? (a.fees24h / a.mcap) : 0;
-          const ratioB = b.mcap > 0 ? (b.fees24h / b.mcap) : 0;
+          const ratioA = a.mcap > 0 ? ((a.fees24h || 0) / a.mcap) : 0;
+          const ratioB = b.mcap > 0 ? ((b.fees24h || 0) / b.mcap) : 0;
           return ratioB - ratioA;
         }
         return (b.fees24h || 0) - (a.fees24h || 0);
@@ -563,6 +578,16 @@ export default function RevenuePage({ coins, onOpenModal }) {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          {onOpenCompare && (
+            <button
+              onClick={() => onOpenCompare()}
+              className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-emerald-500 to-amber-500 hover:from-emerald-400 hover:to-amber-400 text-black font-black text-[11px] transition cursor-pointer flex items-center gap-1.5 shadow-md shadow-emerald-500/10"
+              title="Open 2-Coin Comparison Arena"
+            >
+              <span>⚔️</span>
+              <span>Compare Arena</span>
+            </button>
+          )}
           {[7, 30].map(d => (
             <button
               key={d}
@@ -810,6 +835,7 @@ export default function RevenuePage({ coins, onOpenModal }) {
                   rank={i + 1}
                   days={days}
                   onOpenModal={onOpenModal}
+                  onOpenCompare={onOpenCompare}
                 />
               ))}
             </tbody>

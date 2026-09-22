@@ -42,6 +42,55 @@ function fmtPriceTick(v) {
   return '$' + v.toExponential(2);
 }
 
+// ─── Custom High-Contrast Tooltip with Pure White Text ───────────────────────
+
+function CustomCashflowTooltip({ active, payload, label, metric = 'revenue' }) {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    const isLive = data.isLive;
+    const val = metric === 'revenue' ? data.revenue : data.fees;
+    return (
+      <div className="bg-[#0b101c]/95 border border-slate-700 p-3 rounded-xl shadow-2xl font-mono text-xs backdrop-blur-md min-w-[210px] z-50">
+        <div className="border-b border-slate-800 pb-1.5 mb-2 flex items-center justify-between gap-3">
+          <span className="font-extrabold text-white text-[12px]">{data.date || label}</span>
+          {isLive ? (
+            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-[9px] flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>LIVE TODAY</span>
+            </span>
+          ) : (
+            <span className="text-white/70 text-[10px]">DeFiLlama</span>
+          )}
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-white font-medium">Daily {metric === 'revenue' ? 'Revenue' : 'Fees'}:</span>
+            <span className="font-extrabold text-white text-[13px]">
+              {fmtUsd(val)}
+            </span>
+          </div>
+          {data.fees !== undefined && metric === 'revenue' && (
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-white/80">Total Fees:</span>
+              <span className="font-bold text-white">{fmtUsd(data.fees)}</span>
+            </div>
+          )}
+          <div className="flex items-center justify-between gap-4 border-t border-slate-800/80 pt-1.5 mt-1">
+            <span className="text-white font-medium flex items-center gap-1.5">
+              <span className="w-2.5 h-1 bg-violet-400 inline-block rounded-full"></span>
+              <span>Token Price:</span>
+            </span>
+            <span className="font-black text-white text-[13px] bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700 shadow-sm">
+              {fmtPriceTick(data.price)}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
 // ─── Mini inline chart (expanded row) ────────────────────────────────────────
 
 function RevenueChart({ coin, days }) {
@@ -163,23 +212,7 @@ function RevenueChart({ coin, days }) {
                 tickFormatter={fmtPriceTick}
                 width={62}
               />
-              <Tooltip
-                contentStyle={{
-                  background: '#070b14',
-                  border: '1px solid #334155',
-                  borderRadius: '8px',
-                  fontSize: '11px',
-                  fontFamily: 'monospace'
-                }}
-                labelStyle={{ color: '#94a3b8', marginBottom: '4px', fontWeight: 'bold' }}
-                formatter={(val, name, item) => {
-                  const isLive = item?.payload?.isLive;
-                  if (name === 'revenue') return [fmtUsd(val) + (isLive ? ' 🟢 (Live Today · 15m scan)' : ''), 'Revenue (Net)'];
-                  if (name === 'fees') return [fmtUsd(val) + (isLive ? ' 🟢 (Live Today · 15m scan)' : ''), 'Total Fees'];
-                  if (name === 'price') return [fmtPriceTick(val), 'Price'];
-                  return [val, name];
-                }}
-              />
+              <Tooltip content={<CustomCashflowTooltip metric={metric} />} />
               <Bar
                 yAxisId="value"
                 dataKey={metric}

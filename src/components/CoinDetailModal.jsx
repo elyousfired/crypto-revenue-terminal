@@ -37,27 +37,75 @@ function CustomVolTooltip({ active, payload, label }) {
     const isHot = ratio >= 0.4;
     const isClimax = ratio >= 1.0;
     return (
-      <div className="bg-[#0b101c]/95 border border-slate-700 p-3 rounded-lg shadow-2xl font-mono text-xs backdrop-blur-md">
-        <div className="text-slate-400 text-[11px] font-semibold border-b border-slate-800 pb-1 mb-2 flex items-center justify-between gap-3">
+      <div className="bg-[#0b101c]/95 border border-slate-700 p-3 rounded-xl shadow-2xl font-mono text-xs backdrop-blur-md min-w-[210px] z-50">
+        <div className="text-white text-[12px] font-extrabold border-b border-slate-800 pb-1.5 mb-2 flex items-center justify-between gap-3">
           <span>{label}</span>
-          <span className={`font-bold ${isClimax ? 'text-rose-400' : isHot ? 'text-orange-400' : 'text-cyan-400'}`}>
+          <span className={`font-black px-1.5 py-0.5 rounded text-[10px] ${isClimax ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : isHot ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'}`}>
             {isClimax ? 'Climax Level' : isHot ? 'High Momentum' : 'Base / Normal'}
           </span>
         </div>
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           <div className="flex items-center justify-between gap-4">
-            <span className="text-slate-400">Vol / MC Ratio:</span>
-            <span className="font-extrabold text-cyan-300 text-sm">
-              {ratio.toFixed(2)}x <span className="text-xs font-normal">({(ratio * 100).toFixed(1)}%)</span>
+            <span className="text-white font-medium">Vol / MC Ratio:</span>
+            <span className="font-extrabold text-white text-sm bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-700">
+              {ratio.toFixed(2)}x <span className="text-xs font-normal text-cyan-300">({(ratio * 100).toFixed(1)}%)</span>
             </span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-300">
-            <span className="text-slate-400">Est. 24h Vol:</span>
-            <span className="font-bold text-white">{fmtUsd(data.volume)}</span>
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-white font-medium">Est. 24h Vol:</span>
+            <span className="font-extrabold text-white">{fmtUsd(data.volume)}</span>
           </div>
-          <div className="flex items-center justify-between gap-4 text-slate-300">
-            <span className="text-slate-400">Market Cap:</span>
-            <span className="font-bold text-white">{fmtUsd(data.mcap)}</span>
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-white font-medium">Market Cap:</span>
+            <span className="font-extrabold text-white">{fmtUsd(data.mcap)}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
+function CustomCashflowModalTooltip({ active, payload, label, metric = 'revenue' }) {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    const isLive = data.isLive;
+    const val = metric === 'revenue' ? data.revenue : data.fees;
+    const priceStr = data.price >= 1 ? '$' + data.price.toFixed(4) : data.price >= 0.01 ? '$' + data.price.toFixed(6) : '$' + data.price.toExponential(2);
+    return (
+      <div className="bg-[#0b101c]/95 border border-slate-700 p-3 rounded-xl shadow-2xl font-mono text-xs backdrop-blur-md min-w-[220px] z-50">
+        <div className="border-b border-slate-800 pb-1.5 mb-2 flex items-center justify-between gap-3">
+          <span className="font-extrabold text-white text-[12px]">{data.date || label}</span>
+          {isLive ? (
+            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-[9px] flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>LIVE TODAY</span>
+            </span>
+          ) : (
+            <span className="text-white/70 text-[10px]">DeFiLlama Feed</span>
+          )}
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-white font-medium">Daily {metric === 'revenue' ? 'Revenue' : 'Fees'}:</span>
+            <span className="font-extrabold text-white text-[13px]">
+              {fmtUsd(val)}
+            </span>
+          </div>
+          {data.fees !== undefined && metric === 'revenue' && (
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-white/80">Total Fees:</span>
+              <span className="font-bold text-white">{fmtUsd(data.fees)}</span>
+            </div>
+          )}
+          <div className="flex items-center justify-between gap-4 border-t border-slate-800/80 pt-1.5 mt-1">
+            <span className="text-white font-medium flex items-center gap-1.5">
+              <span className="w-2.5 h-1 bg-violet-400 inline-block rounded-full"></span>
+              <span>Token Price:</span>
+            </span>
+            <span className="font-black text-white text-[13px] bg-slate-800/90 px-2 py-0.5 rounded border border-slate-700 shadow-sm">
+              {priceStr}
+            </span>
           </div>
         </div>
       </div>
@@ -559,17 +607,7 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                         <XAxis dataKey="date" stroke="#64748b" fontSize={9} tickLine={false} interval={revRange === 7 ? 0 : Math.floor(revRange / 7)} />
                         <YAxis yAxisId="metric" orientation="left" stroke={revMetric === 'revenue' ? '#f59e0b' : '#10b981'} fontSize={9} tickLine={false} tickFormatter={fmtRevFees} width={55} />
                         <YAxis yAxisId="price" orientation="right" stroke="#a78bfa" fontSize={9} tickLine={false} tickFormatter={fmtRevPrice} width={62} />
-                        <Tooltip
-                          contentStyle={{ background: '#0b101c', border: '1px solid #334155', borderRadius: '8px', fontSize: '11px', fontFamily: 'monospace' }}
-                          labelStyle={{ color: '#94a3b8', marginBottom: '4px' }}
-                          formatter={(value, name, item) => {
-                            const isLive = item?.payload?.isLive;
-                            if (name === 'revenue') return [fmtUsd(value) + (isLive ? ' 🟢 (Today Live · 15m scan)' : ''), 'Revenue (Net)'];
-                            if (name === 'fees') return [fmtUsd(value) + (isLive ? ' 🟢 (Today Live · 15m scan)' : ''), 'Total Fees'];
-                            if (name === 'price') return [fmtRevPrice(value), 'Price'];
-                            return [value, name];
-                          }}
-                        />
+                        <Tooltip content={<CustomCashflowModalTooltip metric={revMetric} />} />
                         <Bar yAxisId="metric" dataKey={revMetric} radius={[2, 2, 0, 0]} maxBarSize={32} name={revMetric}>
                           {revHistory.slice(-revRange).map((entry, index) => (
                             <Cell

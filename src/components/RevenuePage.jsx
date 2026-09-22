@@ -25,6 +25,7 @@ import {
 } from 'recharts';
 import { fmtUsd, fmtCompact, fmtPct } from '../lib/format';
 import { getRevenuePriceHistory } from '../services/revenuePriceHistoryService';
+import RevenueHoldersLeaderboard from './RevenueHoldersLeaderboard';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -283,13 +284,15 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
           <div className="flex flex-col items-end">
             <span className="text-emerald-400 font-extrabold text-sm">{coin.fees24h ? fmtUsd(coin.fees24h) : 'ND'}</span>
             <div className="flex items-center gap-1 mt-0.5">
-              {coin.feeChange1d !== undefined && coin.feeChange1d !== 0 ? (
-                <span className={'text-[9px] font-bold px-1 py-0.2 rounded ' + (
+              {coin.feeChange1d !== undefined && coin.feeChange1d !== null ? (
+                <span className={'text-[9px] font-bold px-1.5 py-0.5 rounded ' + (
                   coin.feeChange1d > 0
-                    ? 'text-emerald-300 bg-emerald-500/20'
-                    : 'text-rose-300 bg-rose-500/20'
+                    ? 'text-emerald-300 bg-emerald-500/20 border border-emerald-500/30'
+                    : coin.feeChange1d < 0
+                    ? 'text-rose-300 bg-rose-500/20 border border-rose-500/30'
+                    : 'text-slate-400 bg-slate-800'
                 )}>
-                  {coin.feeChange1d > 0 ? '+' : ''}{coin.feeChange1d}% vs lbareh
+                  {coin.feeChange1d > 0 ? '▲ +' : coin.feeChange1d < 0 ? '▼ ' : ''}{coin.feeChange1d}% vs lbareh
                 </span>
               ) : (
                 <span className="text-[10px] text-slate-500">fees/day</span>
@@ -301,13 +304,15 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
         {/* 7D Fee Momentum */}
         <td className="py-3 px-3 text-right">
           <div className="flex flex-col items-end">
-            {coin.feeChange7d !== undefined && coin.feeChange7d !== 0 ? (
-              <span className={'font-bold text-xs px-1.5 py-0.5 rounded ' + (
+            {coin.feeChange7d !== undefined && coin.feeChange7d !== null ? (
+              <span className={'font-bold text-xs px-2 py-0.5 rounded ' + (
                 coin.feeChange7d > 0
                   ? 'text-cyan-300 bg-cyan-500/15 border border-cyan-500/30'
+                  : coin.feeChange7d < 0
+                  ? 'text-rose-400 bg-rose-500/15 border border-rose-500/30'
                   : 'text-slate-400 bg-slate-800'
               )}>
-                {coin.feeChange7d > 0 ? '▲ +' : '▼ '}{coin.feeChange7d}% 7D
+                {coin.feeChange7d > 0 ? '▲ +' : coin.feeChange7d < 0 ? '▼ ' : ''}{coin.feeChange7d}% 7D
               </span>
             ) : (
               <span className="text-slate-500 text-xs">—</span>
@@ -474,6 +479,9 @@ export default function RevenuePage({ coins, onOpenModal }) {
           ))}
         </div>
       </div>
+
+      {/* 🏆 REVENUE-GENERATING TOKENS INFOGRAPHIC LEADERBOARD 🏆 */}
+      <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} />
 
       {/* 🚀 3 REQUESTED MOMENTUM BUTTONS / TABS 🚀 */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">

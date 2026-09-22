@@ -43,6 +43,33 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
       };
     });
 
+    if (rankingType === 'burn') {
+      const burnCoins = coins.filter(c => (c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)) && !c.isND);
+      return burnCoins
+        .map(c => {
+          const rev30d = c.holdersRevenue30d || (c.holdersRevenue24h ? c.holdersRevenue24h * 30 : 0);
+          const annualRev = rev30d * 12;
+          const yieldPct = c.mcap > 0 ? (annualRev / c.mcap) * 100 : 0;
+          return {
+            coin: c,
+            symbol: c.symbol,
+            name: c.name,
+            logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+            fees24h: c.holdersRevenue24h || Math.round(rev30d / 30),
+            rev30d,
+            mcap: c.mcap,
+            yieldPct: Number(yieldPct.toFixed(2)),
+            mechanism: c.holdersMechanism || 'Buyback & Burn'
+          };
+        })
+        .filter((item, index, self) =>
+          index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
+        )
+        .sort((a, b) => b.rev30d - a.rev30d)
+        .slice(0, 10)
+        .map((item, idx) => ({ ...item, rank: idx + 1 }));
+    }
+
     if (rankingType === 'yield') {
       // Sort by Annualized Yield %, filter reasonable liquidity
       return calculated
@@ -111,6 +138,16 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
             >
               ⚡ Top Yield / MC %
             </button>
+            <button
+              onClick={() => setRankingType('burn')}
+              className={'px-3 py-1.5 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
+                rankingType === 'burn'
+                  ? 'bg-rose-500 text-white font-extrabold shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              )}
+            >
+              🔥 Top Burn / Buyback
+            </button>
           </div>
 
           <button
@@ -132,7 +169,9 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                 <tr className="border-b border-slate-800/80 bg-[#070b14] text-[10px] text-slate-400 uppercase font-bold tracking-wider">
                   <th className="py-3 pl-4 pr-2 text-left w-10">#</th>
                   <th className="py-3 px-3 text-left">TOKEN</th>
-                  <th className="py-3 px-4 text-right">HOLDERS REV. (30D)</th>
+                  <th className="py-3 px-4 text-right">
+                    {rankingType === 'burn' ? 'HOLDERS BURN (30D)' : 'HOLDERS REV. (30D)'}
+                  </th>
                   <th className="py-3 px-4 text-right">MARKET CAP</th>
                   <th className="py-3 px-4 text-right min-w-[220px]">
                     <div className="flex items-center justify-end gap-1">
@@ -167,10 +206,19 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                             onError={e => e.target.style.display = 'none'}
                           />
                           <div>
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-1.5 flex-wrap">
                               <span className="text-white font-extrabold text-xs">
                                 ${item.symbol}
                               </span>
+                              {item.mechanism && (
+                                <span className={'px-1.5 py-0.2 rounded text-[9px] font-black ' + (
+                                  item.mechanism.includes('Burn') || item.mechanism.includes('Buyback')
+                                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                                    : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                                )}>
+                                  {item.mechanism.includes('Burn') ? '🔥 Burn' : item.mechanism.includes('Buyback') ? '🔥 Buyback' : '💰 Yield'}
+                                </span>
+                              )}
                             </div>
                             <span className="text-[10px] text-slate-400 block mt-0.5">
                               {item.name}
@@ -181,11 +229,11 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
 
                       {/* 30D Holders Revenue */}
                       <td className="py-3.5 px-4 text-right">
-                        <span className="text-emerald-400 font-bold text-xs tracking-tight">
+                        <span className={'font-bold text-xs tracking-tight ' + (rankingType === 'burn' ? 'text-rose-400' : 'text-emerald-400')}>
                           {fmtRev(item.rev30d)}
                         </span>
                         <div className="text-[9px] text-slate-500 mt-0.5">
-                          ~{fmtUsd(item.fees24h)} / day
+                          {rankingType === 'burn' ? `~${fmtUsd(item.fees24h)} burned/day` : `~${fmtUsd(item.fees24h)} / day`}
                         </div>
                       </td>
 
@@ -199,12 +247,16 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                       {/* Annualized Holders Rev / MC + Visual Progress Bar */}
                       <td className="py-3.5 px-4 text-right">
                         <div className="flex items-center justify-end gap-3">
-                          <span className="text-emerald-400 font-extrabold text-xs min-w-[55px]">
+                          <span className={'font-extrabold text-xs min-w-[55px] ' + (rankingType === 'burn' ? 'text-rose-400' : 'text-emerald-400')}>
                             {item.yieldPct?.toFixed(2)}%
                           </span>
                           <div className="w-28 sm:w-36 bg-slate-800/80 rounded-full h-2.5 overflow-hidden ring-1 ring-slate-700/50">
                             <div
-                              className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500 group-hover:from-emerald-400 group-hover:to-teal-300"
+                              className={'h-full rounded-full transition-all duration-500 ' + (
+                                rankingType === 'burn'
+                                  ? 'bg-gradient-to-r from-rose-500 via-orange-500 to-amber-400'
+                                  : 'bg-gradient-to-r from-emerald-500 to-teal-400'
+                              )}
                               style={{ width: `${widthPct}%` }}
                             />
                           </div>

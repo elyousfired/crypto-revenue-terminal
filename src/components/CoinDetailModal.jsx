@@ -173,6 +173,16 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
                     <span>CG: {coin.cgListingDate} ({coin.cgAgeDays}d)</span>
                   </span>
                 )}
+                {coin.holdersMechanism && (
+                  <span className={'px-2 py-0.5 rounded text-xs font-bold flex items-center gap-1 ' + (
+                    coin.isBurn
+                      ? 'bg-rose-500/10 border border-rose-500/30 text-rose-300'
+                      : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300'
+                  )}>
+                    <span>{coin.isBurn ? '🔥' : '💰'}</span>
+                    <span>{coin.holdersMechanism}</span>
+                  </span>
+                )}
               </div>
               <div className="flex items-center gap-4 text-xs text-slate-400 mt-1">
                 <span className="text-white font-bold text-sm">{fmtUsd(coin.price)}</span>
@@ -182,6 +192,12 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
               </div>
             </div>
           </div>
+          {coin.holdersMethodology && (
+            <div className="mt-2.5 p-2 rounded-lg bg-[#070b14] border border-rose-500/20 text-[11px] text-slate-300 flex items-start gap-2 font-mono">
+              <span className="text-rose-400 font-bold shrink-0">🔥 Value Accrual:</span>
+              <span className="text-slate-300 text-[10px] leading-relaxed">{coin.holdersMethodology}</span>
+            </div>
+          )}
           {Array.isArray(coin.categories) && coin.categories.length > 0 && (
             <div className="mt-3 pt-3 border-t border-slate-800/80">
               <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-bold mb-1.5 uppercase">
@@ -197,7 +213,7 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
           )}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-5">
           <div className="p-3.5 rounded-lg bg-[#070b14] border border-slate-800">
             <span className="text-[10px] text-slate-400 uppercase font-semibold block mb-1">Vol / MC Velocity</span>
             <span className="text-lg font-extrabold text-cyan-400">{(coin.volToMcap).toFixed(2)}x <span className="text-xs text-cyan-300 font-normal">({(coin.volToMcap * 100).toFixed(1)}%)</span></span>
@@ -216,6 +232,26 @@ export default function CoinDetailModal({ coin, onClose, initialTab }) {
               <div>
                 <span className="text-lg font-extrabold text-emerald-400">{fmtUsd(coin.fees24h)}</span>
                 <span className="text-[10px] text-slate-500 block mt-0.5">Rev: {fmtUsd(coin.revenue24h)}</span>
+              </div>
+            )}
+          </div>
+          <div className="p-3.5 rounded-lg bg-[#070b14] border border-slate-800">
+            <span className="text-[10px] text-slate-400 uppercase font-semibold block mb-1">
+              {coin.isBurn ? '🔥 30D Token Burn' : coin.holdersMechanism ? '💰 30D Yield' : 'Holders Burn'}
+            </span>
+            {coin.holdersRevenue30d ? (
+              <div>
+                <span className={'text-lg font-extrabold ' + (coin.isBurn ? 'text-rose-400' : 'text-emerald-400')}>
+                  {fmtUsd(coin.holdersRevenue30d)}
+                </span>
+                <span className="text-[10px] text-slate-400 block mt-0.5 truncate" title={coin.holdersMethodology || coin.holdersMechanism}>
+                  {coin.holdersMechanism || 'Burn'}
+                </span>
+              </div>
+            ) : (
+              <div>
+                <span className="text-lg font-extrabold text-slate-500">ND</span>
+                <span className="text-[10px] text-slate-600 block mt-0.5">no burn feed</span>
               </div>
             )}
           </div>

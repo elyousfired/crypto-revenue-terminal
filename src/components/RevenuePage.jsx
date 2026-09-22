@@ -260,6 +260,13 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
                   </span>
                 )}
 
+                {coin.isBurn && (
+                  <span className="px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[9px] font-black tracking-wide flex items-center gap-0.5">
+                    <span>🔥</span>
+                    <span>BURN</span>
+                  </span>
+                )}
+
                 {coin.priceChange24h !== undefined && (
                   <span className={'text-[10px] font-bold px-1.5 py-0 rounded ' + (
                     coin.priceChange24h >= 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'
@@ -327,6 +334,46 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
           <div className="text-[10px] text-slate-500">revenue/day</div>
         </td>
 
+        {/* Holders Rev / Burn (30D) & Mechanism */}
+        <td className="py-3 px-3 text-right">
+          <div className="flex flex-col items-end">
+            {coin.holdersRevenue30d ? (
+              <>
+                <span className={'font-black text-xs ' + (coin.isBurn ? 'text-rose-400' : 'text-emerald-300')}>
+                  {fmtUsd(coin.holdersRevenue30d)}
+                </span>
+                <div className="flex items-center gap-1 mt-0.5">
+                  {coin.isBurn ? (
+                    <span className="px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[9px] font-black flex items-center gap-0.5">
+                      <span>🔥</span>
+                      <span>{coin.holdersMechanism || 'Burn'}</span>
+                    </span>
+                  ) : coin.holdersMechanism === 'Staking Real Yield' ? (
+                    <span className="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-black flex items-center gap-0.5">
+                      <span>💰</span>
+                      <span>Staking Yield</span>
+                    </span>
+                  ) : coin.holdersMechanism === 'veToken Revenue' ? (
+                    <span className="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40 text-[9px] font-black flex items-center gap-0.5">
+                      <span>🗳️</span>
+                      <span>veVoters</span>
+                    </span>
+                  ) : (
+                    <span className="px-1.5 py-0.2 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-[9px] font-bold">
+                      Holders Rev
+                    </span>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="text-slate-600 font-bold text-xs">ND</span>
+                <span className="text-[9px] text-slate-600 mt-0.5">no burn feed</span>
+              </>
+            )}
+          </div>
+        </td>
+
         {/* Annualized */}
         <td className="py-3 px-3 text-right">
           <span className="text-white font-bold text-xs">{fmtUsd(annualFees)}</span>
@@ -377,7 +424,7 @@ function RevenueRow({ coin, rank, days, onOpenModal }) {
       {/* Expanded chart row */}
       {expanded && (
         <tr className="bg-[#070b14] border-b border-slate-800">
-          <td colSpan={10} className="px-4 py-3">
+          <td colSpan={11} className="px-4 py-3">
             <RevenueChart coin={coin} days={days} />
           </td>
         </tr>
@@ -395,9 +442,9 @@ export default function RevenuePage({ coins, onOpenModal }) {
   const [showCount, setShowCount] = useState(50);
   
   // 🎯 Momentum Filter Tab State requested by user:
-  // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery'
+  // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn'
   const [momentumTab, setMomentumTab] = useState('all');
-  const [sortBy, setSortBy] = useState('feesDesc'); // 'feesDesc' | 'daySurge' | 'weekGrowth' | 'revToMcap'
+  const [sortBy, setSortBy] = useState('feesDesc'); // 'feesDesc' | 'daySurge' | 'weekGrowth' | 'revToMcap' | 'burnDesc'
 
   // Pre-calculate counts for each tab
   const counts = useMemo(() => {
@@ -406,7 +453,8 @@ export default function RevenuePage({ coins, onOpenModal }) {
       all: valid.length,
       weekly: valid.filter(c => c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)).length,
       daily: valid.filter(c => c.isUpToday || (c.feeChange1d && c.feeChange1d > 0)).length,
-      recovery: valid.filter(c => c.isRecovery).length
+      recovery: valid.filter(c => c.isRecovery).length,
+      burn: valid.filter(c => c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)).length
     };
   }, [coins]);
 
@@ -424,6 +472,9 @@ export default function RevenuePage({ coins, onOpenModal }) {
         if (momentumTab === 'recovery') {
           return Boolean(c.isRecovery);
         }
+        if (momentumTab === 'top_burn') {
+          return Boolean(c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0));
+        }
         return true;
       })
       .filter(c => {
@@ -433,6 +484,9 @@ export default function RevenuePage({ coins, onOpenModal }) {
       })
       .filter(c => c.fees24h >= minFees)
       .sort((a, b) => {
+        if (sortBy === 'burnDesc' || (momentumTab === 'top_burn' && sortBy === 'feesDesc')) {
+          return (b.holdersRevenue30d || 0) - (a.holdersRevenue30d || 0);
+        }
         if (sortBy === 'daySurge') return (b.feeChange1d || 0) - (a.feeChange1d || 0);
         if (sortBy === 'weekGrowth') return (b.feeChange7d || 0) - (a.feeChange7d || 0);
         if (sortBy === 'revToMcap') {
@@ -483,8 +537,8 @@ export default function RevenuePage({ coins, onOpenModal }) {
       {/* 🏆 REVENUE-GENERATING TOKENS INFOGRAPHIC LEADERBOARD 🏆 */}
       <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} />
 
-      {/* 🚀 3 REQUESTED MOMENTUM BUTTONS / TABS 🚀 */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
+      {/* 🚀 5 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
         {/* TAB 1: ALL */}
         <button
           onClick={() => { setMomentumTab('all'); setShowCount(50); }}
@@ -571,6 +625,29 @@ export default function RevenuePage({ coins, onOpenModal }) {
             Revenue kan tayah o daba kay3awad itla3
           </span>
         </button>
+
+        {/* TAB 5: TOP BURN / BUYBACK (Tokens li kayshriw o kayharqo bi revenue) */}
+        <button
+          onClick={() => { setMomentumTab('top_burn'); setSortBy('burnDesc'); setShowCount(50); }}
+          className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
+            momentumTab === 'top_burn'
+              ? 'bg-rose-500/20 border-rose-500 text-rose-200 shadow-lg ring-1 ring-rose-400'
+              : 'bg-[#070b14] border-rose-500/30 hover:bg-rose-500/10'
+          )}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-rose-400">🔥</span>
+              <span className="text-[11px] font-black text-white">TOP BURN / BUYBACK</span>
+            </div>
+            <span className="px-2 py-0.2 rounded-full bg-rose-500 text-white font-black text-[10px]">
+              {counts.burn}
+            </span>
+          </div>
+          <span className="text-[10px] text-rose-300/80 mt-1 font-semibold">
+            Tokens li kayshriw o kayharqo bi revenue
+          </span>
+        </button>
       </div>
 
       {/* Stats summary */}
@@ -591,13 +668,16 @@ export default function RevenuePage({ coins, onOpenModal }) {
             {momentumTab === 'weekly_growth' && '📈 7D Weekly Expansion'}
             {momentumTab === 'daily_surge' && '⚡ 24h Momentum Surge'}
             {momentumTab === 'recovery' && '🔄 Bottom Rebound / Recovery'}
+            {momentumTab === 'top_burn' && '🔥 Top Buyback & Burn'}
             {momentumTab === 'all' && '🌐 All Revenue Protocols'}
           </span>
           <span className="text-[10px] text-cyan-400 block mt-0.5">{ranked.length} coins matching</span>
         </div>
         <div className="p-3.5 rounded-xl bg-[#0e1422] border border-slate-800">
           <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Top Performer in View</span>
-          <span className="text-amber-300 font-extrabold text-lg">{fmtUsd(ranked[0]?.fees24h || 0)}</span>
+          <span className="text-amber-300 font-extrabold text-lg">
+            {fmtUsd(momentumTab === 'top_burn' ? (ranked[0]?.holdersRevenue30d || ranked[0]?.fees24h || 0) : (ranked[0]?.fees24h || 0))}
+          </span>
           <span className="text-[10px] text-slate-400 block mt-0.5">{ranked[0]?.name || 'N/A'} ({ranked[0]?.symbol || ''})</span>
         </div>
       </div>
@@ -619,6 +699,7 @@ export default function RevenuePage({ coins, onOpenModal }) {
         <div className="flex items-center gap-1.5">
           <span className="text-slate-400 text-[10px] font-bold">Sort:</span>
           {[
+            { id: 'burnDesc', label: '🔥 Top Burn (30D)' },
             { id: 'feesDesc', label: 'Top Fees' },
             { id: 'daySurge', label: '⚡ 24h Surge %' },
             { id: 'weekGrowth', label: '📈 7D Growth %' },
@@ -668,6 +749,7 @@ export default function RevenuePage({ coins, onOpenModal }) {
                 <th className="py-3 px-3 text-right">24h Fees &amp; 1D %</th>
                 <th className="py-3 px-3 text-right">7D Fee Trend</th>
                 <th className="py-3 px-3 text-right">24h Revenue</th>
+                <th className="py-3 px-3 text-right">Holders / Burn (30D)</th>
                 <th className="py-3 px-3 text-right">Annual Est.</th>
                 <th className="py-3 px-3 text-right">Fees / MC</th>
                 <th className="py-3 px-3 text-right">Price</th>

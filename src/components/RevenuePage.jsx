@@ -498,7 +498,6 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
   // 🎯 Momentum Filter Tab State requested by user:
   // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn'
   const [momentumTab, setMomentumTab] = useState('all');
-  const [sortBy, setSortBy] = useState('feesDesc'); // 'feesDesc' | 'daySurge' | 'weekGrowth' | 'revToMcap' | 'burnDesc'
 
   // Pre-calculate counts for each tab
   const counts = useMemo(() => {
@@ -538,28 +537,20 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
       })
       .filter(c => c.fees24h >= minFees)
       .sort((a, b) => {
-        if (sortBy === 'daySurge') {
-          return (b.feeChange1d || -999) - (a.feeChange1d || -999);
-        }
-        if (sortBy === 'weekGrowth') {
-          return (b.feeChange7d || -999) - (a.feeChange7d || -999);
-        }
-        if (sortBy === 'burnDesc') {
+        if (momentumTab === 'top_burn') {
           const burnA = a.holdersRevenue30d || (a.holdersRevenue24h ? a.holdersRevenue24h * 30 : 0);
           const burnB = b.holdersRevenue30d || (b.holdersRevenue24h ? b.holdersRevenue24h * 30 : 0);
           return burnB - burnA;
         }
-        if (sortBy === 'revToMcap') {
-          const ratioA = a.mcap > 0 ? ((a.fees24h || 0) / a.mcap) : 0;
-          const ratioB = b.mcap > 0 ? ((b.fees24h || 0) / b.mcap) : 0;
-          return ratioB - ratioA;
+        if (momentumTab === 'weekly_growth') {
+          return (b.feeChange7d || -999) - (a.feeChange7d || -999);
+        }
+        if (momentumTab === 'daily_surge') {
+          return (b.feeChange1d || -999) - (a.feeChange1d || -999);
         }
         return (b.fees24h || 0) - (a.fees24h || 0);
       });
-  }, [coins, momentumTab, search, minFees, sortBy]);
-
-  const totalFees = useMemo(() => ranked.reduce((s, c) => s + (c.fees24h || 0), 0), [ranked]);
-  const totalRev = useMemo(() => ranked.reduce((s, c) => s + (c.revenue24h || 0), 0), [ranked]);
+  }, [coins, momentumTab, search, minFees]);
 
   const displayed = ranked.slice(0, showCount);
 
@@ -698,7 +689,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
 
         {/* TAB 5: TOP BURN / BUYBACK (Tokens li kayshriw o kayharqo bi revenue) */}
         <button
-          onClick={() => { setMomentumTab('top_burn'); setSortBy('burnDesc'); setShowCount(50); }}
+          onClick={() => { setMomentumTab('top_burn'); setShowCount(50); }}
           className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
             momentumTab === 'top_burn'
               ? 'bg-rose-500/20 border-rose-500 text-rose-200 shadow-lg ring-1 ring-rose-400'
@@ -720,39 +711,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
         </button>
       </div>
 
-      {/* Stats summary */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-3.5 rounded-xl bg-[#0e1422] border border-slate-800">
-          <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Active View 24h Fees</span>
-          <span className="text-emerald-400 font-extrabold text-lg">{fmtUsd(totalFees)}</span>
-          <span className="text-[10px] text-slate-500 block mt-0.5">{ranked.length} tokens in this category</span>
-        </div>
-        <div className="p-3.5 rounded-xl bg-[#0e1422] border border-slate-800">
-          <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Active View 24h Revenue</span>
-          <span className="text-amber-400 font-extrabold text-lg">{fmtUsd(totalRev)}</span>
-          <span className="text-[10px] text-slate-500 block mt-0.5">Retained protocol cut</span>
-        </div>
-        <div className="p-3.5 rounded-xl bg-[#0e1422] border border-slate-800">
-          <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Current Filter Mode</span>
-          <span className="text-white font-extrabold text-sm block">
-            {momentumTab === 'weekly_growth' && '📈 7D Weekly Expansion'}
-            {momentumTab === 'daily_surge' && '⚡ 24h Momentum Surge'}
-            {momentumTab === 'recovery' && '🔄 Bottom Rebound / Recovery'}
-            {momentumTab === 'top_burn' && '🔥 Top Buyback & Burn'}
-            {momentumTab === 'all' && '🌐 All Revenue Protocols'}
-          </span>
-          <span className="text-[10px] text-cyan-400 block mt-0.5">{ranked.length} coins matching</span>
-        </div>
-        <div className="p-3.5 rounded-xl bg-[#0e1422] border border-slate-800">
-          <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">Top Performer in View</span>
-          <span className="text-amber-300 font-extrabold text-lg">
-            {fmtUsd(momentumTab === 'top_burn' ? (ranked[0]?.holdersRevenue30d || ranked[0]?.fees24h || 0) : (ranked[0]?.fees24h || 0))}
-          </span>
-          <span className="text-[10px] text-slate-400 block mt-0.5">{ranked[0]?.name || 'N/A'} ({ranked[0]?.symbol || ''})</span>
-        </div>
-      </div>
-
-      {/* Filters & Sorting Bar */}
+      {/* Filters Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-[#0e1422] border border-slate-800">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
@@ -765,30 +724,6 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
           />
         </div>
 
-        {/* Sort selector */}
-        <div className="flex items-center gap-1.5">
-          <span className="text-slate-400 text-[10px] font-bold">Sort:</span>
-          {[
-            { id: 'burnDesc', label: '🔥 Top Burn (30D)' },
-            { id: 'feesDesc', label: 'Top Fees' },
-            { id: 'daySurge', label: '⚡ 24h Surge %' },
-            { id: 'weekGrowth', label: '📈 7D Growth %' },
-            { id: 'revToMcap', label: '💎 Fees / MC' }
-          ].map(s => (
-            <button
-              key={s.id}
-              onClick={() => setSortBy(s.id)}
-              className={'px-2 py-1 rounded text-[10px] font-bold transition cursor-pointer ' + (
-                sortBy === s.id
-                  ? 'bg-emerald-500 text-black font-extrabold shadow-sm'
-                  : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700'
-              )}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-
         {/* Min fees threshold */}
         <div className="flex items-center gap-1.5 flex-wrap">
           <span className="text-slate-400 text-[10px] font-bold">Min:</span>
@@ -796,7 +731,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
             <button
               key={v}
               onClick={() => setMinFees(v)}
-              className={'px-2 py-1 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
+              className={'px-2.5 py-1 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
                 minFees === v
                   ? 'bg-amber-500 text-black font-extrabold shadow-sm'
                   : 'bg-slate-800 text-slate-400 hover:text-white border border-slate-700'

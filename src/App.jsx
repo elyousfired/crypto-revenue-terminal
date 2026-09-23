@@ -3,6 +3,7 @@ import Header from './components/Header';
 import RevenuePage from './components/RevenuePage';
 import CoinDetailModal from './components/CoinDetailModal';
 import CompareModal from './components/CompareModal';
+import TokenResearchPage from './components/TokenResearchPage';
 import { ALL_COINGECKO_TOKENS } from './data/coingeckoUniverse';
 import { fetchLiveFees, applyLiveUpdates, SYNC_INTERVAL_SECONDS } from './services/liveSyncService';
 import { clearAllRevenueCache } from './services/revenuePriceHistoryService';
@@ -10,6 +11,7 @@ import { clearAllRevenueCache } from './services/revenuePriceHistoryService';
 export default function App() {
   const [coins, setCoins] = useState(ALL_COINGECKO_TOKENS);
   const [activeModalCoin, setActiveModalCoin] = useState(null);
+  const [activeResearchCoin, setActiveResearchCoin] = useState(null);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [comparePair, setComparePair] = useState({ coinA: null, coinB: null });
   const [timeUntilNextSync, setTimeUntilNextSync] = useState(SYNC_INTERVAL_SECONDS);
@@ -86,6 +88,7 @@ export default function App() {
           coins={coins}
           onOpenModal={setActiveModalCoin}
           onOpenCompare={handleOpenCompare}
+          onOpenResearch={setActiveResearchCoin}
         />
       </main>
 
@@ -95,8 +98,17 @@ export default function App() {
           coin={activeModalCoin}
           onClose={() => setActiveModalCoin(null)}
           onOpenCompare={handleOpenCompare}
+          onOpenResearch={setActiveResearchCoin}
         />
       )}
+
+      {/* 🤖 Comprehensive Live AI Token Research Page */}
+      <TokenResearchPage
+        coin={activeResearchCoin}
+        isOpen={Boolean(activeResearchCoin)}
+        onClose={() => setActiveResearchCoin(null)}
+        onOpenCompare={handleOpenCompare}
+      />
 
       {/* ⚔️ Head-to-Head 2-Coin Comparison Modal */}
       <CompareModal

@@ -251,7 +251,7 @@ function RevenueChart({ coin, days }) {
 
 // ─── Single row ───────────────────────────────────────────────────────────────
 
-function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
+function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare, onOpenResearch }) {
   const [expanded, setExpanded] = useState(false);
   const dexUrl = 'https://dexscreener.com/search?q=' + encodeURIComponent(coin.symbol);
 
@@ -451,6 +451,15 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
         {/* Actions */}
         <td className="py-3 px-3 text-right">
           <div className="flex items-center gap-1.5 justify-end" onClick={e => e.stopPropagation()}>
+            {onOpenResearch && (
+              <button
+                onClick={() => onOpenResearch(coin)}
+                title={`Deep AI Intel & Live Cross-Chain Research for ${coin.symbol}`}
+                className="px-2 py-1 rounded bg-cyan-500/10 hover:bg-cyan-500/25 text-cyan-300 text-[10px] font-bold border border-cyan-500/30 transition cursor-pointer flex items-center gap-1 shadow-sm"
+              >
+                <span>🤖</span>
+              </button>
+            )}
             {onOpenCompare && (
               <button
                 onClick={() => onOpenCompare(coin)}
@@ -499,7 +508,7 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
-export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
+export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenResearch }) {
   const [days, setDays] = useState(30);
   const [search, setSearch] = useState('');
   const [minFees, setMinFees] = useState(0);
@@ -618,7 +627,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
       </div>
 
       {/* 🏆 REVENUE-GENERATING TOKENS INFOGRAPHIC LEADERBOARD 🏆 */}
-      <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} />
+      <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} onOpenResearch={onOpenResearch} />
 
       {/* 🚀 5 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
@@ -793,6 +802,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
                   days={days}
                   onOpenModal={onOpenModal}
                   onOpenCompare={onOpenCompare}
+                  onOpenResearch={onOpenResearch}
                 />
               ))}
             </tbody>

@@ -10,7 +10,7 @@ function fmtRev(val) {
   return '$' + Math.round(val).toLocaleString();
 }
 
-export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = () => {} }) {
+export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = () => {}, onOpenResearch = () => {} }) {
   const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield' | 'burn'
   const [limit, setLimit] = useState(50); // Default to Top 50 as requested
   const [collapsed, setCollapsed] = useState(false);
@@ -118,7 +118,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
         index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
       )
       .sort((a, b) => b.revenue24h - a.revenue24h)
-      .slice(0, 5)
+      .slice(0, 10)
       .map((item, idx) => ({ ...item, rank: idx + 1 }));
   }, [coins]);
 
@@ -144,7 +144,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
         index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
       )
       .sort((a, b) => b.yield24h - a.yield24h)
-      .slice(0, 5)
+      .slice(0, 10)
       .map((item, idx) => ({ ...item, rank: idx + 1 }));
   }, [coins]);
 
@@ -367,21 +367,25 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           {/* === BOTTOM MINI-LEADERBOARDS === */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-slate-800">
             
-            {/* Box 1: 🔥 Top 5 — 24h Revenue */}
+            {/* Box 1: 🔥 Top 10 — 24h Revenue */}
             <div className="border-r border-slate-800/50 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-base">🔥</span>
-                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 24h Revenue</h3>
+                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 10 — 24h Revenue</h3>
                 <span className="px-1.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[9px] font-bold">
                   LIVE 24H
+                </span>
+                <span className="text-[10px] text-slate-500 ml-auto hidden sm:inline">
+                  Click for Deep AI Intel
                 </span>
               </div>
               <div className="space-y-1">
                 {top24hRevenue.map((item) => (
                   <div
                     key={item.coin.id || item.symbol + '_24hrev'}
-                    onClick={() => onOpenModal(item.coin)}
+                    onClick={() => onOpenResearch ? onOpenResearch(item.coin) : onOpenModal(item.coin)}
                     className="flex items-center gap-3 py-2 px-2.5 rounded-lg hover:bg-slate-800/50 transition cursor-pointer group"
+                    title={`Open Live Intel for ${item.name}`}
                   >
                     {/* Rank */}
                     <span className={'text-xs font-extrabold w-5 text-center ' + (
@@ -421,13 +425,16 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
               </div>
             </div>
 
-            {/* Box 2: ⚡ Top 5 — 24h Yield / MC % */}
+            {/* Box 2: ⚡ Top 10 — 24h Yield / MC % */}
             <div className="p-4 border-t md:border-t-0 border-slate-800/50">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-base">⚡</span>
-                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 24h Yield / MC %</h3>
+                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 10 — 24h Yield / MC %</h3>
                 <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold">
                   LIVE 24H
+                </span>
+                <span className="text-[10px] text-slate-500 ml-auto hidden sm:inline">
+                  Click for Deep AI Intel
                 </span>
               </div>
               <div className="space-y-1">
@@ -438,8 +445,9 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                   return (
                     <div
                       key={item.coin.id || item.symbol + '_24hyield'}
-                      onClick={() => onOpenModal(item.coin)}
+                      onClick={() => onOpenResearch ? onOpenResearch(item.coin) : onOpenModal(item.coin)}
                       className="flex items-center gap-3 py-2 px-2.5 rounded-lg hover:bg-slate-800/50 transition cursor-pointer group"
+                      title={`Open Live Intel for ${item.name}`}
                     >
                       {/* Rank */}
                       <span className={'text-xs font-extrabold w-5 text-center ' + (

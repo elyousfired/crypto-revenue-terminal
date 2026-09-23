@@ -116,7 +116,7 @@ function CustomCashflowModalTooltip({ active, payload, label, metric = 'revenue'
 
 const dexPairCache = new Map();
 
-export default function CoinDetailModal({ coin, onClose, initialTab, onOpenCompare }) {
+export default function CoinDetailModal({ coin, onClose, initialTab, onOpenCompare, onOpenResearch }) {
   if (!coin) return null;
 
   const defaultTab = initialTab || (coin.fees24h || coin.revenue24h ? 'revenue' : 'volCurve');
@@ -665,6 +665,19 @@ export default function CoinDetailModal({ coin, onClose, initialTab, onOpenCompa
             )}
           </div>
           <div className="flex items-center gap-3">
+            {onOpenResearch && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenResearch(coin);
+                }}
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-extrabold text-xs transition flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 cursor-pointer"
+                title={`Deep AI Intel & Live Cross-Chain Research for ${coin.symbol}`}
+              >
+                <span>🤖</span>
+                <span>AI Deep Intel</span>
+              </button>
+            )}
             {onOpenCompare && (
               <button
                 onClick={() => {

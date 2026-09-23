@@ -64,10 +64,20 @@ export async function fetchLiveFees() {
         const fees60d = p.total60dto30d || 0;
 
         const feeChange1d = fees48h > 0 ? Number((((fees - fees48h) / fees48h) * 100).toFixed(1)) : 0;
-        const feeChange7d = fees14d > 0 ? Number((((fees7d - fees14d) / fees14d) * 100).toFixed(1)) : 0;
+        
+        let feeChange7d = 0;
+        let isBreakout = false;
+        if (fees14d >= 100) {
+          feeChange7d = Number((((fees7d - fees14d) / fees14d) * 100).toFixed(1));
+        } else if (fees7d >= 500) {
+          isBreakout = true;
+          feeChange7d = Number(Math.min(250, (fees7d / 100) * 10).toFixed(1));
+        }
+        if (feeChange7d > 500) feeChange7d = 500;
+        if (feeChange7d < -100) feeChange7d = -100;
 
         const isUpToday = fees > fees48h && fees > 300;
-        const isUpWeek = (feeChange7d > 0 || fees7d > fees14d) && fees > 300;
+        const isUpWeek = feeChange7d > 0 && fees > 300;
         const isRecovery = ((fees48h > 0 && feeChange1d >= 10 && fees7d < (fees30d / 3)) || (feeChange7d > 5 && fees60d > fees30d) || (feeChange1d > 20 && feeChange7d < 0)) && fees > 300;
 
         const info = {
@@ -77,6 +87,7 @@ export async function fetchLiveFees() {
           fees14d,
           feeChange1d,
           feeChange7d,
+          isBreakout,
           isUpToday,
           isUpWeek,
           isRecovery
@@ -114,6 +125,9 @@ export function applyLiveUpdates(existingCoins, feesMap) {
       const isND = false;
       const annualFees = newFees * 365;
       const priceToFees = newFees > 0 ? Number(((coin.mcap || 0) / annualFees).toFixed(1)) : null;
+      const annualYield = (coin.mcap > 0 && annualFees > 0) ? Number(((annualFees / coin.mcap) * 100).toFixed(1)) : 0;
+      const feeChange7d = typeof info === 'object' ? info.feeChange7d : (coin.feeChange7d || 0);
+      const isAlphaGem = feeChange7d >= 15 && newFees >= 1000 && (coin.mcap || 0) < 300000000 && (annualYield >= 4 || (priceToFees && priceToFees <= 25));
 
       // Re-evaluate Pillar 6 (revenue growing)
       const p = { ...coin.pillars };
@@ -143,10 +157,12 @@ export function applyLiveUpdates(existingCoins, feesMap) {
         fees24h: newFees,
         revenue24h: Math.round(newFees * 0.7),
         feeChange1d: typeof info === 'object' ? info.feeChange1d : (coin.feeChange1d || 0),
-        feeChange7d: typeof info === 'object' ? info.feeChange7d : (coin.feeChange7d || 0),
+        feeChange7d: feeChange7d,
         isUpToday: typeof info === 'object' ? info.isUpToday : (coin.isUpToday || false),
         isUpWeek: typeof info === 'object' ? info.isUpWeek : (coin.isUpWeek || false),
         isRecovery: typeof info === 'object' ? info.isRecovery : (coin.isRecovery || false),
+        isAlphaGem: isAlphaGem,
+        annualYield: annualYield,
         isND,
         priceToFees,
         pillars: p,

@@ -99,6 +99,55 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
     return Math.max(30, ...dynamicLeaderboard.map(d => d.yieldPct || 0));
   }, [dynamicLeaderboard]);
 
+  // Bottom Box 1: Top 5 by 24h Revenue (who's earning the most cash TODAY)
+  const top24hRevenue = useMemo(() => {
+    return coins
+      .filter(c => c.fees24h && c.fees24h >= 500 && c.mcap >= 100000 && !c.isND)
+      .map(c => {
+        const dailyRev = c.revenue24h && c.revenue24h > 0 ? c.revenue24h : c.fees24h * 0.7;
+        return {
+          coin: c,
+          symbol: c.symbol,
+          name: c.name,
+          logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+          revenue24h: dailyRev,
+          mcap: c.mcap,
+        };
+      })
+      .filter((item, index, self) =>
+        index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
+      )
+      .sort((a, b) => b.revenue24h - a.revenue24h)
+      .slice(0, 5)
+      .map((item, idx) => ({ ...item, rank: idx + 1 }));
+  }, [coins]);
+
+  // Bottom Box 2: Top 5 by 24h Yield / MC % (today's revenue annualized vs market cap)
+  const top24hYield = useMemo(() => {
+    return coins
+      .filter(c => c.fees24h && c.fees24h >= 500 && c.mcap >= 500000 && !c.isND)
+      .map(c => {
+        const dailyRev = c.revenue24h && c.revenue24h > 0 ? c.revenue24h : c.fees24h * 0.7;
+        const yield24h = c.mcap > 0 ? (dailyRev * 365) / c.mcap * 100 : 0;
+        return {
+          coin: c,
+          symbol: c.symbol,
+          name: c.name,
+          logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+          revenue24h: dailyRev,
+          mcap: c.mcap,
+          yield24h: Number(yield24h.toFixed(2)),
+        };
+      })
+      .filter(c => c.yield24h < 50000)
+      .filter((item, index, self) =>
+        index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
+      )
+      .sort((a, b) => b.yield24h - a.yield24h)
+      .slice(0, 5)
+      .map((item, idx) => ({ ...item, rank: idx + 1 }));
+  }, [coins]);
+
   return (
     <div className="rounded-2xl border border-slate-800 bg-[#0e1422] shadow-2xl overflow-hidden font-mono text-xs">
       
@@ -315,10 +364,133 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
             </table>
           </div>
 
+          {/* === BOTTOM MINI-LEADERBOARDS === */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-slate-800">
+            
+            {/* Box 1: 🔥 Top 5 — 24h Revenue */}
+            <div className="border-r border-slate-800/50 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-base">🔥</span>
+                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 24h Revenue</h3>
+                <span className="px-1.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[9px] font-bold">
+                  LIVE 24H
+                </span>
+              </div>
+              <div className="space-y-1">
+                {top24hRevenue.map((item) => (
+                  <div
+                    key={item.coin.id || item.symbol + '_24hrev'}
+                    onClick={() => onOpenModal(item.coin)}
+                    className="flex items-center gap-3 py-2 px-2.5 rounded-lg hover:bg-slate-800/50 transition cursor-pointer group"
+                  >
+                    {/* Rank */}
+                    <span className={'text-xs font-extrabold w-5 text-center ' + (
+                      item.rank === 1 ? 'text-amber-400' : item.rank === 2 ? 'text-slate-300' : item.rank === 3 ? 'text-amber-600' : 'text-slate-500'
+                    )}>
+                      {item.rank === 1 ? '👑' : item.rank}
+                    </span>
+                    
+                    {/* Logo + Symbol */}
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 group-hover:border-amber-500/50 transition flex-shrink-0"
+                      onError={e => e.target.style.display = 'none'}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-white font-extrabold text-xs">${item.symbol}</span>
+                      <span className="text-slate-500 text-[9px] ml-1.5 hidden sm:inline">{item.name}</span>
+                    </div>
+
+                    {/* 24h Revenue */}
+                    <div className="text-right">
+                      <span className="text-amber-300 font-extrabold text-xs">{fmtRev(item.revenue24h)}</span>
+                      <div className="text-[8px] text-slate-500">today</div>
+                    </div>
+
+                    {/* MC */}
+                    <div className="text-right hidden sm:block">
+                      <span className="text-slate-400 font-bold text-[10px]">{fmtRev(item.mcap)}</span>
+                      <div className="text-[8px] text-slate-600">mcap</div>
+                    </div>
+                  </div>
+                ))}
+                {top24hRevenue.length === 0 && (
+                  <div className="text-slate-500 text-[10px] text-center py-4">Loading live data...</div>
+                )}
+              </div>
+            </div>
+
+            {/* Box 2: ⚡ Top 5 — 24h Yield / MC % */}
+            <div className="p-4 border-t md:border-t-0 border-slate-800/50">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-base">⚡</span>
+                <h3 className="text-sm font-extrabold text-white tracking-tight">Top 24h Yield / MC %</h3>
+                <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold">
+                  LIVE 24H
+                </span>
+              </div>
+              <div className="space-y-1">
+                {top24hYield.map((item) => {
+                  const maxYield24 = top24hYield.length > 0 ? top24hYield[0].yield24h : 100;
+                  const barW = Math.min(100, Math.max(6, (item.yield24h / maxYield24) * 100));
+                  
+                  return (
+                    <div
+                      key={item.coin.id || item.symbol + '_24hyield'}
+                      onClick={() => onOpenModal(item.coin)}
+                      className="flex items-center gap-3 py-2 px-2.5 rounded-lg hover:bg-slate-800/50 transition cursor-pointer group"
+                    >
+                      {/* Rank */}
+                      <span className={'text-xs font-extrabold w-5 text-center ' + (
+                        item.rank === 1 ? 'text-emerald-400' : item.rank === 2 ? 'text-teal-400' : item.rank === 3 ? 'text-cyan-400' : 'text-slate-500'
+                      )}>
+                        {item.rank === 1 ? '💎' : item.rank}
+                      </span>
+
+                      {/* Logo + Symbol */}
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 group-hover:border-emerald-500/50 transition flex-shrink-0"
+                        onError={e => e.target.style.display = 'none'}
+                      />
+                      <div className="min-w-0 flex-shrink-0">
+                        <span className="text-white font-extrabold text-xs">${item.symbol}</span>
+                      </div>
+
+                      {/* Yield bar + % */}
+                      <div className="flex-1 flex items-center gap-2">
+                        <div className="flex-1 bg-slate-800/80 rounded-full h-2 overflow-hidden ring-1 ring-slate-700/50">
+                          <div
+                            className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-all duration-500"
+                            style={{ width: `${barW}%` }}
+                          />
+                        </div>
+                        <span className="text-emerald-400 font-extrabold text-xs min-w-[60px] text-right">
+                          {item.yield24h >= 1000 ? fmtRev(item.yield24h).replace('$', '') : item.yield24h.toFixed(1)}%
+                        </span>
+                      </div>
+
+                      {/* 24h Rev small */}
+                      <div className="text-right hidden sm:block">
+                        <span className="text-slate-400 font-bold text-[10px]">{fmtRev(item.revenue24h)}</span>
+                        <div className="text-[8px] text-slate-600">24h rev</div>
+                      </div>
+                    </div>
+                  );
+                })}
+                {top24hYield.length === 0 && (
+                  <div className="text-slate-500 text-[10px] text-center py-4">Loading live data...</div>
+                )}
+              </div>
+            </div>
+          </div>
+
           {/* Footnote */}
           <div className="p-3 bg-[#070b14]/70 border-t border-slate-800/70 text-[10px] text-slate-500 flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span>Annualized based on 30-day run rate. 100% computed live from our connected DeFiLlama &amp; CoinGecko datasets.</span>
+              <span>Annualized based on 24h live run rate. 100% computed live from our connected DeFiLlama &amp; CoinGecko datasets.</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400">
               <span>Source: <strong className="text-slate-300">Live Terminal Engine</strong></span>

@@ -283,7 +283,14 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
                   {coin.symbol}
                 </span>
 
-                {/* Status Badges: Recovery, Up Today, Up Week */}
+                {/* Status Badges: Gem, Recovery, Up Today, Up Week */}
+                {coin.isAlphaGem && (
+                  <span className="px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 border border-amber-400/50 text-[9px] font-black tracking-wide flex items-center gap-0.5 animate-pulse shadow-sm shadow-amber-500/20" title="Cashflow Gem: Rapid 7D Fee Growth + Attractive Valuation">
+                    <span>💎</span>
+                    <span>CASHFLOW GEM</span>
+                  </span>
+                )}
+
                 {coin.isRecovery && (
                   <span className="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40 text-[9px] font-black tracking-wide flex items-center gap-0.5">
                     <span>🔄</span>
@@ -357,14 +364,17 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare }) {
         <td className="py-3 px-3 text-right">
           <div className="flex flex-col items-end">
             {coin.feeChange7d !== undefined && coin.feeChange7d !== null ? (
-              <span className={'font-bold text-xs px-2 py-0.5 rounded ' + (
+              <span className={'font-bold text-xs px-2 py-0.5 rounded flex items-center gap-1 ' + (
                 coin.feeChange7d > 0
                   ? 'text-cyan-300 bg-cyan-500/15 border border-cyan-500/30'
                   : coin.feeChange7d < 0
                   ? 'text-rose-400 bg-rose-500/15 border border-rose-500/30'
                   : 'text-slate-400 bg-slate-800'
               )}>
-                {coin.feeChange7d > 0 ? '▲ +' : coin.feeChange7d < 0 ? '▼ ' : ''}{coin.feeChange7d}% 7D
+                <span>{coin.feeChange7d > 0 ? '▲ +' : coin.feeChange7d < 0 ? '▼ ' : ''}
+                  {coin.feeChange7d >= 500 ? '500%+' : Number(coin.feeChange7d).toFixed(1)}% 7D
+                </span>
+                {coin.isBreakout && <span className="text-[10px]" title="Newly active weekly volume breakout">🚀</span>}
               </span>
             ) : (
               <span className="text-slate-500 text-xs">—</span>
@@ -504,7 +514,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
     const valid = coins.filter(c => c.fees24h && c.fees24h > 0 && !c.isND);
     return {
       all: valid.length,
-      weekly: valid.filter(c => c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)).length,
+      weekly: valid.filter(c => (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000)).length,
       daily: valid.filter(c => c.isUpToday || (c.feeChange1d && c.feeChange1d > 0)).length,
       recovery: valid.filter(c => c.isRecovery).length,
       burn: valid.filter(c => c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)).length
@@ -517,7 +527,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
       .filter(c => c.fees24h && c.fees24h > 0 && !c.isND)
       .filter(c => {
         if (momentumTab === 'weekly_growth') {
-          return c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0);
+          return (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000);
         }
         if (momentumTab === 'daily_surge') {
           return c.isUpToday || (c.feeChange1d && c.feeChange1d > 0);
@@ -543,7 +553,19 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
           return burnB - burnA;
         }
         if (momentumTab === 'weekly_growth') {
-          return (b.feeChange7d || -999) - (a.feeChange7d || -999);
+          // 1. Prioritize active fee protocols (>= 300/day) so dead dust doesn't float to top
+          const aIsReal = (a.fees24h || 0) >= 300;
+          const bIsReal = (b.fees24h || 0) >= 300;
+          if (aIsReal && !bIsReal) return -1;
+          if (!aIsReal && bIsReal) return 1;
+
+          // 2. Sort by clean capped 7D growth desc
+          const growthA = Math.min(500, a.feeChange7d || 0);
+          const growthB = Math.min(500, b.feeChange7d || 0);
+          if (growthB !== growthA) return growthB - growthA;
+
+          // 3. Tie-breaker by 24h fees desc
+          return (b.fees24h || 0) - (a.fees24h || 0);
         }
         if (momentumTab === 'daily_surge') {
           return (b.feeChange1d || -999) - (a.feeChange1d || -999);
@@ -637,7 +659,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare }) {
             </span>
           </div>
           <span className="text-[10px] text-emerald-300/80 mt-1 font-semibold">
-            Revenue ghadi o kayzid had simana
+            💎 Gem Radar · Fees ghada o katzid
           </span>
         </button>
 

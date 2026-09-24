@@ -126,7 +126,7 @@ function generateSyntheticHistory(coin, days = 30) {
 export async function getRevenuePriceHistory(coin, days = 30) {
   if (!coin) return [];
 
-  const cacheKey = `rev_v4_${coin.id || coin.symbol}_${days}`;
+  const cacheKey = `rev_v5_${coin.id || coin.symbol}_${days}`;
   if (revenueCache.has(cacheKey)) return revenueCache.get(cacheKey);
 
   const slug = coin.defillamaSlug || coin.chainName;
@@ -151,7 +151,23 @@ export async function getRevenuePriceHistory(coin, days = 30) {
       historyRevByDay.set(k, val);
     });
 
+    // Calculate real historical revenue ratio (e.g. ~10.5% for Solana, ~70% for DEXs)
+    let revRatio = 0.5;
+    if (feesChart && feesChart.length > 0 && revChart && revChart.length > 0) {
+      const lastF = feesChart[feesChart.length - 1][1];
+      const lastR = revChart[revChart.length - 1][1];
+      if (lastF > 0 && lastR > 0) {
+        revRatio = Math.min(1.0, Math.max(0.01, lastR / lastF));
+      }
+    } else if (coin.fees24h > 0 && coin.revenue24h > 0) {
+      revRatio = Math.min(1.0, Math.max(0.01, coin.revenue24h / coin.fees24h));
+    }
+
     const now = new Date();
+    // Minutes elapsed today in UTC to accurately calculate in-progress today accrual
+    const minutesToday = now.getUTCHours() * 60 + now.getUTCMinutes();
+    const dayFraction = Math.min(1.0, Math.max(0.02, minutesToday / 1440));
+
     const points = [];
 
     // Track last seen fee/rev to ensure seamless continuous timeline with zero missing dates
@@ -172,15 +188,16 @@ export async function getRevenuePriceHistory(coin, days = 30) {
         f = audited.fees;
         r = audited.revenue;
         if (audited.isLive || i === 0) isLive = true;
-      } else
-
-      if (i === 0) {
-        // Today (Live 24h current scan)
-        f = coin.fees24h || lastKnownFee;
-        r = coin.revenue24h || Math.round(f * 0.7);
+      } else if (i === 0) {
+        // Today is an IN-PROGRESS UTC calendar day.
+        // It must reflect elapsed time today so far, NOT the full 24h rolling rate!
+        const dailyFeeRate = coin.fees24h || lastKnownFee;
+        const dailyRevRate = coin.revenue24h || Math.round(dailyFeeRate * revRatio);
+        f = Math.round(dailyFeeRate * dayFraction);
+        r = Math.round(dailyRevRate * dayFraction);
         isLive = true;
       } else if (i === 1) {
-        // Yesterday (e.g. Sep 23): check if in DeFiLlama archive, otherwise use fees48h from live feed
+        // Yesterday (e.g. Sep 23): full completed calendar day
         if (historyFeesByDay.has(dayKey)) {
           f = historyFeesByDay.get(dayKey);
         } else {
@@ -190,7 +207,7 @@ export async function getRevenuePriceHistory(coin, days = 30) {
         if (historyRevByDay.has(dayKey)) {
           r = historyRevByDay.get(dayKey);
         } else {
-          r = coin.fees48h ? Math.round(coin.fees48h * 0.7) : Math.round(f * 0.7);
+          r = Math.round(f * revRatio);
         }
       } else {
         // Historical days
@@ -204,7 +221,7 @@ export async function getRevenuePriceHistory(coin, days = 30) {
         if (historyRevByDay.has(dayKey)) {
           r = historyRevByDay.get(dayKey);
         } else {
-          r = Math.round(f * ((coin.revenue24h || 1) / Math.max(1, coin.fees24h || 1)));
+          r = Math.round(f * revRatio);
         }
       }
 

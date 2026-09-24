@@ -124,7 +124,7 @@ function generateSyntheticHistory(coin, days = 30) {
 export async function getRevenuePriceHistory(coin, days = 30) {
   if (!coin) return [];
 
-  const cacheKey = `rev_v2_${coin.id || coin.symbol}_${days}`;
+  const cacheKey = `rev_v4_${coin.id || coin.symbol}_${days}`;
   if (revenueCache.has(cacheKey)) return revenueCache.get(cacheKey);
 
   const slug = coin.defillamaSlug || coin.chainName;
@@ -136,55 +136,82 @@ export async function getRevenuePriceHistory(coin, days = 30) {
   ]);
 
   if ((feesChart && feesChart.length > 3) || (revChart && revChart.length > 3)) {
-    const revMap = new Map(revChart);
-    const feesMap = new Map(feesChart);
+    // Map existing historical points by UTC date key (YYYY-MM-DD)
+    const historyFeesByDay = new Map();
+    (feesChart || []).forEach(([ts, val]) => {
+      const k = new Date(ts * 1000).toISOString().slice(0, 10);
+      historyFeesByDay.set(k, val);
+    });
 
-    // Prefer whichever chart has more historical coverage
-    const baseChart = feesChart.length >= revChart.length ? feesChart : revChart;
-    const recentSlice = baseChart.slice(-days);
+    const historyRevByDay = new Map();
+    (revChart || []).forEach(([ts, val]) => {
+      const k = new Date(ts * 1000).toISOString().slice(0, 10);
+      historyRevByDay.set(k, val);
+    });
 
-    const points = recentSlice.map(([ts, val]) => {
-      const d = new Date(ts * 1000);
+    const now = new Date();
+    const points = [];
+
+    // Track last seen fee/rev to ensure seamless continuous timeline with zero missing dates
+    let lastKnownFee = coin.fees48h || coin.fees24h || 0;
+
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - i));
       const dayKey = d.toISOString().slice(0, 10);
       const dateLabel = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
-      const fees = feesMap.has(ts) ? feesMap.get(ts) : val;
-      const revenue = revMap.has(ts) ? revMap.get(ts) : (fees * ((coin.revenue24h || 1) / Math.max(1, coin.fees24h || 1)));
+      let f = 0;
+      let r = 0;
+      let isLive = false;
+
+      if (i === 0) {
+        // Today (Live 24h current scan)
+        f = coin.fees24h || lastKnownFee;
+        r = coin.revenue24h || Math.round(f * 0.7);
+        isLive = true;
+      } else if (i === 1) {
+        // Yesterday (e.g. Sep 23): check if in DeFiLlama archive, otherwise use fees48h from live feed
+        if (historyFeesByDay.has(dayKey)) {
+          f = historyFeesByDay.get(dayKey);
+        } else {
+          f = coin.fees48h || coin.fees24h || lastKnownFee;
+        }
+
+        if (historyRevByDay.has(dayKey)) {
+          r = historyRevByDay.get(dayKey);
+        } else {
+          r = coin.fees48h ? Math.round(coin.fees48h * 0.7) : Math.round(f * 0.7);
+        }
+      } else {
+        // Historical days
+        if (historyFeesByDay.has(dayKey)) {
+          f = historyFeesByDay.get(dayKey);
+          lastKnownFee = f;
+        } else {
+          f = lastKnownFee;
+        }
+
+        if (historyRevByDay.has(dayKey)) {
+          r = historyRevByDay.get(dayKey);
+        } else {
+          r = Math.round(f * ((coin.revenue24h || 1) / Math.max(1, coin.fees24h || 1)));
+        }
+      }
+
       const price = priceByDay.get(dayKey) || coin.price || 0;
 
-      return {
-        timestamp: ts * 1000,
-        date: dateLabel,
-        fees: Math.round(fees || 0),
-        revenue: Math.round(revenue || 0),
-        price: Number(price)
-      };
-    });
-
-    // Ensure Today's Live point (e.g., Sep 22) is appended so chart shows live daily revenue
-    const now = new Date();
-    const todayDayKey = now.toISOString().slice(0, 10);
-    const todayDateLabel = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-
-    const hasToday = points.some(p => {
-      const pDayKey = new Date(p.timestamp).toISOString().slice(0, 10);
-      return pDayKey === todayDayKey;
-    });
-
-    if (!hasToday && (coin.fees24h || coin.revenue24h)) {
       points.push({
-        timestamp: now.getTime(),
-        date: todayDateLabel,
-        fees: Math.round(coin.fees24h || 0),
-        revenue: Math.round(coin.revenue24h || (coin.fees24h ? coin.fees24h * 0.7 : 0)),
-        price: Number(coin.price || 0),
-        isLive: true
+        timestamp: d.getTime(),
+        date: dateLabel,
+        fees: Math.round(f || 0),
+        revenue: Math.round(r || 0),
+        price: Number(price),
+        isLive
       });
     }
 
-    const finalPoints = points.slice(-days);
-    revenueCache.set(cacheKey, finalPoints);
-    return finalPoints;
+    revenueCache.set(cacheKey, points);
+    return points;
   }
 
   // Fallback for coins without DeFiLlama slug

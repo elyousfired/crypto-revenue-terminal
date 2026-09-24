@@ -95,7 +95,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
     }
 
     if (rankingType === 'burn') {
-      const burnCoins = coins.filter(c => !isNonYieldStablecoin(c) && (c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)) && !c.isND);
+      const burnCoins = coins.filter(c => !isNonYieldStablecoin(c) && Boolean(c.isBurn) && (c.holdersRevenue24h > 0 || c.holdersRevenue30d > 0) && !c.isND);
       return burnCoins
         .map(c => {
           const rev30d = c.holdersRevenue30d || (c.holdersRevenue24h ? c.holdersRevenue24h * 30 : 0);
@@ -318,8 +318,8 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                   <th className="py-3 px-4 text-right">MARKET CAP</th>
                   <th className="py-3 px-4 text-right min-w-[200px]">
                     <div className="flex items-center justify-end gap-1">
-                      <span>ANNUALIZED REV. / MC</span>
-                      <Info className="w-3 h-3 text-slate-500" title="Annualized holders cashflow as a percentage of market cap" />
+                      <span>{rankingType === 'burn' ? 'ANNUAL BURN / MC' : 'ANNUALIZED REV. / MC'}</span>
+                      <Info className="w-3 h-3 text-slate-500" title={rankingType === 'burn' ? "Annualized buyback & burn as a percentage of market cap" : "Annualized holders cashflow as a percentage of market cap"} />
                     </div>
                   </th>
                 </tr>
@@ -355,11 +355,13 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                               </span>
                               {item.mechanism && (
                                 <span className={'px-1.5 py-0.2 rounded text-[9px] font-black ' + (
-                                  item.mechanism.includes('Burn') || item.mechanism.includes('Buyback')
+                                  rankingType === 'burn' || item.mechanism.includes('Burn') || item.mechanism.includes('Buyback')
                                     ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
                                     : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                                 )}>
-                                  {item.mechanism.includes('Burn') ? '🔥 Burn' : item.mechanism.includes('Buyback') ? '🔥 Buyback' : '💰 Yield'}
+                                  {rankingType === 'burn'
+                                    ? (item.mechanism.toLowerCase().includes('buyback') ? '🔥 Buyback' : '🔥 Burn')
+                                    : (item.mechanism.toLowerCase().includes('burn') ? '🔥 Burn' : item.mechanism.toLowerCase().includes('buyback') ? '🔥 Buyback' : '💰 Yield')}
                                 </span>
                               )}
                             </div>

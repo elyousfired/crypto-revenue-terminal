@@ -1,6 +1,8 @@
 // Live Sync Service for CoinGecko Terminal
 // Auto-refreshes protocol fees from DeFiLlama and prices from DexScreener every 15 minutes (900s)
 
+import verifiedLedger from '../data/verifiedDailyLedger.js';
+
 export const SYNC_INTERVAL_SECONDS = 15 * 60; // 15 minutes
 
 export async function fetchLiveFees() {
@@ -115,6 +117,23 @@ export function applyLiveUpdates(existingCoins, feesMap) {
     const parentKey = (coin.parentProtocol || '').toLowerCase().trim();
     const idKey = (coin.id || '').toLowerCase().trim();
     const addrKey = (coin.contractAddress || '').toLowerCase().trim();
+    const symKey = (coin.symbol || '').toLowerCase().trim();
+
+    // Check if coin has audited daily on-chain ledger entries (e.g. STONK)
+    const audited = verifiedLedger[idKey] || verifiedLedger[symKey];
+    if (audited) {
+      const auditedEntry = audited['2026-09-23'] || audited['2026-09-22'];
+      if (auditedEntry) {
+        return {
+          ...coin,
+          fees24h: auditedEntry.fees,
+          revenue24h: auditedEntry.revenue,
+          holdersRevenue24h: auditedEntry.bought || auditedEntry.revenue,
+          annualYield: coin.mcap > 0 ? Number(((auditedEntry.revenue * 365 / coin.mcap) * 100).toFixed(1)) : coin.annualYield,
+          matchReason: 'AUDITED_ON_CHAIN_LEDGER'
+        };
+      }
+    }
 
     // Match STRICTLY by verified slug, parentProtocol, contract address, or coin ID
     // NEVER match by symbol (to avoid $PUMP, $BASE, $BTC collision bugs)

@@ -75,9 +75,9 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
     }
 
     if (rankingType === 'yield') {
-      // Sort by Annualized Yield %, filter reasonable liquidity
+      // Sort by Annualized Yield %, filter min $1M mcap and exclude non-yield stablecoins
       return calculated
-        .filter(c => c.mcap >= 1000000 && c.yieldPct < 5000)
+        .filter(c => c.mcap >= 1000000 && c.yieldPct < 2000 && c.symbol !== 'USDT' && c.symbol !== 'USDC' && c.symbol !== 'FDUSD')
         .sort((a, b) => b.yieldPct - a.yieldPct)
         .slice(0, limit)
         .map((item, idx) => ({ ...item, rank: idx + 1 }));
@@ -122,10 +122,10 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
       .map((item, idx) => ({ ...item, rank: idx + 1 }));
   }, [coins]);
 
-  // Bottom Box 2: Top 5 by 24h Yield / MC % (today's revenue annualized vs market cap)
+  // Bottom Box 2: Top 10 by 24h Yield / MC % (today's revenue annualized vs market cap)
   const top24hYield = useMemo(() => {
     return coins
-      .filter(c => c.fees24h && c.fees24h >= 500 && c.mcap >= 500000 && !c.isND)
+      .filter(c => c.fees24h && c.fees24h >= 500 && c.mcap >= 1000000 && !c.isND && c.symbol !== 'USDT' && c.symbol !== 'USDC' && c.symbol !== 'FDUSD')
       .map(c => {
         const dailyRev = c.revenue24h && c.revenue24h > 0 ? c.revenue24h : c.fees24h * 0.7;
         const yield24h = c.mcap > 0 ? (dailyRev * 365) / c.mcap * 100 : 0;
@@ -139,7 +139,7 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
           yield24h: Number(yield24h.toFixed(2)),
         };
       })
-      .filter(c => c.yield24h < 50000)
+      .filter(c => c.yield24h < 2000)
       .filter((item, index, self) =>
         index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
       )

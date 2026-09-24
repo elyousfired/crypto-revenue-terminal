@@ -53,9 +53,8 @@ export async function fetchLiveFees() {
 
       // Pass 2: map individual protocols
       data.protocols.forEach(p => {
-        const key = (p.name || p.module || '').toLowerCase().trim();
-        const slugKey = (p.defillamaId || '').toLowerCase().trim();
-        const displayNameKey = (p.displayName || '').toLowerCase().trim();
+        const slugKey = (p.slug || '').toLowerCase().trim();
+        const idKey = (p.defillamaId || '').toLowerCase().trim();
         const fees = p.total24h || p.dailyFees || 0;
         const fees48h = p.total48hto24h || 0;
         const fees7d = p.total7d || 0;
@@ -94,9 +93,8 @@ export async function fetchLiveFees() {
         };
 
         if (fees > 0) {
-          if (key && !feesMap.has(key)) feesMap.set(key, info);
           if (slugKey && !feesMap.has(slugKey)) feesMap.set(slugKey, info);
-          if (displayNameKey && !feesMap.has(displayNameKey)) feesMap.set(displayNameKey, info);
+          if (idKey && !feesMap.has(idKey)) feesMap.set(idKey, info);
         }
       });
     }
@@ -113,11 +111,18 @@ export function applyLiveUpdates(existingCoins, feesMap) {
   let updatedCount = 0;
 
   const updated = existingCoins.map(coin => {
-    const nameKey = (coin.name || '').toLowerCase().trim();
     const slugKey = (coin.defillamaSlug || '').toLowerCase().trim();
-    const symKey = (coin.symbol || '').toLowerCase().trim();
+    const parentKey = (coin.parentProtocol || '').toLowerCase().trim();
+    const idKey = (coin.id || '').toLowerCase().trim();
+    const addrKey = (coin.contractAddress || '').toLowerCase().trim();
 
-    const info = feesMap.get(slugKey) || feesMap.get(nameKey) || feesMap.get(symKey);
+    // Match STRICTLY by verified slug, parentProtocol, contract address, or coin ID
+    // NEVER match by symbol (to avoid $PUMP, $BASE, $BTC collision bugs)
+    const info = (slugKey && feesMap.get(slugKey)) || 
+                 (parentKey && feesMap.get(parentKey)) || 
+                 (addrKey && feesMap.get(addrKey)) || 
+                 (idKey && feesMap.get(idKey));
+
     const newFees = typeof info === 'object' ? info.fees24h : info;
 
     if (newFees && newFees !== coin.fees24h) {

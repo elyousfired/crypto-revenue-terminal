@@ -188,8 +188,17 @@ export async function fetchTokenResearch(coin) {
     });
   }
 
+  // If CoinGecko platforms didn't populate or is empty, use verified contractAddress from coin
+  if (contracts.length === 0 && coin.contractAddress) {
+    contracts.push({
+      chain: coin.chainName || 'Ethereum',
+      address: coin.contractAddress,
+      explorerUrl: getExplorerUrl(coin.chainName, coin.contractAddress),
+    });
+  }
+
   // Fetch DexScreener pairs using primary contract or symbol
-  const primaryAddr = contracts.length > 0 ? contracts[0].address : null;
+  const primaryAddr = contracts.length > 0 ? contracts[0].address : (coin.contractAddress || null);
   const dexPairs = await fetchDexScreenerData(primaryAddr, coin.symbol);
 
   // Exchange listings (tickers)

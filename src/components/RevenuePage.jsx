@@ -558,7 +558,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
       weekly: valid.filter(c => (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000)).length,
       daily: valid.filter(c => c.isUpToday || (c.feeChange1d && c.feeChange1d > 0)).length,
       recovery: valid.filter(c => c.isRecovery).length,
-      burn: valid.filter(c => c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)).length,
+      burn: valid.filter(c => Boolean(c.isBurn) && ((c.holdersRevenue24h && c.holdersRevenue24h > 0) || (c.holdersRevenue30d && c.holdersRevenue30d > 0))).length,
       newlyListed: valid.filter(c => c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 7) || (c.listedAt && (nowSec - c.listedAt) <= 7 * 86400)).length,
       newlyListed14d: valid.filter(c => c.isNewListing14d || c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 14) || (c.listedAt && (nowSec - c.listedAt) <= 14 * 86400)).length,
       newlyListed30d: valid.filter(c => c.isNewListing30d || c.isNewListing14d || c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 30) || (c.listedAt && (nowSec - c.listedAt) <= 30 * 86400)).length
@@ -600,7 +600,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
           return Boolean(c.isRecovery);
         }
         if (momentumTab === 'top_burn') {
-          return Boolean(c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0));
+          return Boolean(c.isBurn && ((c.holdersRevenue24h && c.holdersRevenue24h > 0) || (c.holdersRevenue30d && c.holdersRevenue30d > 0)));
         }
         return true;
       })

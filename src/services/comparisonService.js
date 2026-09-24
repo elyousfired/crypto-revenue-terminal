@@ -46,10 +46,10 @@ export async function getComparisonData(coinA, coinB, days = 30) {
   const recentDays = days === 'all' || days >= allDays.length ? allDays : allDays.slice(-days);
 
   // Compute burn rate estimates (daily)
-  const burnDailyA = coinA.isBurn || (coinA.holdersRevenue30d && coinA.holdersRevenue30d > 0)
+  const burnDailyA = Boolean(coinA.isBurn)
     ? (coinA.holdersRevenue24h || Math.round((coinA.holdersRevenue30d || 0) / 30))
     : 0;
-  const burnDailyB = coinB.isBurn || (coinB.holdersRevenue30d && coinB.holdersRevenue30d > 0)
+  const burnDailyB = Boolean(coinB.isBurn)
     ? (coinB.holdersRevenue24h || Math.round((coinB.holdersRevenue30d || 0) / 30))
     : 0;
 

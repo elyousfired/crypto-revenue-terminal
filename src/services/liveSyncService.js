@@ -176,10 +176,18 @@ export function applyLiveUpdates(existingCoins, feesMap) {
         p.isNearGem = (score === 5);
       }
 
+      // Dynamic revenue ratio (e.g. SOL ~10.5%, Sanctum ~5%, standard protocols ~70%)
+      const revRatio = (coin.revenue24h && coin.fees24h && coin.fees24h > 0) 
+        ? Math.min(1, Math.max(0.01, coin.revenue24h / coin.fees24h)) 
+        : 0.7;
+      const newRev = Math.round(newFees * revRatio);
+      const nowSec = Math.floor(Date.now() / 1000);
+      const ageDays = coin.listedAt ? Math.max(0, Math.round((nowSec - coin.listedAt) / 86400)) : coin.ageDays;
+
       return {
         ...coin,
         fees24h: newFees,
-        revenue24h: Math.round(newFees * 0.7),
+        revenue24h: newRev,
         feeChange1d: typeof info === 'object' ? info.feeChange1d : (coin.feeChange1d || 0),
         feeChange7d: feeChange7d,
         isUpToday: typeof info === 'object' ? info.isUpToday : (coin.isUpToday || false),
@@ -190,6 +198,10 @@ export function applyLiveUpdates(existingCoins, feesMap) {
         isND,
         priceToFees,
         pillars: p,
+        ageDays,
+        isNewListing: (ageDays !== undefined && ageDays <= 7) || Boolean(coin.isNewListing),
+        isNewListing14d: (ageDays !== undefined && ageDays <= 14) || Boolean(coin.isNewListing14d),
+        isNewListing30d: (ageDays !== undefined && ageDays <= 30) || Boolean(coin.isNewListing30d),
         lastLiveSync: new Date().toISOString()
       };
     }

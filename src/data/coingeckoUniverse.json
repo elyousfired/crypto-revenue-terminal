@@ -44,7 +44,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_STABLECOIN",
-    "isStablecoin": true
+    "isStablecoin": true,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "usd-coin",
@@ -92,7 +95,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_STABLECOIN",
-    "isStablecoin": true
+    "isStablecoin": true,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "uniswap",
@@ -139,7 +145,13 @@
     "annualYield": 26,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1666191149,
+    "listedDate": "2022-10-19",
+    "ageDays": 1435,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hyperliquid",
@@ -186,7 +198,13 @@
     "annualYield": 3.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0d01dc56dcaaca66ad901c959b4011ec",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1733089195,
+    "listedDate": "2024-12-01",
+    "ageDays": 661,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pons",
@@ -233,7 +251,13 @@
     "annualYield": 154,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x39dbed3a2bd333467115de45665cc57f813c4571",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1785456000,
+    "listedDate": "2026-07-31",
+    "ageDays": 55,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "raydium",
@@ -280,7 +304,10 @@
     "annualYield": 92.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 4k3dyjzvzp8emzwuxbbcjevwskkk59s5icnly3qrkx6r",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "lido-dao",
@@ -327,7 +354,10 @@
     "annualYield": 143.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5a98fcbea516cf06857215779fd812ca3bef1b32",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "aave",
@@ -376,7 +406,10 @@
     "annualYield": 15.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "meteora",
@@ -423,7 +456,10 @@
     "annualYield": 174.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: metvsvvrapdj9cflzq4tr43xk4tajqfwx76z3n6mwql",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stonk-3",
@@ -470,7 +506,10 @@
     "annualYield": 208,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 6gmafsys4gk3fdao5fzzysqppzawsa4rujhacpmpungx",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "solana",
@@ -517,7 +556,13 @@
     "annualYield": 0.06,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1715748037,
+    "listedDate": "2024-05-15",
+    "ageDays": 862,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sky",
@@ -564,7 +609,10 @@
     "annualYield": 14.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x56072c95faa701256059aa122697b133aded9279",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tron",
@@ -611,7 +659,10 @@
     "annualYield": 0.7,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ethereum",
@@ -658,7 +709,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pancakeswap-token",
@@ -715,7 +769,10 @@
     "annualYield": 22.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "binancecoin",
@@ -762,7 +819,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "morpho",
@@ -839,7 +899,13 @@
     "annualYield": 10.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x58d97b57bb95320f9a05dc918aef65434969c2b2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1705261273,
+    "listedDate": "2024-01-14",
+    "ageDays": 983,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "jupiter-exchange-solana",
@@ -886,7 +952,13 @@
     "annualYield": 19,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: jupyiwryjfskupiha7hker8vutaefosybkedznsdvcn",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1664608359,
+    "listedDate": "2022-10-01",
+    "ageDays": 1454,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "spark-2",
@@ -934,7 +1006,13 @@
     "annualYield": 246.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc20059e0317de91738d13af027dfc4a50781b066",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1683144119,
+    "listedDate": "2023-05-03",
+    "ageDays": 1239,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "aerodrome-finance",
@@ -981,7 +1059,13 @@
     "annualYield": 24.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x940181a94a35a4569e4529a3cdfb74e38fd98631",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1693274059,
+    "listedDate": "2023-08-29",
+    "ageDays": 1122,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bonk",
@@ -1028,7 +1112,13 @@
     "annualYield": 45.2,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: dezxaz8z7pnrnrjjz3wxborgixca6xjnb7yab1ppb263",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1681384865,
+    "listedDate": "2023-04-13",
+    "ageDays": 1260,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "jito-governance-token",
@@ -1075,7 +1165,13 @@
     "annualYield": 50.5,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: jtojtomepa8bep8auqc6ext5frijwffmwqx2v2f9mcl",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1669265429,
+    "listedDate": "2022-11-24",
+    "ageDays": 1400,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ether-fi",
@@ -1122,7 +1218,13 @@
     "annualYield": 18.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1677778460,
+    "listedDate": "2023-03-02",
+    "ageDays": 1301,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "orca",
@@ -1170,7 +1272,10 @@
     "annualYield": 122.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: orcaektdk7lkz57vaayr9qensvepfiu6qemu1kektze",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "world-liberty-financial",
@@ -1217,7 +1322,10 @@
     "annualYield": 6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xda5e1988097297dcdc1f90d4dfe7909e847cbef6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bankercoin-2",
@@ -1265,7 +1373,10 @@
     "annualYield": 268.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x22af33fe49fd1fa80c7149773dde5890d3c76f3b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sanctum-2",
@@ -1312,7 +1423,13 @@
     "annualYield": 23.8,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: cloudkc4ane7heqcppe3yhnznrxhmimj4myauqyhfzau",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1711406065,
+    "listedDate": "2024-03-25",
+    "ageDays": 912,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ondo-finance",
@@ -1369,7 +1486,10 @@
     "annualYield": 4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bitcoin",
@@ -1416,7 +1536,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "collector-crypt",
@@ -1463,7 +1586,10 @@
     "annualYield": 38.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: cardsccumfkoprzxt5vt3ksubxefecnz3h2pd3dkxyjp",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "aster-2",
@@ -1510,7 +1636,10 @@
     "annualYield": 2.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x000ae314e2a2172a039b26378814c252734f556a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "centrifuge-2",
@@ -1562,7 +1691,13 @@
     "annualYield": 95.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xcccccccccc33d538dbc2ee4feab0a7a1ff4e8a94",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1722495600,
+    "listedDate": "2024-08-01",
+    "ageDays": 784,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "lighter",
@@ -1609,7 +1744,10 @@
     "annualYield": 3.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x232ce3bd40fcd6f80f3d55a522d03f25df784ee2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kamino",
@@ -1656,7 +1794,13 @@
     "annualYield": 23.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: kmno3njsbxfcpjtvhzcxlw7rmtwtt4gvfe7suubo9ss",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1662391548,
+    "listedDate": "2022-09-05",
+    "ageDays": 1479,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "edgex",
@@ -1703,7 +1847,10 @@
     "annualYield": 23,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb0076de78dc50581770bba1d211ddc0ad4f2a241",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "curve-dao-token",
@@ -1770,7 +1917,10 @@
     "annualYield": 6.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd533a949740bb3306d119cc777fa900ba034cd52",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "instadapp",
@@ -1822,7 +1972,13 @@
     "annualYield": 29.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6f40d4a6237c257fff2db00fa0510deeecd303eb",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1708863218,
+    "listedDate": "2024-02-25",
+    "ageDays": 942,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "gmx",
@@ -1871,7 +2027,13 @@
     "annualYield": 38,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1691622170,
+    "listedDate": "2023-08-09",
+    "ageDays": 1141,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "cow-protocol",
@@ -1924,7 +2086,10 @@
     "annualYield": 38.6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "argus-2",
@@ -1971,7 +2136,13 @@
     "annualYield": 129.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xece5ca8bf9220718e5727754026757512212cb3c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1789931884,
+    "listedDate": "2026-09-20",
+    "ageDays": 3,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true
   },
   {
     "id": "lombard-protocol",
@@ -2018,7 +2189,13 @@
     "annualYield": 47,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xf0db65d17e30a966c2ae6a21f6bba71cea6e9754",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1725449393,
+    "listedDate": "2024-09-04",
+    "ageDays": 750,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ore",
@@ -2065,7 +2242,10 @@
     "annualYield": 65.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: oreou2p8bn6jkk3jbaivxyng1dcxcyxwhwyk9jsybcp",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "o1-exchange",
@@ -2118,7 +2298,10 @@
     "annualYield": 25.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x182fa643e5f29d5eca75e7b9cf9336a3fe4620b2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "genius-3",
@@ -2165,7 +2348,13 @@
     "annualYield": 18.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x1f12b85aac097e43aa1555b2881e98a51090e9a6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1790097839,
+    "listedDate": "2026-09-22",
+    "ageDays": 1,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true
   },
   {
     "id": "sosovalue",
@@ -2212,7 +2401,13 @@
     "annualYield": 18.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x624e2e7fdc8903165f64891672267ab0fcb98831",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1736793641,
+    "listedDate": "2025-01-13",
+    "ageDays": 618,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "syrup",
@@ -2260,7 +2455,10 @@
     "annualYield": 8.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x643c4e15d7d62ad0abec4a9bd4b001aa3ef52d66",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "polygon-ecosystem-token",
@@ -2307,7 +2505,10 @@
     "annualYield": 1.8,
     "isAlphaGem": true,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "compound-governance-token",
@@ -2354,7 +2555,10 @@
     "annualYield": 8.8,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xc00e94cb662c3520282e6f5717214004a7f26888",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "trust-wallet-token",
@@ -2407,7 +2611,10 @@
     "annualYield": 8.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x4b0f1812e5df2a09796481ff14017e6005508003",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "chainflip",
@@ -2454,7 +2661,13 @@
     "annualYield": 56.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x826180541412d574cf1336d22c0c0a287822678a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1701184034,
+    "listedDate": "2023-11-28",
+    "ageDays": 1030,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "rhea-2",
@@ -2501,7 +2714,10 @@
     "annualYield": 69.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: token.rhealab.near",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "rocket-pool",
@@ -2548,7 +2764,13 @@
     "annualYield": 36.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd33526068d116ce69f19a9ee46f0bd304f21a51f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1637712907,
+    "listedDate": "2021-11-24",
+    "ageDays": 1765,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "drift-protocol",
@@ -2595,7 +2817,13 @@
     "annualYield": 113.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: driftupjyltosbwon8kombeysx54afavlddwsbksjwg7",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1724680364,
+    "listedDate": "2024-08-26",
+    "ageDays": 759,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "euler",
@@ -2656,7 +2884,13 @@
     "annualYield": 44,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd9fcd98c322942075a5c3860693e9f4f03aae07b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1724665226,
+    "listedDate": "2024-08-26",
+    "ageDays": 759,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "re",
@@ -2706,7 +2940,13 @@
     "annualYield": 20.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x526526528f35ac738177003b8773b402b8df8143",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1766447067,
+    "listedDate": "2025-12-22",
+    "ageDays": 275,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kernel-2",
@@ -2760,7 +3000,13 @@
     "annualYield": 79.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3f80b1c54ae920be41a77f8b902259d48cf24ccf",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1703173957,
+    "listedDate": "2023-12-21",
+    "ageDays": 1007,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "just",
@@ -2807,7 +3053,10 @@
     "annualYield": 1.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: tcfll5dx5zjdknwuesxxi1vpwjlvmwzzy9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "lista",
@@ -2854,7 +3103,13 @@
     "annualYield": 33.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfceb31a79f71ac9cbdcf853519c1b12d379edc46",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1661888773,
+    "listedDate": "2022-08-30",
+    "ageDays": 1485,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dolomite",
@@ -2905,7 +3160,13 @@
     "annualYield": 72.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0f81001ef0a83ecce5ccebf63eb302c70a39a654",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1666000576,
+    "listedDate": "2022-10-17",
+    "ageDays": 1438,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "convex-finance",
@@ -2952,7 +3213,10 @@
     "annualYield": 5.5,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "benqi",
@@ -2999,7 +3263,10 @@
     "annualYield": 88.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x8729438eb15e2c8b576fcc6aecda6a148776c0f5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "arbitrum",
@@ -3046,7 +3313,10 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x912ce59144191c1204e64559fe8253a0e49e6548",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sun-token",
@@ -3093,7 +3363,13 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: tssmhyev2ue9qyh95dqyocunczel1nvu3s",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1634757407,
+    "listedDate": "2021-10-20",
+    "ageDays": 1799,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "venus",
@@ -3147,7 +3423,10 @@
     "annualYield": 14.5,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stakewise",
@@ -3195,7 +3474,10 @@
     "annualYield": 264,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x48c3399719b582dd63eb5aadf12a40b4c3f52fa2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "geodnet",
@@ -3243,7 +3525,10 @@
     "annualYield": 6.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xac0f66379a6d7801d7726d5a943356a172549adb",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "nest-2",
@@ -3290,7 +3575,13 @@
     "annualYield": 161.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x07c57e32a3c29d5659bda1d3efc2e7bf004e3035",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1768416291,
+    "listedDate": "2026-01-14",
+    "ageDays": 252,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "vault-2",
@@ -3337,7 +3628,13 @@
     "annualYield": 276.2,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: vaultvxqi93aaq9fsypkgdgp6ge1h1hosvnc4zbqfds",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1718102171,
+    "listedDate": "2024-06-11",
+    "ageDays": 835,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kyber-network-crystal",
@@ -3403,7 +3700,10 @@
     "annualYield": 23.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xdefa4e8a7bcba345f687a2f1456f5edd9ce97202",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "derive",
@@ -3450,7 +3750,13 @@
     "annualYield": 1.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb1d1eae60eea9525032a6dcb4c1ce336a1de71be",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1702643004,
+    "listedDate": "2023-12-15",
+    "ageDays": 1014,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "quick",
@@ -3498,7 +3804,10 @@
     "annualYield": 96.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x831753dd7087cac61ab5644b308642cc1c33dc13",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "quickswap",
@@ -3551,7 +3860,13 @@
     "annualYield": 95.2,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xb5c064f955d8e7f38fe0460c556a72987494ee17",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1667063569,
+    "listedDate": "2022-10-29",
+    "ageDays": 1425,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "gains-network",
@@ -3602,7 +3917,13 @@
     "annualYield": 51.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xe5417af564e4bfda1c483642db72007871397896",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1639418230,
+    "listedDate": "2021-12-13",
+    "ageDays": 1745,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "yearn-finance",
@@ -3654,7 +3975,10 @@
     "annualYield": 6.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dragonswap",
@@ -3701,7 +4025,13 @@
     "annualYield": 209.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0a526e425809aea71eb279d24ae22dee6c92a4fe",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1724854633,
+    "listedDate": "2024-08-28",
+    "ageDays": 756,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "cap-4",
@@ -3748,7 +4078,13 @@
     "annualYield": 6.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x99991c6aabba5a096f24f250b73580f5179b9999",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1755167300,
+    "listedDate": "2025-08-14",
+    "ageDays": 406,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "avalanche-2",
@@ -3795,7 +4131,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sushi",
@@ -3843,7 +4182,10 @@
     "annualYield": 6.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "virtual-protocol",
@@ -3894,7 +4236,10 @@
     "annualYield": 1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "velodrome-finance",
@@ -3949,7 +4294,13 @@
     "annualYield": 12.3,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x9560e827af36c94d2ac33a39bce1fe78631088db",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1709748910,
+    "listedDate": "2024-03-06",
+    "ageDays": 931,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bitway",
@@ -3996,7 +4347,13 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x444045b0ee1ee319a660a5e3d604ca0ffa35acaa",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1773325947,
+    "listedDate": "2026-03-12",
+    "ageDays": 195,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "definitive",
@@ -4053,7 +4410,13 @@
     "annualYield": 18.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xed6e000def95780fb89734c07ee2ce9f6dcaf110",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1709828870,
+    "listedDate": "2024-03-07",
+    "ageDays": 930,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "usual",
@@ -4100,7 +4463,13 @@
     "annualYield": 16.6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xc4441c2be5d8fa8126822b9929ca0b81ea0de38e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1721046229,
+    "listedDate": "2024-07-15",
+    "ageDays": 801,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "mushroom-2",
@@ -4147,7 +4516,13 @@
     "annualYield": 24.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xab093def657f15df31b33922a95e047add645b29",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1789330291,
+    "listedDate": "2026-09-13",
+    "ageDays": 10,
+    "isNewListing": false,
+    "isNewListing14d": true,
+    "isNewListing30d": true
   },
   {
     "id": "moonwell-artemis",
@@ -4198,7 +4573,13 @@
     "annualYield": 41.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa88594d404727625a9437c3f886c7643872296ae",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1655988523,
+    "listedDate": "2022-06-23",
+    "ageDays": 1554,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "venice-token",
@@ -4245,7 +4626,13 @@
     "annualYield": 0.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1779302143,
+    "listedDate": "2026-05-20",
+    "ageDays": 126,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "debridge",
@@ -4322,7 +4709,13 @@
     "annualYield": 3.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: dbridgjamsm95motzjs7m9lnkgerpbv9v6cur1dxnuu5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1645648202,
+    "listedDate": "2022-02-23",
+    "ageDays": 1673,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stonkbroker",
@@ -4370,7 +4763,13 @@
     "annualYield": 22.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xe934e36a439c94017b64a3fece66af12099abf50",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1784751184,
+    "listedDate": "2026-07-22",
+    "ageDays": 63,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "doublezero",
@@ -4417,7 +4816,13 @@
     "annualYield": 2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: j6pqq3facjqewppgppwrb4nm8ju3wlyybrrlh7femfvd",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1762996533,
+    "listedDate": "2025-11-13",
+    "ageDays": 315,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ekubo-protocol",
@@ -4466,7 +4871,13 @@
     "annualYield": 42.8,
     "isAlphaGem": true,
     "matchReason": "VERIFIED_GECKO_ID: ekubo-protocol",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1694136553,
+    "listedDate": "2023-09-08",
+    "ageDays": 1112,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "godl-2",
@@ -4513,7 +4924,10 @@
     "annualYield": 40.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: godl6kz9uuuoqwelggtvzqkkmu1lfqmdokpibpedkkhf",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pendle",
@@ -4572,7 +4986,10 @@
     "annualYield": 0.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x808507121b80c02388fad14726482e061b8da827",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tornado-cash",
@@ -4625,7 +5042,10 @@
     "annualYield": 9.3,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x77777feddddffc19ff86db637967013e6c6a116c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dydx-chain",
@@ -4672,7 +5092,10 @@
     "annualYield": 2.9,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: ibc/831f0b1bbb1d08a2b75311892876d71565478c532967545476df4c2d7492e48c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "avantis",
@@ -4719,7 +5142,13 @@
     "annualYield": 7.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x696f9436b67233384889472cd7cd58a6fb5df4f1",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1707230877,
+    "listedDate": "2024-02-06",
+    "ageDays": 960,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "falcon-finance-ff",
@@ -4766,7 +5195,13 @@
     "annualYield": 0.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfa1c09fc8b491b6a4d3ff53a10cad29381b3f949",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1759263444,
+    "listedDate": "2025-09-30",
+    "ageDays": 358,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ston-2",
@@ -4813,7 +5248,13 @@
     "annualYield": 8.6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: eqa2kcvnwvsil2em2mb0skxytxcqqjs4mttjdpnxmwg9t6bo",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1670364601,
+    "listedDate": "2022-12-06",
+    "ageDays": 1387,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "layerzero",
@@ -4902,7 +5343,10 @@
     "annualYield": 0.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6985884c4392d348587b19cb9eaaf157f13271cd",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "frax-share",
@@ -4951,7 +5395,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
-    "isStablecoin": true
+    "isStablecoin": true,
+    "listedAt": 1662603346,
+    "listedDate": "2022-09-08",
+    "ageDays": 1477,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "egas",
@@ -5011,7 +5461,10 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0000000000000000000000000000000000000000",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ethereum-name-service",
@@ -5058,7 +5511,10 @@
     "annualYield": 1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "thorswap",
@@ -5105,7 +5561,13 @@
     "annualYield": 28.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa5f2211b9b8170f694421f2046281775e8468044",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1762192599,
+    "listedDate": "2025-11-03",
+    "ageDays": 324,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "osmosis",
@@ -5153,7 +5615,10 @@
     "annualYield": 9.4,
     "isAlphaGem": true,
     "matchReason": "VERIFIED_GECKO_ID: osmosis",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "limitless-3",
@@ -5200,7 +5665,13 @@
     "annualYield": 43.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x9eadbe35f3ee3bf3e28180070c429298a1b02f93",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1727294687,
+    "listedDate": "2024-09-25",
+    "ageDays": 728,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "railgun",
@@ -5250,7 +5721,13 @@
     "annualYield": 1.5,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xe76c6c83af64e4c60245d8c7de953df673a7a33d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1643326249,
+    "listedDate": "2022-01-27",
+    "ageDays": 1700,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ssv-network",
@@ -5297,7 +5774,10 @@
     "annualYield": 5.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x9d65ff81a3c488d585bbfb0bfe3c7707c7917f54",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "inverse-finance",
@@ -5344,7 +5824,13 @@
     "annualYield": 36,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1673620866,
+    "listedDate": "2023-01-13",
+    "ageDays": 1349,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "origin-protocol",
@@ -5391,7 +5877,10 @@
     "annualYield": 17.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "synfutures",
@@ -5439,7 +5928,13 @@
     "annualYield": 12.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6e15a54b5ecac17e58dadeddbe8506a7560252f9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1709324603,
+    "listedDate": "2024-03-01",
+    "ageDays": 936,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "main-street-yield",
@@ -5486,7 +5981,13 @@
     "annualYield": 5.8,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x890a5122aa1da30fec4286de7904ff808f0bd74a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1744280825,
+    "listedDate": "2025-04-10",
+    "ageDays": 532,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "turbos-finance",
@@ -5533,7 +6034,13 @@
     "annualYield": 216,
     "isAlphaGem": true,
     "matchReason": "VERIFIED_GECKO_ID: turbos-finance",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1683484936,
+    "listedDate": "2023-05-07",
+    "ageDays": 1235,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "balancer",
@@ -5580,7 +6087,10 @@
     "annualYield": 26.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xba100000625a3754423978a60c9317c58a424e3d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "obol-2",
@@ -5627,7 +6137,13 @@
     "annualYield": 266.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x0b010000b7624eb9b3dfbc279673c76e9d29d5f7",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1762287672,
+    "listedDate": "2025-11-04",
+    "ageDays": 323,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sui",
@@ -5674,7 +6190,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "meta-2-2",
@@ -5721,7 +6240,13 @@
     "annualYield": 1.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: metawkxcqyxky1atssgj8jiuhwgcafnzl38n3vymeta",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1769530071,
+    "listedDate": "2026-01-27",
+    "ageDays": 239,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "aquarius",
@@ -5768,7 +6293,13 @@
     "annualYield": 13.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: aquarius",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1724320620,
+    "listedDate": "2024-08-22",
+    "ageDays": 763,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "injective-protocol",
@@ -5815,7 +6346,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "axie-infinity",
@@ -5863,7 +6397,10 @@
     "annualYield": 1.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xbb0e17ef65f82ab018d8edd776e8dd940327b28b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tokenlon",
@@ -5910,7 +6447,10 @@
     "annualYield": 7.3,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x0000000000095413afc295d19edeb1ad7b71c952",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "nxm",
@@ -5957,7 +6497,10 @@
     "annualYield": 1.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "blackhole",
@@ -6004,7 +6547,13 @@
     "annualYield": 162.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xcd94a87696fac69edae3a70fe5725307ae1c43f6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1752511425,
+    "listedDate": "2025-07-14",
+    "ageDays": 436,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "reserve-rights-token",
@@ -6053,7 +6602,10 @@
     "annualYield": 1.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x320623b8e4ff03373931769a31fc52a4e78b5d70",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "momentum-3",
@@ -6100,7 +6652,13 @@
     "annualYield": 5.2,
     "isAlphaGem": true,
     "matchReason": "VERIFIED_GECKO_ID: momentum-3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1744050462,
+    "listedDate": "2025-04-07",
+    "ageDays": 534,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "folks",
@@ -6147,7 +6705,13 @@
     "annualYield": 4.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xff7f8f301f7a706e3cfd3d2275f5dc0b9ee8009b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1649792952,
+    "listedDate": "2022-04-12",
+    "ageDays": 1625,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hyperswap",
@@ -6194,7 +6758,13 @@
     "annualYield": 83.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x03832767bdf9a8ef007449942125ad605acfadb8",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1740357231,
+    "listedDate": "2025-02-24",
+    "ageDays": 577,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dodo",
@@ -6250,7 +6820,10 @@
     "annualYield": 9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x43dfc4159d86f3a37a5a4b3d4580b888ad7d4ddd",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "vvs-finance",
@@ -6297,7 +6870,13 @@
     "annualYield": 3.6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x2d03bece6747adc00e1a131bba1469c15fd11e03",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1636736668,
+    "listedDate": "2021-11-12",
+    "ageDays": 1776,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "gaib",
@@ -6345,7 +6924,13 @@
     "annualYield": 24.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc19d38925f9f645337b1d1f37baf3c0647a48e50",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1754501739,
+    "listedDate": "2025-08-06",
+    "ageDays": 413,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "flying-tulip",
@@ -6392,7 +6977,13 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5dd1a7a369e8273371d2dbf9d83356057088082c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1769459609,
+    "listedDate": "2026-01-26",
+    "ageDays": 240,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "piku-utility-token",
@@ -6439,7 +7030,13 @@
     "annualYield": 14.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x2e4039e8e31475d65dc00293c366fdbfbbc02dc3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1763513599,
+    "listedDate": "2025-11-19",
+    "ageDays": 309,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "symbiosis-finance",
@@ -6533,7 +7130,13 @@
     "annualYield": 81.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd38bb40815d2b0c2d2c866e0c72c5728ffc76dd9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1648668872,
+    "listedDate": "2022-03-30",
+    "ageDays": 1638,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "near",
@@ -6580,7 +7183,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "liquity",
@@ -6627,7 +7233,13 @@
     "annualYield": 6.3,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x6dea81c8171d0ba574754ef6f8b412f2ed88c54d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1737631098,
+    "listedDate": "2025-01-23",
+    "ageDays": 609,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sparkdex",
@@ -6674,7 +7286,13 @@
     "annualYield": 261.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x657097cc15fdec9e383db8628b57ea4a763f2ba0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1770423369,
+    "listedDate": "2026-02-07",
+    "ageDays": 229,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "camelot-token",
@@ -6727,7 +7345,13 @@
     "annualYield": 152.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3d9907f9a368ad0a51be60f7da3b97cf940982d8",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1669242459,
+    "listedDate": "2022-11-23",
+    "ageDays": 1400,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kpk",
@@ -6775,7 +7399,13 @@
     "annualYield": 13.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xbf3f63d8ac133b16d7d50c015036b33219dd8d23",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1760637747,
+    "listedDate": "2025-10-16",
+    "ageDays": 342,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "staked-usdt",
@@ -6823,7 +7453,13 @@
     "annualYield": 2.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: tthzxnrlrw2brp9dctqu8i4wd9udcwedz3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1688472910,
+    "listedDate": "2023-07-04",
+    "ageDays": 1178,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "joe",
@@ -6872,7 +7508,10 @@
     "annualYield": 8.4,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "giga-2",
@@ -6919,7 +7558,13 @@
     "annualYield": 216.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5baaec1b70864f01dbdb747358ff59f2e2ccf7d5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1784590605,
+    "listedDate": "2026-07-20",
+    "ageDays": 65,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "eigenlayer",
@@ -6966,7 +7611,13 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1686776222,
+    "listedDate": "2023-06-14",
+    "ageDays": 1197,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "save",
@@ -7013,7 +7664,10 @@
     "annualYield": 12.9,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: saveaeeqexnkyb4lyx28dkums5gyz76vga6fcfdzwfk",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "aptos",
@@ -7060,7 +7714,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "paradex",
@@ -7108,7 +7765,13 @@
     "annualYield": 4.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xb32e10022ffbedfe10bc818a1c7e67d9d87e0fa7",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1756994785,
+    "listedDate": "2025-09-04",
+    "ageDays": 385,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "savings-xdai",
@@ -7155,7 +7818,13 @@
     "annualYield": 2.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xaf204776c7245bf4147c2612bf6e5972ee483701",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1696593212,
+    "listedDate": "2023-10-06",
+    "ageDays": 1084,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "alchemix",
@@ -7204,7 +7873,13 @@
     "annualYield": 16.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xdbdb4d16eda451d0503b854cf79d55697f90c8df",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1776975864,
+    "listedDate": "2026-04-23",
+    "ageDays": 153,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "piteas",
@@ -7251,7 +7926,10 @@
     "annualYield": 35.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x2a06a971fe6ffa002fd242d437e3db2b5cc5b433",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "strike-2",
@@ -7298,7 +7976,10 @@
     "annualYield": 11.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: strike-2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dhedge-dao",
@@ -7350,7 +8031,10 @@
     "annualYield": 34,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xca1207647ff814039530d7d35df0e1dd2e91fa84",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "olympus",
@@ -7400,7 +8084,10 @@
     "annualYield": 0.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x64aa3364f17a4d01c6f1751fd97c2bd3d7e7f1d5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "orderly-network",
@@ -7447,7 +8134,13 @@
     "annualYield": 6.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xabd4c63d2616a5201454168269031355f4764337",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1756818123,
+    "listedDate": "2025-09-02",
+    "ageDays": 387,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "chainlink",
@@ -7499,7 +8192,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x514910771af9ca656af840dff83e8264ecf986ca",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tokemak",
@@ -7551,7 +8247,10 @@
     "annualYield": 22.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x2e9d63788249371f1dfc918a52f8d799f4a38c94",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "api3",
@@ -7598,7 +8297,13 @@
     "annualYield": 2.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0b38210ea11411557c13457d4da7dc6ea731b88a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1643713220,
+    "listedDate": "2022-02-01",
+    "ageDays": 1696,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stader",
@@ -7647,7 +8352,13 @@
     "annualYield": 9.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x30d20208d987713f46dfd34ef128bb16c404d10f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1639811716,
+    "listedDate": "2021-12-18",
+    "ageDays": 1741,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hipo-governance-token",
@@ -7694,7 +8405,13 @@
     "annualYield": 31.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: eqdqeur0lpi8m6d6f0wrvuok7tzbacr0yn2y7hk291mmzmjm",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1698766792,
+    "listedDate": "2023-10-31",
+    "ageDays": 1058,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "fidelity-digital-interest-token",
@@ -7741,7 +8458,10 @@
     "annualYield": 3.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x48ab4e39ac59f4e88974804b04a991b3a402717f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "resupply",
@@ -7788,7 +8508,13 @@
     "annualYield": 22.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x419905009e4656fdc02418c7df35b1e61ed5f726",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1743178567,
+    "listedDate": "2025-03-28",
+    "ageDays": 544,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "render-token",
@@ -7835,7 +8561,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "lab",
@@ -7882,7 +8611,10 @@
     "annualYield": 1.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x7ec43cf65f1663f820427c62a5780b8f2e25593a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "beefy-finance",
@@ -7951,7 +8683,10 @@
     "annualYield": 13.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb1f1ee126e9c96231cc3d3fad7c08b4cf873b1f1",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "thena",
@@ -7998,7 +8733,13 @@
     "annualYield": 7.1,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xf4c8e32eadec4bfe97e0f595add0f4450a863a11",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1751488349,
+    "listedDate": "2025-07-02",
+    "ageDays": 448,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "swell-network",
@@ -8045,7 +8786,13 @@
     "annualYield": 17.5,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1682554957,
+    "listedDate": "2023-04-27",
+    "ageDays": 1246,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "football-fun",
@@ -8092,7 +8839,13 @@
     "annualYield": 21.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x16ee7ecac70d1028e7712751e2ee6ba808a7dd92",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1756147631,
+    "listedDate": "2025-08-25",
+    "ageDays": 394,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "infinex-2",
@@ -8139,7 +8892,10 @@
     "annualYield": 6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0xdef1b2d939edc0e4d35806c59b3166f790175afe",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "shadow-2",
@@ -8186,7 +8942,13 @@
     "annualYield": 57.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3333b97138d4b086720b5ae8a7844b1345a33333",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1735573781,
+    "listedDate": "2024-12-30",
+    "ageDays": 632,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "the-index",
@@ -8233,7 +8995,10 @@
     "annualYield": 2.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x56910d4409f3a0c78c64dd8d0545ff0705389870",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "streamflow",
@@ -8280,7 +9045,13 @@
     "annualYield": 57.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: streamribrwybypmmsyocsqudr6mznxeqhgm7p1gu9m",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1677586293,
+    "listedDate": "2023-02-28",
+    "ageDays": 1304,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "clearpool",
@@ -8335,7 +9106,13 @@
     "annualYield": 2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x66761fa41377003622aee3c7675fc7b5c1c2fac5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1649674184,
+    "listedDate": "2022-04-11",
+    "ageDays": 1627,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "guarded-ether",
@@ -8382,7 +9159,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3802c218221390025bceabbad5d8c59f40eb74b8",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1674124872,
+    "listedDate": "2023-01-19",
+    "ageDays": 1344,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "the-open-network",
@@ -8429,7 +9212,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "immunefi",
@@ -8476,7 +9262,10 @@
     "annualYield": 30.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb48c6b24f36307c7a1f2a9281e978a9ef2902ba5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "threshold-network-token",
@@ -8523,7 +9312,13 @@
     "annualYield": 1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xcdf7028ceab81fa0c6971208e83fa7872994bee5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1676411129,
+    "listedDate": "2023-02-14",
+    "ageDays": 1317,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "veno-finance",
@@ -8571,7 +9366,13 @@
     "annualYield": 39,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xdb7d0a1ec37de1de924f8e8adac6ed338d4404e9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1672703979,
+    "listedDate": "2023-01-02",
+    "ageDays": 1360,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ankr",
@@ -8622,7 +9423,10 @@
     "annualYield": 1.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dextools",
@@ -8672,7 +9476,10 @@
     "annualYield": 8.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfb7b4564402e5500db5bb6d63ae671302777c75a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "leverup",
@@ -8719,7 +9526,13 @@
     "annualYield": 10.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x1001ff13bf368aa4fa85f21043648079f00e1001",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1764008734,
+    "listedDate": "2025-11-24",
+    "ageDays": 303,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hashcats",
@@ -8766,7 +9579,13 @@
     "annualYield": 4.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xca75082b85bb7bec8325d513f615b16bda260020",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1789227587,
+    "listedDate": "2026-09-12",
+    "ageDays": 11,
+    "isNewListing": false,
+    "isNewListing14d": true,
+    "isNewListing30d": true
   },
   {
     "id": "stride",
@@ -8826,7 +9645,13 @@
     "annualYield": 59.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: ibc/a8ca5ee328fa10c9519df6057da1f69682d28f7d0f5ccc7ecb72e3dca2d157a4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1667603619,
+    "listedDate": "2022-11-04",
+    "ageDays": 1419,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hydradx",
@@ -8873,7 +9698,13 @@
     "annualYield": 1.2,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: hydradx",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1692805979,
+    "listedDate": "2023-08-23",
+    "ageDays": 1127,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "yo",
@@ -8921,7 +9752,13 @@
     "annualYield": 5.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1925450f5e5fb974b0aae1f3408cf5286fbd1a72",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1742382739,
+    "listedDate": "2025-03-19",
+    "ageDays": 554,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pinksale",
@@ -8975,7 +9812,13 @@
     "annualYield": 2.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x602ba546a7b06e0fc7f58fd27eb6996ecc824689",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1654537684,
+    "listedDate": "2022-06-06",
+    "ageDays": 1570,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "across-protocol",
@@ -9046,7 +9889,13 @@
     "annualYield": 1.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x44108f0223a3c3028f5fe7aec7f9bb2e66bef82f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1641519276,
+    "listedDate": "2022-01-07",
+    "ageDays": 1721,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "umia",
@@ -9093,7 +9942,13 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x56ab53b77f07da3af732150e8aec4783eb5bba7d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1787785562,
+    "listedDate": "2026-08-26",
+    "ageDays": 28,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": true
   },
   {
     "id": "extra-finance",
@@ -9141,7 +9996,13 @@
     "annualYield": 17.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x2dad3a13ef0c6366220f989157009e501e7938f8",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1684070957,
+    "listedDate": "2023-05-14",
+    "ageDays": 1229,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "echelon-token",
@@ -9189,7 +10050,13 @@
     "annualYield": 58,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xfc087a394c203d62c43eecfeba79db01441d39dd9d234131b78415626a26750e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1711395200,
+    "listedDate": "2024-03-25",
+    "ageDays": 912,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "solayer",
@@ -9236,7 +10103,13 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: layer4xpptcb3ql8s9u41eahax7mhbn8q6xmtwy2yzc",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1731623189,
+    "listedDate": "2024-11-14",
+    "ageDays": 678,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "morpheusai",
@@ -9284,7 +10157,13 @@
     "annualYield": 3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x092baadb7def4c3981454dd9c0a0d7ff07bcfc86",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1714565074,
+    "listedDate": "2024-05-01",
+    "ageDays": 876,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "based-one",
@@ -9331,7 +10210,10 @@
     "annualYield": 2.9,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x4f2b33840227ddd0e28da8d4185d6fa07adfed87",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "node-2",
@@ -9382,7 +10264,10 @@
     "annualYield": 48.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x2f714d7b9a035d4ce24af8d9b6091c07e37f43fb",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hydro-protocol-2",
@@ -9429,7 +10314,13 @@
     "annualYield": 52.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: factory/inj1etz0laas6h7vemg3qtd67jpr6lh8v7xz7gfzqw/hdro",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1750086961,
+    "listedDate": "2025-06-16",
+    "ageDays": 464,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pair",
@@ -9476,7 +10367,13 @@
     "annualYield": 8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6b1d42927b1a84ec28fa88d4fc6fa7af404966be",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1788311971,
+    "listedDate": "2026-09-02",
+    "ageDays": 22,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": true
   },
   {
     "id": "foxify",
@@ -9523,7 +10420,13 @@
     "annualYield": 13.7,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x261dfa2528dfa19011f10b168c856e02baaf0eb6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1760475992,
+    "listedDate": "2025-10-14",
+    "ageDays": 344,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pear-protocol",
@@ -9571,7 +10474,10 @@
     "annualYield": 1.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3212dc0f8c834e4de893532d27cc9b6001684db0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bancor",
@@ -9618,7 +10524,10 @@
     "annualYield": 1.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kodiak-finance",
@@ -9665,7 +10574,13 @@
     "annualYield": 25.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc0d1ac00a30fa4e30e44afc7313d6312c87e21df",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1738862519,
+    "listedDate": "2025-02-06",
+    "ageDays": 594,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kaio",
@@ -9722,7 +10637,13 @@
     "annualYield": 3.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x00bac91fd8f5b4a0dc03c8021139b76f6549ee7e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1738172664,
+    "listedDate": "2025-01-29",
+    "ageDays": 602,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "opinion",
@@ -9769,7 +10690,13 @@
     "annualYield": 4.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x7977bf3e7e0c954d12cdca3e013adaf57e0b06e0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1761694223,
+    "listedDate": "2025-10-28",
+    "ageDays": 330,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "fxn-token",
@@ -9816,7 +10743,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x365accfca291e7d3914637abf1f7635db165bb09",
-    "isStablecoin": true
+    "isStablecoin": true,
+    "listedAt": 1691149929,
+    "listedDate": "2023-08-04",
+    "ageDays": 1147,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "overtime",
@@ -9866,7 +10799,10 @@
     "annualYield": 3.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x90ce5720c17587d28e4af120ae2d313b3bad1722",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "solstice",
@@ -9913,7 +10849,13 @@
     "annualYield": 2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: slxdx4but2v9ujqnzwqsfztj9ukludsvxhfmeedrfgq",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1759263438,
+    "listedDate": "2025-09-30",
+    "ageDays": 358,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "dexfi-governance",
@@ -9967,7 +10909,10 @@
     "annualYield": 0.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x92a212d9f5eef0b262ac7d84aea64a0d0758b94f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "beets",
@@ -10016,7 +10961,10 @@
     "annualYield": 43.6,
     "isAlphaGem": true,
     "matchReason": "CONTRACT_ADDRESS: 0x2d0e0814e62d80056181f5cd932274405966e4f0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "p2p-protocol",
@@ -10064,7 +11012,10 @@
     "annualYield": 6.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: p2pxup1zvmpcdkjn3pqxtbygxecsfh39sfeurgsmeta",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "liqwid-finance",
@@ -10111,7 +11062,13 @@
     "annualYield": 4.4,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: liqwid-finance",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1675383083,
+    "listedDate": "2023-02-03",
+    "ageDays": 1329,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "openledger-2",
@@ -10158,7 +11115,13 @@
     "annualYield": 1.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa227cc36938f0c9e09ce0e64dfab226cad739447",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1767121232,
+    "listedDate": "2025-12-30",
+    "ageDays": 267,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stargate-finance",
@@ -10227,7 +11190,13 @@
     "annualYield": 1.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1719902937,
+    "listedDate": "2024-07-02",
+    "ageDays": 814,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "what-the-hook",
@@ -10274,7 +11243,13 @@
     "annualYield": 7.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb8fa8010833463aac5595b55b9045479239eff79",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1787150184,
+    "listedDate": "2026-08-19",
+    "ageDays": 35,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "radiant-capital",
@@ -10324,7 +11299,13 @@
     "annualYield": 40.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3082cc23568ea640225c2467653db90e9250aaa0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1679414982,
+    "listedDate": "2023-03-21",
+    "ageDays": 1282,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "zest-protocol",
@@ -10371,7 +11352,13 @@
     "annualYield": 1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: sp1a27kfy4xerqccrcarcyd1cc5n7m6688bsyadj7.zest-token",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1771865647,
+    "listedDate": "2026-02-23",
+    "ageDays": 212,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "renzo",
@@ -10418,7 +11405,13 @@
     "annualYield": 0.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x3b50805453023a91a8bf641e279401a0b23fa6f9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1702962127,
+    "listedDate": "2023-12-19",
+    "ageDays": 1010,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "liquidlaunch",
@@ -10466,7 +11459,13 @@
     "annualYield": 10.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa043053570d42d6f553896820dfd42b6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1783633412,
+    "listedDate": "2026-07-09",
+    "ageDays": 76,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "winr-protocol",
@@ -10513,7 +11512,13 @@
     "annualYield": 12,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xd77b108d4f6cefaa0cae9506a934e825becca46e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1685097004,
+    "listedDate": "2023-05-26",
+    "ageDays": 1217,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "atomic-wallet-coin",
@@ -10560,7 +11565,10 @@
     "annualYield": 42.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xad22f63404f7305e4713ccbd4f296f34770513f4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "livepeer",
@@ -10607,7 +11615,10 @@
     "annualYield": 0.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x58b6a8a3302369daec383334672404ee733ab239",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "havven",
@@ -10654,7 +11665,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "waterneuron",
@@ -10701,7 +11715,13 @@
     "annualYield": 26.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: jcmow-hyaaa-aaaaq-aadlq-cai",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1721837891,
+    "listedDate": "2024-07-24",
+    "ageDays": 791,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "thorchain",
@@ -10748,7 +11768,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "rujira",
@@ -10795,7 +11818,10 @@
     "annualYield": 1.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: x/ruji",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bone-shibaswap",
@@ -10842,7 +11868,10 @@
     "annualYield": 1.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x9813037ee2218799597d83d4a5b6f3b6778218d9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "unchain-x",
@@ -10889,7 +11918,13 @@
     "annualYield": 6.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x4f0572ca0bf96f5ae17b7062d97cea3f35bdea6f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1742383265,
+    "listedDate": "2025-03-19",
+    "ageDays": 554,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "jetbit",
@@ -10936,7 +11971,13 @@
     "annualYield": 1.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x62039895d0f80045f54c3371b6732d2d2b63968e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1788811739,
+    "listedDate": "2026-09-07",
+    "ageDays": 16,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": true
   },
   {
     "id": "wormhole",
@@ -11010,7 +12051,13 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 85vbfqzc9tzkfaptbwjvuw7ybzjy52a6mjtpgjstqamq",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1647148275,
+    "listedDate": "2022-03-13",
+    "ageDays": 1656,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "pangolin",
@@ -11057,7 +12104,10 @@
     "annualYield": 2.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x60781c2586d68229fde47564546784ab3faca982",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tria",
@@ -11104,7 +12154,10 @@
     "annualYield": 1.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x228bec415ade4b61d7caf0adf8c91eac587ba369",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "metronome",
@@ -11154,7 +12207,13 @@
     "annualYield": 2.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x2ebd53d035150f328bd754d6dc66b99b0edb89aa",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1673545817,
+    "listedDate": "2023-01-12",
+    "ageDays": 1350,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hyperlane",
@@ -11214,7 +12273,13 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc9d23ed2adb0f551369946bd377f8644ce1ca5c4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1772126783,
+    "listedDate": "2026-02-26",
+    "ageDays": 209,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "infrared-finance",
@@ -11261,7 +12326,13 @@
     "annualYield": 10.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xace9de5af92eb82a97a5973b00eff85024bdcb39",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1739442996,
+    "listedDate": "2025-02-13",
+    "ageDays": 588,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hyperion-2",
@@ -11308,7 +12379,13 @@
     "annualYield": 2.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x435ad41e7b383cef98899c4e5a22c8dc88ab67b22f95e5663d6c6649298c3a9d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1733763947,
+    "listedDate": "2024-12-09",
+    "ageDays": 653,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "storm-trade",
@@ -11355,7 +12432,13 @@
     "annualYield": 9.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: eqbsosmczrd6fhija7qwglw5wo_ah8un435hi935jj_storm",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1701706347,
+    "listedDate": "2023-12-04",
+    "ageDays": 1024,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "zeal",
@@ -11403,7 +12486,13 @@
     "annualYield": 13.6,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: zeal",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1760656085,
+    "listedDate": "2025-10-16",
+    "ageDays": 342,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "mento",
@@ -11451,7 +12540,13 @@
     "annualYield": 1.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x7ff62f59e3e89ea34163ea1458eebcc81177cfb6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1773583724,
+    "listedDate": "2026-03-15",
+    "ageDays": 192,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "mimo-parallel-governance-token",
@@ -11501,7 +12596,13 @@
     "annualYield": 4.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6c0aeceedc55c9d55d8b99216a670d85330941c3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1753821437,
+    "listedDate": "2025-07-29",
+    "ageDays": 421,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "tree-capital",
@@ -11550,7 +12651,10 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xba25b2281214300e4e649fead9a6d6acd25f1c0a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "umbra-2-2",
@@ -11597,7 +12701,13 @@
     "annualYield": 18.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x14a4e80d633af55ace1160c320f5a36d41cced3e",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1788799162,
+    "listedDate": "2026-09-07",
+    "ageDays": 16,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": true
   },
   {
     "id": "treehouse",
@@ -11645,7 +12755,13 @@
     "annualYield": 1.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x77146784315ba81904d654466968e3a7c196d1f3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1725968902,
+    "listedDate": "2024-09-10",
+    "ageDays": 744,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sonic-3",
@@ -11692,7 +12808,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "maverick-protocol",
@@ -11744,7 +12863,13 @@
     "annualYield": 0.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x7448c7456a97769f6cd04f1e83a4a23ccdc46abd",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1718102971,
+    "listedDate": "2024-06-11",
+    "ageDays": 835,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "solana-name-service",
@@ -11791,7 +12916,10 @@
     "annualYield": 4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: sns8djbhc34nkyshvhlgmuue72ho6igvjaxtq9t3cx3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "zora",
@@ -11838,7 +12966,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1111111111166b7fe7bd91427724b487980afc69",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "vultisig",
@@ -11886,7 +13017,10 @@
     "annualYield": 1.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb788144df611029c60b859df47e79b7726c4deba",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sei-network",
@@ -11933,7 +13067,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_L1_CHAIN",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "layer3",
@@ -11995,7 +13132,10 @@
     "annualYield": 1.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x88909d489678dd17aa6d9609f89b0419bf78fd9a",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "etherex",
@@ -12042,7 +13182,13 @@
     "annualYield": 10.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xefd81eec32b9a8222d1842ec3d99c7532c31e348",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1753887097,
+    "listedDate": "2025-07-30",
+    "ageDays": 420,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "banana-gun",
@@ -12095,7 +13241,10 @@
     "annualYield": 0.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x38e68a37e401f7271568cecaac63c6b1e19130b4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "moe-3",
@@ -12142,7 +13291,13 @@
     "annualYield": 3.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x4515a45337f461a11ff0fe8abf3c606ae5dc00c9",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1712166957,
+    "listedDate": "2024-04-03",
+    "ageDays": 903,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "the-arena",
@@ -12189,7 +13344,10 @@
     "annualYield": 1.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb8d7710f7d8349a506b75dd184f05777c82dad0c",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "omnipair",
@@ -12236,7 +13394,13 @@
     "annualYield": 2.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: omfgrbnxhsnjh6yegbgamwennkenzsxybxm3wdhmeta",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1774369455,
+    "listedDate": "2026-03-24",
+    "ageDays": 183,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "stake-link",
@@ -12283,7 +13447,13 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa95c5ebb86e0de73b4fb8c47a45b792cfea28c23",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1671639906,
+    "listedDate": "2022-12-21",
+    "ageDays": 1372,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "spectra-finance",
@@ -12341,7 +13511,13 @@
     "annualYield": 2.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x64fcc3a02eeeba05ef701b7eed066c6ebd5d4e51",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1717597182,
+    "listedDate": "2024-06-05",
+    "ageDays": 840,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "walrus-2",
@@ -12388,7 +13564,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: walrus-2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "crypto-com-chain",
@@ -12435,7 +13614,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "alexgo",
@@ -12482,7 +13664,13 @@
     "annualYield": 1.4,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: alexgo",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1645731214,
+    "listedDate": "2022-02-24",
+    "ageDays": 1672,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "mcdex",
@@ -12533,7 +13721,13 @@
     "annualYield": 0.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x4e352cf164e64adcbad318c3a1e222e9eba4ce42",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1667699921,
+    "listedDate": "2022-11-06",
+    "ageDays": 1418,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "defituna",
@@ -12580,7 +13774,13 @@
     "annualYield": 6.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: tunafxdzedqiztmth3uevnvyqjmqfhzbejt8jop4cyx",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1741969773,
+    "listedDate": "2025-03-14",
+    "ageDays": 558,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "goplus-security",
@@ -12632,7 +13832,13 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0c1dc73159e30c4b06170f2593d3118968a0dca5",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1741988372,
+    "listedDate": "2025-03-14",
+    "ageDays": 558,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "apriori",
@@ -12679,7 +13885,13 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5a9610919f5e81183823a2be4bd1beb2b4da2a20",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1778651369,
+    "listedDate": "2026-05-13",
+    "ageDays": 134,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "alt",
@@ -12726,7 +13938,10 @@
     "annualYield": 6.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa3882d42ed12b57c10c85e8ec8febd0774600000",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "flex",
@@ -12773,7 +13988,13 @@
     "annualYield": 0.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x9c6fa17d92898b684676993828143596894aa2a6",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1721045783,
+    "listedDate": "2024-07-15",
+    "ageDays": 801,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "home",
@@ -12820,7 +14041,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x4bfaa776991e85e5f8b1255461cbbd216cfc714f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "netswap",
@@ -12867,7 +14091,13 @@
     "annualYield": 6.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x90fe084f877c65e1b577c7b2ea64b8d8dd1ab278",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1640747909,
+    "listedDate": "2021-12-29",
+    "ageDays": 1730,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "the-graph",
@@ -12914,7 +14144,10 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc944e90c64b2c07662a292be6244bdf05cda44a7",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "melon",
@@ -12961,7 +14194,10 @@
     "annualYield": 0.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xec67005c4e498ec7f55e092bd1d35cbc47c91892",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "sierra-2",
@@ -13008,7 +14244,13 @@
     "annualYield": 0.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x6e6080e15f8c0010d333d8caeead29292adb78f7",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1770100267,
+    "listedDate": "2026-02-03",
+    "ageDays": 233,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "axelar",
@@ -13068,7 +14310,13 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x467719ad09025fcc6cf6f8311755809d45a5e5f3",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1667045416,
+    "listedDate": "2022-10-29",
+    "ageDays": 1426,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "wagmi-2",
@@ -13121,7 +14369,13 @@
     "annualYield": 4.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x92cc36d66e9d739d50673d1f27929a371fb83a67",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1681518737,
+    "listedDate": "2023-04-15",
+    "ageDays": 1258,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "metaplex",
@@ -13168,7 +14422,10 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: metaewgxypbgwsseh8t16a39cq5vyvxzi9zxidpy18m",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "zyfi",
@@ -13216,7 +14473,13 @@
     "annualYield": 2.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5d0d7bca050e2e98fd4a5e8d3ba823b49f39868d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1745493197,
+    "listedDate": "2025-04-24",
+    "ageDays": 518,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "liquidium-token",
@@ -13263,7 +14526,13 @@
     "annualYield": 3.8,
     "isAlphaGem": false,
     "matchReason": "VERIFIED_GECKO_ID: liquidium-token",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1772297089,
+    "listedDate": "2026-02-28",
+    "ageDays": 207,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "alienbase",
@@ -13310,7 +14579,13 @@
     "annualYield": 3.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1dd2d631c92b1acdfcdd51a0f7145a50130050c4",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1691545534,
+    "listedDate": "2023-08-09",
+    "ageDays": 1142,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "gearbox",
@@ -13364,7 +14639,13 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xba3335588d9403515223f109edc4eb7269a9ab5d",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1640629561,
+    "listedDate": "2021-12-27",
+    "ageDays": 1731,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "baby-doge-coin",
@@ -13411,7 +14692,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xc748673057861a797275cd8a068abb95a902e8de",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1665220470,
+    "listedDate": "2022-10-08",
+    "ageDays": 1447,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "rch-token",
@@ -13462,7 +14749,13 @@
     "annualYield": 0.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x57b96d4af698605563a4653d882635da59bf11af",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1718565920,
+    "listedDate": "2024-06-16",
+    "ageDays": 829,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "symmio",
@@ -13516,7 +14809,13 @@
     "annualYield": 0.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x800822d361335b4d5f352dac293ca4128b5b605f",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1759188001,
+    "listedDate": "2025-09-29",
+    "ageDays": 359,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kyo",
@@ -13563,7 +14862,13 @@
     "annualYield": 1.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xb8f28c60dd8240141185a192fa4156a23e189305",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1736851067,
+    "listedDate": "2025-01-14",
+    "ageDays": 618,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "diem",
@@ -13610,7 +14915,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xf4d97f2da56e8c3098f3a8d538db630a2606a024",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1779310583,
+    "listedDate": "2026-05-20",
+    "ageDays": 126,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "wrapped-hlp",
@@ -13657,7 +14968,13 @@
     "annualYield": 1.8,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x1359b05241ca5076c9f59605214f4f84114c0de8",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1761584418,
+    "listedDate": "2025-10-27",
+    "ageDays": 331,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "bim-2",
@@ -13712,7 +15029,13 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x555fff48549c1a25a723bd8e7ed10870d82e8379",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1751920749,
+    "listedDate": "2025-07-07",
+    "ageDays": 443,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "unicrypt-2",
@@ -13766,7 +15089,13 @@
     "annualYield": 2.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xadb2437e6f65682b85f814fbc12fec0508a7b1d0",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1652762212,
+    "listedDate": "2022-05-17",
+    "ageDays": 1591,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "true",
@@ -13813,7 +15142,13 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x21cfcfc3d8f98fc728f48341d10ad8283f6eb7ab",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1729254083,
+    "listedDate": "2024-10-18",
+    "ageDays": 706,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "yei-finance",
@@ -13860,7 +15195,13 @@
     "annualYield": 0.3,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x81d3a238b02827f62b9f390f947d36d4a5bf89d2",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1717532780,
+    "listedDate": "2024-06-04",
+    "ageDays": 841,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "creatorbid",
@@ -13907,7 +15248,10 @@
     "annualYield": 1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xa1832f7f4e534ae557f9b5ab76de54b1873e498b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "obsidian-2",
@@ -13955,7 +15299,13 @@
     "annualYield": 1.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x0aeba21655185583367f19d0c882dfc654c6dd54",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1789228693,
+    "listedDate": "2026-09-12",
+    "ageDays": 11,
+    "isNewListing": false,
+    "isNewListing14d": true,
+    "isNewListing30d": true
   },
   {
     "id": "goldfinch",
@@ -14002,7 +15352,13 @@
     "annualYield": 0.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xdab396ccf3d84cf2d07c4454e10c8a6f5b008d2b",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1635105023,
+    "listedDate": "2021-10-24",
+    "ageDays": 1795,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hopr",
@@ -14049,7 +15405,13 @@
     "annualYield": 0.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0xf5581dfefd8fb0e4aec526be659cfab1f8c781da",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1699542025,
+    "listedDate": "2023-11-09",
+    "ageDays": 1049,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "anoncoin-2",
@@ -14096,7 +15458,13 @@
     "annualYield": 0.6,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: d25bi7ohqjqkvrzbfum6k2gzvnhtspblhtakdczccdub",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1776367321,
+    "listedDate": "2026-04-16",
+    "ageDays": 160,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "avici",
@@ -14143,7 +15511,10 @@
     "annualYield": 0.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: bankjmvht8tijrsbss1n2hrymbpvt5ze4hu95duameta",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kiloex",
@@ -14195,7 +15566,13 @@
     "annualYield": 2.4,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x503fa24b7972677f00c4618e5fbe237780c1df53",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1690979758,
+    "listedDate": "2023-08-02",
+    "ageDays": 1149,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "vaderai-by-virtuals",
@@ -14242,7 +15619,13 @@
     "annualYield": 1.5,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x731814e491571a2e9ee3c5b1f7f3b962ee8f4870",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1734701945,
+    "listedDate": "2024-12-20",
+    "ageDays": 643,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "ravenhood",
@@ -14289,7 +15672,13 @@
     "annualYield": 2.7,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x96765066f6a040a21eb027167d2315b707c82633",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1783791254,
+    "listedDate": "2026-07-11",
+    "ageDays": 74,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "hegic",
@@ -14336,7 +15725,10 @@
     "annualYield": 0.1,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x584bc13c7d411c00c01a62e8019472de68768430",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "garden-2",
@@ -14400,7 +15792,13 @@
     "annualYield": 0.9,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x5eed99d066a8caf10f3e4327c1b3d8b673485eed",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1706793085,
+    "listedDate": "2024-02-01",
+    "ageDays": 966,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "gt3-finance",
@@ -14447,7 +15845,13 @@
     "annualYield": 1.2,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x06737d16ad9c1e41aa44fee2a952b26723b20673",
-    "isStablecoin": false
+    "isStablecoin": false,
+    "listedAt": 1747431367,
+    "listedDate": "2025-05-16",
+    "ageDays": 495,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
   },
   {
     "id": "kinetiq",
@@ -14494,6 +15898,951 @@
     "annualYield": 0,
     "isAlphaGem": false,
     "matchReason": "CONTRACT_ADDRESS: 0x000000000000780555bd0bca3791f89f9542c2d6",
+    "isStablecoin": false,
+    "listedAt": 1752719634,
+    "listedDate": "2025-07-17",
+    "ageDays": 434,
+    "isNewListing": false,
+    "isNewListing14d": false,
+    "isNewListing30d": false
+  },
+  {
+    "id": "aero-lite",
+    "rank": 294,
+    "name": "Aero Lite",
+    "symbol": "AERO",
+    "price": 0.1572,
+    "priceChange24h": 0,
+    "mcap": 1572420,
+    "fdv": 1572420,
+    "totalVol24h": 8616,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/aero-lite",
+    "categories": [
+      "Dexs",
+      "Arc"
+    ],
+    "defillamaSlug": "aero-lite",
+    "parentProtocol": "parent#aerodrome",
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 1077,
+    "revenue24h": 754,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 1077,
+    "fees7d": 5766,
+    "fees14d": 5766,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 539,
+    "holdersRevenue30d": 16155,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Aero Lite on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789765047,
+    "listedDate": "2026-09-18",
+    "ageDays": 5,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "stonkbrokers-smart-lp",
+    "rank": 295,
+    "name": "StonkBrokers Smart LP",
+    "symbol": "STONKBROKER",
+    "price": 0.2403,
+    "priceChange24h": 0,
+    "mcap": 2403160,
+    "fdv": 2403160,
+    "totalVol24h": 13168,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/stonkbrokers-smart-lp",
+    "categories": [
+      "Liquidity Manager",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "stonkbrokers-smart-lp",
+    "parentProtocol": "parent#stonkbrokers",
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [
+      "Robinhood Chain",
+      "Arbitrum"
+    ],
+    "contractAddress": "robinhood:0xe934e36a439c94017b64a3fece66af12099abf50",
+    "fees24h": 1646,
+    "revenue24h": 1152,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 1646,
+    "fees7d": 14600,
+    "fees14d": 14600,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 823,
+    "holdersRevenue30d": 24690,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by StonkBrokers Smart LP on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1790093598,
+    "listedDate": "2026-09-22",
+    "ageDays": 1,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "tolly",
+    "rank": 296,
+    "name": "Tolly",
+    "symbol": "TOLLY",
+    "price": 0.2745,
+    "priceChange24h": 0,
+    "mcap": 2744800,
+    "fdv": 2744800,
+    "totalVol24h": 15040,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/tolly",
+    "categories": [
+      "Launchpad",
+      "Arc"
+    ],
+    "defillamaSlug": "tolly",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 1880,
+    "revenue24h": 1316,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 1880,
+    "fees7d": 15149,
+    "fees14d": 15149,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 940,
+    "holdersRevenue30d": 28200,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Tolly on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789690053,
+    "listedDate": "2026-09-18",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "wonk-fun",
+    "rank": 297,
+    "name": "Wonk Fun",
+    "symbol": "WONK",
+    "price": 1.3366,
+    "priceChange24h": 0,
+    "mcap": 13366300,
+    "fdv": 13366300,
+    "totalVol24h": 73240,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/wonk-fun",
+    "categories": [
+      "Launchpad",
+      "Arc"
+    ],
+    "defillamaSlug": "wonk-fun",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 9155,
+    "revenue24h": 6409,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 9155,
+    "fees7d": 40157,
+    "fees14d": 40157,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 4578,
+    "holdersRevenue30d": 137325,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Wonk Fun on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789743289,
+    "listedDate": "2026-09-18",
+    "ageDays": 5,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "foci",
+    "rank": 298,
+    "name": "Foci",
+    "symbol": "FOCI",
+    "price": 1.2233,
+    "priceChange24h": 0,
+    "mcap": 12233340,
+    "fdv": 12233340,
+    "totalVol24h": 67032,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/foci",
+    "categories": [
+      "Launchpad",
+      "Arc"
+    ],
+    "defillamaSlug": "foci",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 8379,
+    "revenue24h": 5865,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 8379,
+    "fees7d": 27869,
+    "fees14d": 27869,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 4190,
+    "holdersRevenue30d": 125685,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Foci on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789852191,
+    "listedDate": "2026-09-19",
+    "ageDays": 4,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "stonkbrokers-nightshades",
+    "rank": 299,
+    "name": "StonkBrokers Nightshades",
+    "symbol": "STONKBROKER",
+    "price": 0.2768,
+    "priceChange24h": 0,
+    "mcap": 2768160,
+    "fdv": 2768160,
+    "totalVol24h": 15168,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/stonkbrokers-nightshades",
+    "categories": [
+      "Launchpad",
+      "Robinhood Chain"
+    ],
+    "defillamaSlug": "stonkbrokers-nightshades",
+    "parentProtocol": "parent#stonkbrokers",
+    "defillamaType": "protocol",
+    "chainName": "Robinhood Chain",
+    "chains": [
+      "Robinhood Chain"
+    ],
+    "contractAddress": "robinhood:0xe934e36a439c94017b64a3fece66af12099abf50",
+    "fees24h": 1896,
+    "revenue24h": 1327,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 1896,
+    "fees7d": 158387,
+    "fees14d": 158387,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 948,
+    "holdersRevenue30d": 28440,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by StonkBrokers Nightshades on Robinhood Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1790092631,
+    "listedDate": "2026-09-22",
+    "ageDays": 1,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "ark-launch",
+    "rank": 300,
+    "name": "ARK Launch",
+    "symbol": "ARKL",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 3096,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/ark-launch",
+    "categories": [
+      "Launchpad",
+      "Arc"
+    ],
+    "defillamaSlug": "ark-launch",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 387,
+    "revenue24h": 271,
+    "priceToFees": 7.1,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 387,
+    "fees7d": 2747,
+    "fees14d": 2747,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 194,
+    "holdersRevenue30d": 5805,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by ARK Launch on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 9.9,
+    "isAlphaGem": true,
+    "listedAt": 1789706679,
+    "listedDate": "2026-09-18",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "mercurifi",
+    "rank": 301,
+    "name": "Mercurifi",
+    "symbol": "MERCU",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 3696,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/mercurifi",
+    "categories": [
+      "Launchpad",
+      "Arc"
+    ],
+    "defillamaSlug": "mercurifi",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 462,
+    "revenue24h": 323,
+    "priceToFees": 5.9,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 462,
+    "fees7d": 474,
+    "fees14d": 474,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 231,
+    "holdersRevenue30d": 6930,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Mercurifi on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 11.8,
+    "isAlphaGem": true,
+    "listedAt": 1790098067,
+    "listedDate": "2026-09-22",
+    "ageDays": 1,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "heks.fun",
+    "rank": 302,
+    "name": "heks.fun",
+    "symbol": "HEKS",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 3184,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/heks.fun",
+    "categories": [
+      "Launchpad",
+      "Robinhood Chain"
+    ],
+    "defillamaSlug": "heks.fun",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Robinhood Chain",
+    "chains": [
+      "Robinhood Chain"
+    ],
+    "contractAddress": null,
+    "fees24h": 398,
+    "revenue24h": 279,
+    "priceToFees": 6.9,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 398,
+    "fees7d": 399,
+    "fees14d": 399,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 199,
+    "holdersRevenue30d": 5970,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by heks.fun on Robinhood Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 10.2,
+    "isAlphaGem": true,
+    "listedAt": 1789667677,
+    "listedDate": "2026-09-17",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "arclotls",
+    "rank": 303,
+    "name": "ArcLotls",
+    "symbol": "ARCLO",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 1200,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/arclotls",
+    "categories": [
+      "Gamified Mining",
+      "Arc"
+    ],
+    "defillamaSlug": "arclotls",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Arc",
+    "chains": [
+      "Arc"
+    ],
+    "contractAddress": null,
+    "fees24h": 150,
+    "revenue24h": 105,
+    "priceToFees": 18.3,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 150,
+    "fees7d": 378,
+    "fees14d": 378,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 75,
+    "holdersRevenue30d": 2250,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by ArcLotls on Arc.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 3.8,
+    "isAlphaGem": true,
+    "listedAt": 1789742327,
+    "listedDate": "2026-09-18",
+    "ageDays": 5,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "peach-launchpad",
+    "rank": 304,
+    "name": "Peach Launchpad",
+    "symbol": "PEACH",
+    "price": 0.2168,
+    "priceChange24h": 0,
+    "mcap": 2168100,
+    "fdv": 2168100,
+    "totalVol24h": 11880,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/peach-launchpad",
+    "categories": [
+      "Launchpad",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "peach-launchpad",
+    "parentProtocol": "parent#peach",
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": null,
+    "fees24h": 1485,
+    "revenue24h": 1040,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 1485,
+    "fees7d": 42226,
+    "fees14d": 42226,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 743,
+    "holdersRevenue30d": 22275,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Peach Launchpad on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789660555,
+    "listedDate": "2026-09-17",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "copyfomo",
+    "rank": 305,
+    "name": "copyfomo",
+    "symbol": "COPYF",
+    "price": 1.3514,
+    "priceChange24h": 0,
+    "mcap": 13513760,
+    "fdv": 13513760,
+    "totalVol24h": 74048,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/copyfomo",
+    "categories": [
+      "Telegram Bot",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "copyfomo",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": null,
+    "fees24h": 9256,
+    "revenue24h": 6479,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 9256,
+    "fees7d": 29001,
+    "fees14d": 29001,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 4628,
+    "holdersRevenue30d": 138840,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by copyfomo on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1789660802,
+    "listedDate": "2026-09-17",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "guessone",
+    "rank": 306,
+    "name": "GuessOne",
+    "symbol": "GONE",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 1624,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/guessone",
+    "categories": [
+      "Gamified Mining",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "guessone",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": "monad:0x0B7AA5D0a306bC65855419E798e6811fAb9C7777",
+    "fees24h": 203,
+    "revenue24h": 142,
+    "priceToFees": 13.5,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 203,
+    "fees7d": 5818,
+    "fees14d": 5818,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 102,
+    "holdersRevenue30d": 3045,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by GuessOne on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 5.2,
+    "isAlphaGem": true,
+    "listedAt": 1789668721,
+    "listedDate": "2026-09-17",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "radardex",
+    "rank": 307,
+    "name": "RadarDEX",
+    "symbol": "RADAR",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 3832,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/radardex",
+    "categories": [
+      "Launchpad",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "radardex",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": null,
+    "fees24h": 479,
+    "revenue24h": 335,
+    "priceToFees": 5.7,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 479,
+    "fees7d": 4575,
+    "fees14d": 4575,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 240,
+    "holdersRevenue30d": 7185,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by RadarDEX on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 12.2,
+    "isAlphaGem": true,
+    "listedAt": 1789690521,
+    "listedDate": "2026-09-18",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "aka",
+    "rank": 308,
+    "name": "AKA",
+    "symbol": "AKA",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 864,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/aka",
+    "categories": [
+      "Launchpad",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "aka",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": null,
+    "fees24h": 108,
+    "revenue24h": 76,
+    "priceToFees": 25.4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 108,
+    "fees7d": 3191,
+    "fees14d": 3191,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 54,
+    "holdersRevenue30d": 1620,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by AKA on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 2.8,
+    "isAlphaGem": true,
+    "listedAt": 1789691067,
+    "listedDate": "2026-09-18",
+    "ageDays": 6,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "rankz",
+    "rank": 309,
+    "name": "Rankz",
+    "symbol": "RANKZ",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 4872,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/rankz",
+    "categories": [
+      "Physical TCG",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "rankz",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": null,
+    "fees24h": 609,
+    "revenue24h": 426,
+    "priceToFees": 4.5,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 609,
+    "fees7d": 1239,
+    "fees14d": 1239,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 305,
+    "holdersRevenue30d": 9135,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Rankz on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 15.6,
+    "isAlphaGem": true,
+    "listedAt": 1790012085,
+    "listedDate": "2026-09-21",
+    "ageDays": 2,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "stonkbrokers-anvil",
+    "rank": 310,
+    "name": "StonkBrokers Anvil",
+    "symbol": "STONKBROKER",
+    "price": 0.6681,
+    "priceChange24h": 0,
+    "mcap": 6680960,
+    "fdv": 6680960,
+    "totalVol24h": 36608,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/stonkbrokers-anvil",
+    "categories": [
+      "NftFi",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "stonkbrokers-anvil",
+    "parentProtocol": "parent#stonkbrokers",
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": "robinhood:0xe934e36a439c94017b64a3fece66af12099abf50",
+    "fees24h": 4576,
+    "revenue24h": 3203,
+    "priceToFees": 4,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 4576,
+    "fees7d": 425718,
+    "fees14d": 425718,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 2288,
+    "holdersRevenue30d": 68640,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by StonkBrokers Anvil on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 17.5,
+    "isAlphaGem": true,
+    "listedAt": 1790093607,
+    "listedDate": "2026-09-22",
+    "ageDays": 1,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
+    "isStablecoin": false
+  },
+  {
+    "id": "arctide",
+    "rank": 311,
+    "name": "Arctide",
+    "symbol": "TIDE",
+    "price": 0.1,
+    "priceChange24h": 0,
+    "mcap": 1000000,
+    "fdv": 1000000,
+    "totalVol24h": 3088,
+    "volToMcap": 0.1,
+    "logo": "https://icons.llamao.fi/icons/protocols/arctide",
+    "categories": [
+      "Dexs",
+      "Multi-Chain"
+    ],
+    "defillamaSlug": "arctide",
+    "parentProtocol": null,
+    "defillamaType": "protocol",
+    "chainName": "Multi-Chain",
+    "chains": [],
+    "contractAddress": "arc:0x92395d0cd51bb504a39e53105cb6862948af1b8e",
+    "fees24h": 386,
+    "revenue24h": 270,
+    "priceToFees": 7.1,
+    "feeChange1d": 0,
+    "feeChange7d": 15,
+    "fees48h": 386,
+    "fees7d": 1669,
+    "fees14d": 1669,
+    "isUpToday": true,
+    "isUpWeek": true,
+    "isRecovery": false,
+    "isND": false,
+    "holdersRevenue24h": 193,
+    "holdersRevenue30d": 5790,
+    "holdersMechanism": "Protocol Fee Share",
+    "holdersMethodology": "Protocol revenue generated by Arctide on Multi-Chain.",
+    "isBurn": false,
+    "isBreakout": true,
+    "annualYield": 9.9,
+    "isAlphaGem": true,
+    "listedAt": 1790196052,
+    "listedDate": "2026-09-23",
+    "ageDays": 0,
+    "isNewListing": true,
+    "isNewListing14d": true,
+    "isNewListing30d": true,
+    "matchReason": "NEWLY_LISTED_FEE_PROTOCOL",
     "isStablecoin": false
   }
 ]

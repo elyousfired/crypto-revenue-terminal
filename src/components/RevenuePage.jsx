@@ -283,7 +283,14 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare, onOpenResear
                   {coin.symbol}
                 </span>
 
-                {/* Status Badges: Gem, Recovery, Up Today, Up Week */}
+                {/* Status Badges: Gem, Recovery, Up Today, Up Week, New Listing */}
+                {coin.isNewListing && (
+                  <span className="px-1.5 py-0.2 rounded bg-cyan-400/20 text-cyan-300 border border-cyan-400/50 text-[9px] font-black tracking-wide flex items-center gap-0.5 animate-pulse shadow-sm shadow-cyan-500/20" title={`Newly Listed: ${coin.ageDays !== undefined ? `${coin.ageDays}d ago` : 'recent'} (${coin.listedDate || ''})`}>
+                    <span>🆕</span>
+                    <span>{coin.ageDays === 0 ? 'LISTED TODAY' : coin.ageDays === 1 ? '1D AGO' : `${coin.ageDays}D AGO`}</span>
+                  </span>
+                )}
+
                 {coin.isAlphaGem && (
                   <span className="px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 border border-amber-400/50 text-[9px] font-black tracking-wide flex items-center gap-0.5 animate-pulse shadow-sm shadow-amber-500/20" title="Cashflow Gem: Rapid 7D Fee Growth + Attractive Valuation">
                     <span>💎</span>
@@ -330,6 +337,9 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare, onOpenResear
 
               <div className="text-[10px] text-slate-500 mt-0.5 flex items-center gap-2 flex-wrap">
                 <span>MC: <strong className="text-slate-300">{fmtUsd(coin.mcap)}</strong></span>
+                {coin.listedDate && (
+                  <span className="text-cyan-400/80 font-medium">· 🆕 Listed: {coin.listedDate}</span>
+                )}
                 {coin.defillamaSlug && (
                   <span className="text-emerald-400 font-medium">✓ DeFiLlama: {coin.defillamaSlug}</span>
                 )}
@@ -515,26 +525,43 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
   const [showCount, setShowCount] = useState(50);
   
   // 🎯 Momentum Filter Tab State requested by user:
-  // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn'
+  // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn' | 'newly_listed'
   const [momentumTab, setMomentumTab] = useState('all');
+  const [newListingWindow, setNewListingWindow] = useState(7); // 7 | 14 | 30 days
 
   // Pre-calculate counts for each tab
   const counts = useMemo(() => {
     const valid = coins.filter(c => c.fees24h && c.fees24h > 0 && !c.isND);
+    const nowSec = 1790215600; // Reference timestamp ~ Sep 24, 2026
     return {
       all: valid.length,
       weekly: valid.filter(c => (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000)).length,
       daily: valid.filter(c => c.isUpToday || (c.feeChange1d && c.feeChange1d > 0)).length,
       recovery: valid.filter(c => c.isRecovery).length,
-      burn: valid.filter(c => c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)).length
+      burn: valid.filter(c => c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)).length,
+      newlyListed: valid.filter(c => c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 7) || (c.listedAt && (nowSec - c.listedAt) <= 7 * 86400)).length,
+      newlyListed14d: valid.filter(c => c.isNewListing14d || c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 14) || (c.listedAt && (nowSec - c.listedAt) <= 14 * 86400)).length,
+      newlyListed30d: valid.filter(c => c.isNewListing30d || c.isNewListing14d || c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 30) || (c.listedAt && (nowSec - c.listedAt) <= 30 * 86400)).length
     };
   }, [coins]);
 
   // Filtered list based on active momentum tab, search, and minFees
   const ranked = useMemo(() => {
+    const nowSec = 1790215600;
     return coins
       .filter(c => c.fees24h && c.fees24h > 0 && !c.isND)
       .filter(c => {
+        if (momentumTab === 'newly_listed') {
+          const maxAgeSec = newListingWindow * 86400;
+          const withinTime = c.listedAt ? ((nowSec - c.listedAt) <= maxAgeSec) : false;
+          const withinAge = c.ageDays !== undefined ? c.ageDays <= newListingWindow : false;
+          const flag = newListingWindow === 7 
+            ? Boolean(c.isNewListing)
+            : newListingWindow === 14 
+            ? Boolean(c.isNewListing14d || c.isNewListing)
+            : Boolean(c.isNewListing30d || c.isNewListing14d || c.isNewListing);
+          return withinTime || withinAge || flag;
+        }
         if (momentumTab === 'weekly_growth') {
           return (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000);
         }
@@ -556,6 +583,13 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
       })
       .filter(c => c.fees24h >= minFees)
       .sort((a, b) => {
+        if (momentumTab === 'newly_listed') {
+          // Sort by newest listing first (descending timestamp or lowest age in days)
+          const timeA = a.listedAt || (a.ageDays !== undefined ? nowSec - (a.ageDays * 86400) : 0);
+          const timeB = b.listedAt || (b.ageDays !== undefined ? nowSec - (b.ageDays * 86400) : 0);
+          if (timeB !== timeA) return timeB - timeA;
+          return (b.fees24h || 0) - (a.fees24h || 0);
+        }
         if (momentumTab === 'top_burn') {
           const burnA = a.holdersRevenue30d || (a.holdersRevenue24h ? a.holdersRevenue24h * 30 : 0);
           const burnB = b.holdersRevenue30d || (b.holdersRevenue24h ? b.holdersRevenue24h * 30 : 0);
@@ -581,7 +615,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
         }
         return (b.fees24h || 0) - (a.fees24h || 0);
       });
-  }, [coins, momentumTab, search, minFees]);
+  }, [coins, momentumTab, newListingWindow, search, minFees]);
 
   const displayed = ranked.slice(0, showCount);
 
@@ -629,8 +663,8 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
       {/* 🏆 REVENUE-GENERATING TOKENS INFOGRAPHIC LEADERBOARD 🏆 */}
       <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} onOpenResearch={onOpenResearch} />
 
-      {/* 🚀 5 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
+      {/* 🚀 6 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
         {/* TAB 1: ALL */}
         <button
           onClick={() => { setMomentumTab('all'); setShowCount(50); }}
@@ -740,7 +774,69 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
             Tokens li kayshriw o kayharqo bi revenue
           </span>
         </button>
+
+        {/* TAB 6: NEWLY LISTED (7D) - Tokens li tlistaw f akhir simana */}
+        <button
+          onClick={() => { setMomentumTab('newly_listed'); setShowCount(50); }}
+          className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
+            momentumTab === 'newly_listed'
+              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-200 shadow-lg ring-1 ring-cyan-400'
+              : 'bg-[#070b14] border-cyan-500/30 hover:bg-cyan-500/10'
+          )}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-cyan-400">🆕</span>
+              <span className="text-[11px] font-black text-white">NEW LISTED (7D)</span>
+            </div>
+            <span className="px-2 py-0.2 rounded-full bg-cyan-500 text-black font-black text-[10px]">
+              {counts.newlyListed}
+            </span>
+          </div>
+          <span className="text-[10px] text-cyan-300/80 mt-1 font-semibold">
+            Tlistaw f akhir simana ({counts.newlyListed} tokens)
+          </span>
+        </button>
       </div>
+
+      {/* 🆕 Newly Listed Timeframe Controls */}
+      {momentumTab === 'newly_listed' && (
+        <div className="flex items-center justify-between flex-wrap gap-2.5 px-4 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-cyan-300 font-bold flex items-center gap-1 text-[11px]">
+              <span>🆕</span>
+              <span>Listing Window:</span>
+            </span>
+            <span className="text-slate-400 text-[11px]">
+              Displaying tokens and fee protocols listed in the chosen timeframe
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-[#070b14] p-1 rounded-lg border border-slate-800">
+            {[
+              { days: 7, label: '⚡ Last 7 Days (Simana)', count: counts.newlyListed },
+              { days: 14, label: '📅 Last 14 Days', count: counts.newlyListed14d },
+              { days: 30, label: '🗓️ Last 30 Days (Chhar)', count: counts.newlyListed30d }
+            ].map(opt => (
+              <button
+                key={opt.days}
+                onClick={() => setNewListingWindow(opt.days)}
+                className={'px-3 py-1 rounded-md text-[10px] font-bold transition cursor-pointer flex items-center gap-1.5 ' + (
+                  newListingWindow === opt.days
+                    ? 'bg-cyan-500 text-black font-extrabold shadow-sm'
+                    : 'text-slate-400 hover:text-white'
+                )}
+              >
+                <span>{opt.label}</span>
+                <span className={'px-1.5 py-0.2 rounded-full text-[9px] ' + (
+                  newListingWindow === opt.days ? 'bg-black/30 text-black font-black' : 'bg-slate-800 text-slate-300'
+                )}>
+                  {opt.count}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Filters Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-[#0e1422] border border-slate-800">

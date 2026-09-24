@@ -21,7 +21,7 @@ function isNonYieldStablecoin(coin) {
 }
 
 export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = () => {}, onOpenResearch = () => {} }) {
-  const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield' | 'burn'
+  const [rankingType, setRankingType] = useState('volume'); // 'volume' | 'yield' | 'burn' | 'newly_listed'
   const [limit, setLimit] = useState(50); // Default to Top 50 as requested
   const [collapsed, setCollapsed] = useState(false);
 
@@ -55,6 +55,44 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
         yieldPct: Number(yieldPct.toFixed(2))
       };
     });
+
+    if (rankingType === 'newly_listed') {
+      const nowSec = 1790215600;
+      const newCoins = coins.filter(c => 
+        !isNonYieldStablecoin(c) && 
+        c.fees24h && 
+        c.fees24h >= 50 && 
+        !c.isND && 
+        (c.isNewListing || (c.ageDays !== undefined && c.ageDays <= 14) || (c.listedAt && (nowSec - c.listedAt) <= 14 * 86400))
+      );
+
+      return newCoins
+        .map(c => {
+          const dailyHoldersRev = c.revenue24h && c.revenue24h > 0 ? c.revenue24h : c.fees24h * 0.7;
+          const rev30d = dailyHoldersRev * 30;
+          const annualRev = dailyHoldersRev * 365;
+          const yieldPct = c.mcap > 0 ? (annualRev / c.mcap) * 100 : 0;
+          return {
+            coin: c,
+            symbol: c.symbol,
+            name: c.name,
+            logo: c.logo || `https://avatar.vercel.sh/${c.symbol}`,
+            todayLiveRev: dailyHoldersRev,
+            fees24h: c.fees24h,
+            rev30d,
+            mcap: c.mcap,
+            yieldPct: Number(yieldPct.toFixed(2)),
+            ageDays: c.ageDays,
+            listedDate: c.listedDate
+          };
+        })
+        .filter((item, index, self) =>
+          index === self.findIndex(t => t.symbol.toUpperCase() === item.symbol.toUpperCase())
+        )
+        .sort((a, b) => (a.ageDays ?? 99) - (b.ageDays ?? 99) || b.todayLiveRev - a.todayLiveRev)
+        .slice(0, limit)
+        .map((item, idx) => ({ ...item, rank: idx + 1 }));
+    }
 
     if (rankingType === 'burn') {
       const burnCoins = coins.filter(c => !isNonYieldStablecoin(c) && (c.isBurn || (c.holdersRevenue30d && c.holdersRevenue30d > 0)) && !c.isND);
@@ -173,6 +211,8 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
                   ? `Top ${limit} Buyback & Burn Tokens`
                   : rankingType === 'yield'
                   ? `Top ${limit} Yield / MC Tokens`
+                  : rankingType === 'newly_listed'
+                  ? `Top ${limit} Newly Listed Cashflow Tokens (7D)`
                   : `Top ${limit} Revenue-Generating Tokens`}
               </span>
             </h2>
@@ -217,6 +257,16 @@ export default function RevenueHoldersLeaderboard({ coins = [], onOpenModal = ()
               )}
             >
               🔥 Top Burn / Buyback
+            </button>
+            <button
+              onClick={() => setRankingType('newly_listed')}
+              className={'px-3 py-1.5 rounded-md text-[10px] font-bold transition cursor-pointer ' + (
+                rankingType === 'newly_listed'
+                  ? 'bg-cyan-500 text-black font-extrabold shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              )}
+            >
+              🆕 New Listed (7D)
             </button>
           </div>
 

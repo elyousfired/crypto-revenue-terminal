@@ -257,6 +257,12 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare, onOpenResear
 
   const annualFees = (coin.fees24h || 0) * 365;
   const revToMcap = coin.mcap > 0 ? ((coin.fees24h || 0) / coin.mcap) * 100 : 0;
+  const pToF = coin.mcap > 0 && annualFees > 0 ? coin.mcap / annualFees : 999;
+  const isPrePump = (coin.fees24h || 0) >= 15000 && 
+                    coin.mcap >= 500000 && 
+                    coin.mcap <= 50000000 && 
+                    pToF <= 0.85 && 
+                    ((coin.feeChange1d !== undefined && coin.feeChange1d >= 15) || (coin.feeChange7d !== undefined && coin.feeChange7d >= 30) || coin.isUpToday);
 
   return (
     <>
@@ -283,7 +289,13 @@ function RevenueRow({ coin, rank, days, onOpenModal, onOpenCompare, onOpenResear
                   {coin.symbol}
                 </span>
 
-                {/* Status Badges: Gem, Recovery, Up Today, Up Week, New Listing */}
+                {/* Status Badges: Pre-Pump Radar, Gem, Recovery, Up Today, Up Week, New Listing */}
+                {isPrePump && (
+                  <span className="px-1.5 py-0.2 rounded bg-gradient-to-r from-amber-500/25 to-orange-500/25 text-amber-300 border border-amber-400/60 text-[9px] font-black tracking-wide flex items-center gap-0.5 animate-pulse shadow-sm shadow-amber-500/30" title={`Pre-Pump Radar: Fees $${Math.round(coin.fees24h).toLocaleString()}/d, Price-to-Fees ${pToF.toFixed(2)}x`}>
+                    <span>🎯</span>
+                    <span>PRE-PUMP RADAR</span>
+                  </span>
+                )}
                 {coin.isNewListing && (
                   <span className="px-1.5 py-0.2 rounded bg-cyan-400/20 text-cyan-300 border border-cyan-400/50 text-[9px] font-black tracking-wide flex items-center gap-0.5 animate-pulse shadow-sm shadow-cyan-500/20" title={`Newly Listed: ${coin.ageDays !== undefined ? `${coin.ageDays}d ago` : 'recent'} (${coin.listedDate || ''})`}>
                     <span>🆕</span>
@@ -525,7 +537,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
   const [showCount, setShowCount] = useState(50);
   
   // 🎯 Momentum Filter Tab State requested by user:
-  // 'all' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn' | 'newly_listed'
+  // 'all' | 'pre_pump_radar' | 'weekly_growth' | 'daily_surge' | 'recovery' | 'top_burn' | 'newly_listed'
   const [momentumTab, setMomentumTab] = useState('all');
   const [newListingWindow, setNewListingWindow] = useState(7); // 7 | 14 | 30 days
 
@@ -535,6 +547,14 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
     const nowSec = 1790215600; // Reference timestamp ~ Sep 24, 2026
     return {
       all: valid.length,
+      prePump: valid.filter(c => {
+        if (!c.fees24h || c.fees24h < 15000 || !c.mcap || c.mcap < 500000 || c.mcap > 50000000) return false;
+        const pToF = c.mcap / (c.fees24h * 365);
+        const feeSurge = (c.feeChange1d !== undefined && c.feeChange1d >= 15) || 
+                         (c.feeChange7d !== undefined && c.feeChange7d >= 30) || 
+                         c.isUpToday;
+        return pToF <= 0.85 && feeSurge;
+      }).length,
       weekly: valid.filter(c => (c.isUpWeek || (c.feeChange7d && c.feeChange7d > 0)) && ((c.fees24h || 0) >= 200 || (c.fees7d || 0) >= 1000)).length,
       daily: valid.filter(c => c.isUpToday || (c.feeChange1d && c.feeChange1d > 0)).length,
       recovery: valid.filter(c => c.isRecovery).length,
@@ -551,6 +571,14 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
     return coins
       .filter(c => c.fees24h && c.fees24h > 0 && !c.isND)
       .filter(c => {
+        if (momentumTab === 'pre_pump_radar') {
+          if (!c.fees24h || c.fees24h < 15000 || !c.mcap || c.mcap < 500000 || c.mcap > 50000000) return false;
+          const pToF = c.mcap / (c.fees24h * 365);
+          const feeSurge = (c.feeChange1d !== undefined && c.feeChange1d >= 15) || 
+                           (c.feeChange7d !== undefined && c.feeChange7d >= 30) || 
+                           c.isUpToday;
+          return pToF <= 0.85 && feeSurge;
+        }
         if (momentumTab === 'newly_listed') {
           const maxAgeSec = newListingWindow * 86400;
           const withinTime = c.listedAt ? ((nowSec - c.listedAt) <= maxAgeSec) : false;
@@ -583,6 +611,13 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
       })
       .filter(c => c.fees24h >= minFees)
       .sort((a, b) => {
+        if (momentumTab === 'pre_pump_radar') {
+          // Sort by lowest Price-to-Fees (highest valuation disconnect), then by 24h fees
+          const pToFA = (a.mcap || 1e9) / Math.max(1, (a.fees24h || 1) * 365);
+          const pToFB = (b.mcap || 1e9) / Math.max(1, (b.fees24h || 1) * 365);
+          if (pToFA !== pToFB) return pToFA - pToFB;
+          return (b.fees24h || 0) - (a.fees24h || 0);
+        }
         if (momentumTab === 'newly_listed') {
           // Sort by newest listing first (descending timestamp or lowest age in days)
           const timeA = a.listedAt || (a.ageDays !== undefined ? nowSec - (a.ageDays * 86400) : 0);
@@ -663,8 +698,8 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
       {/* 🏆 REVENUE-GENERATING TOKENS INFOGRAPHIC LEADERBOARD 🏆 */}
       <RevenueHoldersLeaderboard coins={coins} onOpenModal={onOpenModal} onOpenResearch={onOpenResearch} />
 
-      {/* 🚀 6 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
+      {/* 🚀 7 MOMENTUM & VALUE ACCRUAL BUTTONS / TABS 🚀 */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-2.5 p-2 rounded-2xl bg-[#0e1422] border border-slate-800 shadow-xl">
         {/* TAB 1: ALL */}
         <button
           onClick={() => { setMomentumTab('all'); setShowCount(50); }}
@@ -683,7 +718,30 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
           <span className="text-[10px] text-slate-500 mt-1">Full universe ranked by fees</span>
         </button>
 
-        {/* TAB 2: WEEKLY GROWTH (Ghadi o Kayzid Pendant Had Simana) */}
+        {/* TAB 2: PRE-PUMP RADAR (Cashflow Disconnect · Bhal STONK & ARGUS) */}
+        <button
+          onClick={() => { setMomentumTab('pre_pump_radar'); setShowCount(50); }}
+          className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
+            momentumTab === 'pre_pump_radar'
+              ? 'bg-gradient-to-br from-amber-500/25 via-orange-500/20 to-amber-500/25 border-amber-400 text-amber-200 shadow-xl ring-2 ring-amber-400/80 animate-pulse'
+              : 'bg-[#070b14] border-amber-500/40 hover:border-amber-400/70 hover:bg-amber-500/10'
+          )}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-amber-400">🎯</span>
+              <span className="text-[11px] font-black text-amber-300">PRE-PUMP RADAR</span>
+            </div>
+            <span className="px-2 py-0.2 rounded-full bg-amber-400 text-black font-black text-[10px] shadow-sm">
+              {counts.prePump}
+            </span>
+          </div>
+          <span className="text-[10px] text-amber-300/90 mt-1 font-bold">
+            P/Fees &lt; 0.8x · Bhal STONK/ARGUS
+          </span>
+        </button>
+
+        {/* TAB 3: WEEKLY GROWTH (Ghadi o Kayzid Pendant Had Simana) */}
         <button
           onClick={() => { setMomentumTab('weekly_growth'); setShowCount(50); }}
           className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
@@ -706,7 +764,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
           </span>
         </button>
 
-        {/* TAB 3: DAILY SURGE (Lyoum > Lbareh) */}
+        {/* TAB 4: DAILY SURGE (Lyoum > Lbareh) */}
         <button
           onClick={() => { setMomentumTab('daily_surge'); setShowCount(50); }}
           className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
@@ -729,7 +787,30 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
           </span>
         </button>
 
-        {/* TAB 4: RECOVERY (Revenue kan tayah o daba kay3awad itla3) */}
+        {/* TAB 5: NEWLY LISTED (7D) - Tokens li tlistaw f akhir simana */}
+        <button
+          onClick={() => { setMomentumTab('newly_listed'); setShowCount(50); }}
+          className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
+            momentumTab === 'newly_listed'
+              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-200 shadow-lg ring-1 ring-cyan-400'
+              : 'bg-[#070b14] border-cyan-500/30 hover:bg-cyan-500/10'
+          )}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-cyan-400">🆕</span>
+              <span className="text-[11px] font-black text-white">NEW LISTED (7D)</span>
+            </div>
+            <span className="px-2 py-0.2 rounded-full bg-cyan-500 text-black font-black text-[10px]">
+              {counts.newlyListed}
+            </span>
+          </div>
+          <span className="text-[10px] text-cyan-300/80 mt-1 font-semibold">
+            Tlistaw f akhir simana ({counts.newlyListed} tokens)
+          </span>
+        </button>
+
+        {/* TAB 6: RECOVERY (Revenue kan tayah o daba kay3awad itla3) */}
         <button
           onClick={() => { setMomentumTab('recovery'); setShowCount(50); }}
           className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
@@ -752,7 +833,7 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
           </span>
         </button>
 
-        {/* TAB 5: TOP BURN / BUYBACK (Tokens li kayshriw o kayharqo bi revenue) */}
+        {/* TAB 7: TOP BURN / BUYBACK (Tokens li kayshriw o kayharqo bi revenue) */}
         <button
           onClick={() => { setMomentumTab('top_burn'); setShowCount(50); }}
           className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
@@ -774,30 +855,25 @@ export default function RevenuePage({ coins, onOpenModal, onOpenCompare, onOpenR
             Tokens li kayshriw o kayharqo bi revenue
           </span>
         </button>
+      </div>
 
-        {/* TAB 6: NEWLY LISTED (7D) - Tokens li tlistaw f akhir simana */}
-        <button
-          onClick={() => { setMomentumTab('newly_listed'); setShowCount(50); }}
-          className={'p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ' + (
-            momentumTab === 'newly_listed'
-              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-200 shadow-lg ring-1 ring-cyan-400'
-              : 'bg-[#070b14] border-cyan-500/30 hover:bg-cyan-500/10'
-          )}
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <span className="text-cyan-400">🆕</span>
-              <span className="text-[11px] font-black text-white">NEW LISTED (7D)</span>
-            </div>
-            <span className="px-2 py-0.2 rounded-full bg-cyan-500 text-black font-black text-[10px]">
-              {counts.newlyListed}
+      {/* 🎯 PRE-PUMP RADAR BANNER */}
+      {momentumTab === 'pre_pump_radar' && (
+        <div className="flex items-center justify-between flex-wrap gap-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/15 border border-amber-500/40 text-xs shadow-lg">
+          <div className="flex items-center gap-2">
+            <span className="text-amber-400 font-extrabold flex items-center gap-1.5 text-xs">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              <span>🎯 Pre-Pump Hunter Formula:</span>
+            </span>
+            <span className="text-slate-200 text-[11px] font-medium">
+              Real Cashflow (Fees &gt; $15K/day) + Extreme Valuation Disconnect (Price-to-Fees &lt; 0.85x) + Fee Growth Explosion. Nafss l-ADN li kan f $STONK ($0.02) o $ARGUS ($0.0028) 24h 9bal ma ifrg3o!
             </span>
           </div>
-          <span className="text-[10px] text-cyan-300/80 mt-1 font-semibold">
-            Tlistaw f akhir simana ({counts.newlyListed} tokens)
+          <span className="px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 text-[10px]">
+            Sorted by lowest P/Fees (Asymmetric Value Arbitrage)
           </span>
-        </button>
-      </div>
+        </div>
+      )}
 
       {/* 🆕 Newly Listed Timeframe Controls */}
       {momentumTab === 'newly_listed' && (

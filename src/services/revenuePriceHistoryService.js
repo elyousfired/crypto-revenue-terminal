@@ -1,6 +1,8 @@
 // Revenue & Price History Service
 // Fetches 100% REAL daily fees & daily revenue from DeFiLlama + real prices from CoinGecko
 
+import { getAuditedDayEntry } from './onChainRevenueService.js';
+
 const revenueCache = new Map();
 
 /**
@@ -163,6 +165,14 @@ export async function getRevenuePriceHistory(coin, days = 30) {
       let f = 0;
       let r = 0;
       let isLive = false;
+
+      // 1. Priority 1: Audited On-Chain Ledger (100% exact verified data)
+      const audited = getAuditedDayEntry(coin.id, coin.symbol, dayKey);
+      if (audited) {
+        f = audited.fees;
+        r = audited.revenue;
+        if (audited.isLive || i === 0) isLive = true;
+      } else
 
       if (i === 0) {
         // Today (Live 24h current scan)
